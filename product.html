@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Carpa</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/global.css" rel="stylesheet">
+	<link href="css/product.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+	<link href="css/ken-burns.css" rel="stylesheet" type="text/css" media="all" />
+	<link type="text/css" rel="stylesheet" href="css/animate.css">
+	<link href="https://fonts.googleapis.com/css?family=Alata&display=swap" rel="stylesheet">
+	<script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </head>
+  
+<body>
+<section id="top">
+ <div class="container">
+  <div class="row">
+   <div class="col-sm-12">
+    <div class="top_1 clearfix">
+	 <div class="col-sm-6">
+	  <div class="top_1l">
+	   <ul class="social-network social-circle">
+                        <li><a href="#" class="icoRss" title="Rss"><i class="fa fa-rss"></i></a></li>
+                        <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                    </ul>
+	  </div>
+	 </div>
+	 <div class="col-sm-6">
+	  <div class="top_1r text-right">
+	   <ul>
+	    <li><i class="fa fa-envelope"></i> info@gmail.com</li>
+		<li><i class="fa fa-phone"></i> +123 4567 890 123</li>
+	   </ul>
+	  </div>
+	 </div>
+	</div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="header" class="clearfix cd-secondary-nav">
+ <div class="container-fluid">
+  <div class="row">
+   <div class="col-sm-12">
+     <nav class="navbar navbar-default">
+            <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+               <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               </button>
+               <a class="navbar-brand" href="index.html"><i class="fa fa-car"></i> CARPA</a>            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+               <ul class="nav navbar-nav">
+                  <li><a class="m_tag" href="index.html">Home</a></li>
+                  <li><a class="m_tag" href="about.html">About</a></li>
+				  <li class="dropdown">
+                     <a href="#" class="dropdown-toggle m_tag active_m" data-toggle="dropdown">Product <b class="caret"></b></a>
+                     <ul class="dropdown-menu drop_m">
+                        <li><a href="product.html">Product</a></li>
+                        <li><a href="product-details.html">Product Details</a></li>
+                     </ul>
+                  </li>
+				  <li class="dropdown">
+                     <a href="#" class="dropdown-toggle m_tag" data-toggle="dropdown">Blog <b class="caret"></b></a>
+                     <ul class="dropdown-menu drop_m">
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="details.html">Blog Details</a></li>
+                     </ul>
+                  </li>
+				  <li><a class="m_tag" href="contact.html">Contact</a></li>
+                  <li class="dropdown">
+                     <a href="#" class="dropdown-toggle m_tag" data-toggle="dropdown">More <b class="caret"></b></a>
+                     <ul class="dropdown-menu drop_m">
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="details.html">Details</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                     </ul>
+                  </li>
+               </ul>
+               
+               <ul class="nav navbar-nav navbar-right">
+                  <li><a class="m_tag" href="#">Sign Up</a></li>
+                  <li class="dropdown">
+                     <a href="#" class="dropdown-toggle m_tag" data-toggle="dropdown">Sign in <b class="caret"></b></a>
+                     <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
+                        <li>
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <form class="form" method="post" action="#" accept-charset="UTF-8" id="login-nav">
+                                    <div class="form-group">
+                                       <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                                       <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required="">
+                                    </div>
+                                    <div class="form-group">
+                                       <label class="sr-only" for="exampleInputPassword2">Password</label>
+                                       <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required="">
+                                    </div>
+                                    <div class="checkbox">
+                                       <label>
+                                       <input type="checkbox"> Remember me
+                                       </label>
+                                    </div>
+                                    <div class="form-group">
+                                       <button type="submit" class="btn btn-success btn-block button_1">Sign in</button>
+                                    </div>
+                                 </form>
+                              </div>
+                           </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                           <input class="btn btn-primary btn-block button_2" type="button" id="sign-in-google" value="Sign In with Google">
+                           <input class="btn btn-primary btn-block button_3" type="button" id="sign-in-twitter" value="Sign In with Twitter">
+                        </li>
+                     </ul>
+                  </li>
+               </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+         </nav>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="product_main">
+ <div class="container">
+  <div class="row">
+   <div class="product_main_1">
+    <h2>PRODUCT</h2>
+	<p><a href="#"> HOME </a> <i class="fa fa-angle-double-right"></i> <a href="#"> PRODUCT </a></p>
+   </div>
+  </div>
+ </div>
+</section>
+<section id="mauris">
+ <div class="container">
+  <div class="row">
+   <div class="col-sm-12">
+    <div class="col-sm-3">
+	  <div class="list_1l clearfix">
+	   <div class="list_1l1 clearfix">
+	    <h4 class="mgt bg_1 normal">Shop By Categories</h4>
+	    <div class="ziehharmonika">
+			<h3 data-prefix="★" class="active mgt"><a href="product-details.html">Tree</a><div class="arrowDown"></div><div class="collapseIcon">–</div><div class="arrowDown"></div><div class="collapseIcon">–</div><div class="arrowDown"></div><div class="collapseIcon">–</div><div class="arrowDown"></div><div class="collapseIcon">–</div><div class="arrowDown"></div><div class="collapseIcon">–</div></h3>
+			<div class="clickable" style="display: block;">
+              <ul>
+			   <li><a href="product-details.html">Balsam Fir</a></li>
+			   <li><a href="product-details.html">Fraser Fir</a></li>
+			   <li><a href="product-details.html">Canaan Fir</a></li>
+			   <li><a href="product-details.html">Douglas Fir</a></li>
+			  </ul>
+           </div>
+		   <h3 data-prefix="★"><a href="product-details.html">Candles</a><div class="arrowDown"></div><div class="collapseIcon">+</div><div class="arrowDown"></div><div class="collapseIcon">+</div><div class="arrowDown"></div><div class="collapseIcon">+</div><div class="arrowDown"></div><div class="collapseIcon">+</div><div class="arrowDown"></div><div class="collapseIcon">+</div></h3>
+			<div class="clickable" style="">
+              <ul>
+			   <li><a href="product-details.html">Yankee Candles</a></li>
+			   <li><a href="product-details.html">Colonial Candle</a></li>
+			   <li><a href="product-details.html">PartyLite</a></li>
+			   <li><a href="product-details.html">Root Candles</a></li>
+			  </ul>
+           </div>
+		   <h3 data-prefix="★" class=""><a href="product-details.html">Linens</a><div class="arrowDown"></div><div class="collapseIcon">+</div><div class="arrowDown"></div><div class="collapseIcon">+</div><div class="arrowDown"></div><div class="collapseIcon">+</div><div class="arrowDown"></div><div class="collapseIcon">+</div><div class="arrowDown"></div><div class="collapseIcon">+</div></h3>
+			<div class="clickable" style="display: none;">
+              <ul>
+			   <li><a href="product-details.html">Ornaments</a></li>
+			   <li><a href="product-details.html">Christmas tree</a></li>
+			   <li><a href="product-details.html">Tinsel</a></li>
+			   <li><a href="product-details.html">Tree skirt</a></li>
+			  </ul>
+           </div>
+		   <h3 data-prefix="★"><a href="product-details.html">Tree stand</a><div class="arrowDown"></div><div class="collapseIcon">+</div><div class="arrowDown"></div><div class="collapseIcon">+</div><div class="arrowDown"></div><div class="collapseIcon">+</div><div class="arrowDown"></div><div class="collapseIcon">+</div><div class="arrowDown"></div><div class="collapseIcon">+</div></h3>
+			<div class="clickable" style="">
+              <ul>
+			    <li><a href="product-details.html">Ornaments</a></li>
+			   <li><a href="product-details.html">Christmas tree</a></li>
+			   <li><a href="product-details.html">Tinsel</a></li>
+			   <li><a href="product-details.html">Tree skirt</a></li>
+			  </ul>
+           </div>
+		   <h3 data-prefix="★" class=""><a href="product-details.html">Fresh poinsettias</a><div class="arrowDown"></div><div class="collapseIcon">+</div><div class="arrowDown"></div><div class="collapseIcon">+</div><div class="arrowDown"></div><div class="collapseIcon">+</div><div class="arrowDown"></div><div class="collapseIcon">+</div><div class="arrowDown"></div><div class="collapseIcon">+</div></h3>
+			<div class="clickable" style="display: none;">
+              <ul>
+			   <li><a href="product-details.html">Yankee Candles</a></li>
+			   <li><a href="product-details.html">Colonial Candle</a></li>
+			   <li><a href="product-details.html">PartyLite</a></li>
+			   <li><a href="product-details.html">Root Candles</a></li>
+			  </ul>
+           </div>
+		  </div>
+	   </div><br>
+	   <div class="list_1l2 clearfix">
+	    <h4 class="mgt bg_1 normal">Filter by</h4>
+		<div class="list_1l2i clearfix">
+		<h5 class="mgt">Availability</h5>
+		<h6><input type="checkbox"> <a href="product-details.html">In stock (11)</a></h6>
+		<h6><input type="checkbox"> <a href="product-details.html">Out of stock (2)</a></h6>
+		<hr>
+		<h5>Price</h5>
+		<input placeholder="From" class="form-control" type="text">
+		<input placeholder="To" class="form-control" type="text">
+		<hr>
+		<h5>Color</h5>
+		<ul>
+		    <li class="bg_6 act"></li>
+			<li class="bg_2"></li>
+			<li class="bg_3"></li>
+			<li class="bg_4"></li>
+			<li class="bg_5"></li>
+		   </ul>
+		<ul>
+		    <li class="bg_6 act"></li>
+			<li class="bg_2"></li>
+			<li class="bg_3"></li>
+			<li class="bg_4"></li>
+			<li class="bg_5"></li>
+		   </ul>
+		<hr>
+		<h5>Size</h5>
+		<ul>
+		    <li class="bg_3 act_1">XS</li>
+			<li class="bg_3 line">L</li>
+			<li class="bg_3 line">XL</li>
+			<li class="bg_3 line">S</li>
+		   </ul>
+		   </div>
+	   </div><br>
+	   <div class="list_1l3 clearfix">
+	    <h4 class="mgt bg_1 normal">Special Product</h4>
+		<div class="list_1l2i clearfix">
+		 <div class="list_1l2ii mgt clearfix">
+		  <a href="product-details.html"><img src="img/15.jpg" alt="abc"></a>
+		 <h5 class="mgt"><a href="product-details.html">Holiday Outgik Ornament Ball</a></h5>
+		 <h6>$22.00</h6>
+		 <span class="col_4">
+		  <i class="fa fa-star"></i>
+		  <i class="fa fa-star"></i>
+		  <i class="fa fa-star"></i>
+		  <i class="fa fa-star"></i>
+		  <i class="fa fa-star-o"></i>
+		 </span>
+		 </div>
+		 <div class="list_1l2ii clearfix">
+		  <a href="product-details.html"><img src="img/16.jpg" alt="abc"></a>
+		 <h5 class="mgt"><a href="product-details.html">The Greatest Golden Gift</a></h5>
+		 <h6>$26.00</h6>
+		 <span class="col_4">
+		  <i class="fa fa-star"></i>
+		  <i class="fa fa-star"></i>
+		  <i class="fa fa-star"></i>
+		  <i class="fa fa-star"></i>
+		  <i class="fa fa-star"></i>
+		 </span>
+		 </div>
+		 <div class="list_1l2ii clearfix">
+		  <a href="product-details.html"><img src="img/17.jpg" alt="abc"></a>
+		 <h5 class="mgt"><a href="product-details.html">Christmas Chocolate Ball</a></h5>
+		 <h6>$28.00</h6>
+		 <span class="col_4">
+		  <i class="fa fa-star"></i>
+		  <i class="fa fa-star"></i>
+		  <i class="fa fa-star"></i>
+		  <i class="fa fa-star"></i>
+		  <i class="fa fa-star-half-o"></i>
+		 </span>
+		 </div>
+		</div>
+	   </div><br>
+	   <div class="list_1l4 clearfix">
+	    <h4 class="mgt bg_1 normal">Archives</h4>
+		<div class="list_1l2i clearfix">
+		<h6 class="mgt"><a href="detail.html"><i class="fa fa-calendar"></i> May 2020</a></h6>
+		<h6><a href="detail.html"><i class="fa fa-calendar"></i> June 2020</a></h6>
+		<h6><a href="product-details.html"><i class="fa fa-calendar"></i> July 2020</a></h6>
+		<h6><a href="product-details.html"><i class="fa fa-calendar"></i> Aug 2020</a></h6>
+		<h6><a href="product-details.html"><i class="fa fa-calendar"></i> Sep 2020</a></h6>
+		<h6 class="pdb border_none pb_0"><a href="product-details.html"><i class="fa fa-calendar"></i> Oct 2020</a></h6>
+		</div>
+	   </div><br>
+	   <div class="list_1l4 clearfix">
+	    <h4 class="mgt bg_1 normal">Latest Twitter</h4>
+		<div class="list_1l2i clearfix">
+	     <p class="mgt font_16">Make sure you are following <a class="col_1 bold" href="product-details.html">@PortaMarket</a> for all your Semper Porta needs!</p>
+		 <p class="font_16">Make sure you are following <a class="col_1 bold" href="product-details.html">@PortaMarket</a> for all your Semper Porta needs!</p>
+		 <p class="font_16">Make sure you are following <a class="col_1 bold" href="product-details.html">@PortaMarket</a> for all your Semper Porta needs!</p>
+		</div>
+	   </div>
+	  </div>
+	 </div>	
+    <div class="col-sm-9">
+     
+     <div class="mauris_3">
+    <div class="well well-sm">
+        <strong>Category Title</strong>
+        <div class="btn-group">
+            <a href="product-details.html" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
+            </span>List</a> <a href="product-details.html" id="grid" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th"></span>Grid</a>
+        </div>
+    </div>
+    <div id="products" class="row list-group">
+        <div class="item  col-xs-4 col-lg-4">
+            <div class="thumbnail">
+                <img class="group list-group-image" src="img/48.jpg" alt="">
+                <div class="caption">
+                    <h4 class="group inner list-group-item-heading">
+                        Aliquam Erat</h4>
+                    <p class="group inner list-group-item-text">
+                        Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                            <p class="lead">
+                                $21.000</p>
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            <a class="btn btn-success" href="product-details.html">Add to cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item  col-xs-4 col-lg-4">
+            <div class="thumbnail">
+                <img class="group list-group-image" src="img/49.jpg" alt="">
+                <div class="caption">
+                    <h4 class="group inner list-group-item-heading">
+                        Dolore Magna</h4>
+                    <p class="group inner list-group-item-text">
+                        Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                            <p class="lead">
+                                $21.000</p>
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            <a class="btn btn-success" href="product-details.html">Add to cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item  col-xs-4 col-lg-4">
+            <div class="thumbnail">
+                <img class="group list-group-image" src="img/50.jpg" alt="">
+                <div class="caption">
+                    <h4 class="group inner list-group-item-heading">
+                        Diam Nonummy</h4>
+                    <p class="group inner list-group-item-text">
+                        Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                            <p class="lead">
+                                $21.000</p>
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            <a class="btn btn-success" href="product-details.html">Add to cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item  col-xs-4 col-lg-4">
+            <div class="thumbnail">
+                <img class="group list-group-image" src="img/51.jpg" alt="">
+                <div class="caption">
+                    <h4 class="group inner list-group-item-heading">
+                        Ipsum Dolor</h4>
+                    <p class="group inner list-group-item-text">
+                        Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                            <p class="lead">
+                                $21.000</p>
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            <a class="btn btn-success" href="product-details.html">Add to cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item  col-xs-4 col-lg-4">
+            <div class="thumbnail">
+                <img class="group list-group-image" src="img/52.jpg" alt="">
+                <div class="caption">
+                    <h4 class="group inner list-group-item-heading">
+                        Lorem Ipsum</h4>
+                    <p class="group inner list-group-item-text">
+                        Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                            <p class="lead">
+                                $21.000</p>
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            <a class="btn btn-success" href="product-details.html">Add to cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item  col-xs-4 col-lg-4">
+            <div class="thumbnail">
+                <img class="group list-group-image" src="img/53.jpg" alt="">
+                <div class="caption">
+                    <h4 class="group inner list-group-item-heading">
+                        Magna Aliquam</h4>
+                    <p class="group inner list-group-item-text">
+                        Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                            <p class="lead">
+                                $21.000</p>
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            <a class="btn btn-success" href="product-details.html">Add to cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     </div>
+     <div class="mauris_6">
+      <p class="text-center"><a class="button hvr-shutter-out-horizontal" href="product-details.html" class="button">View More</a></p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+<section id="footer">
+ <div class="container">
+  <div class="row">
+   <div class="col-sm-12">
+    <div class="footer_main clearfix">
+	 <div class="col-sm-4">
+	 <div class="footer_1 clearfix">
+	  <h3>NULLA QUIS</h3>
+	  <p>Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.torquent per conubia nostra,</p>
+	  <h4><i class="fa fa-phone"></i>+91 1234 567 890</h4>
+	  <h5><i class="fa fa-envelope"></i><a href="#">info@gmail.com</a></h5>
+	 </div>
+	</div>
+	 <div class="col-sm-4">
+	 <div class="footer_1 clearfix">
+	  <h3>QUIS SEM</h3>
+	 </div>
+	 <div class="col-sm-12 space_all">
+	  <div class="col-sm-6 space_all">
+	   <div class="footer_2">
+	    <ul>
+		    <li class="col-sm-12 col-xs-6 space_left"><a href="#"><i class="fa fa-arrow-right"></i>Massa</a></li>
+			<li class="col-sm-12 col-xs-6 space_left"><a href="#"><i class="fa fa-arrow-right"></i>Quis Sem</a></li>
+			<li class="col-sm-12 col-xs-6 space_left"><a href="#"><i class="fa fa-arrow-right"></i>Semper</a></li>
+			<li class="col-sm-12 col-xs-6 space_left"><a href="#"><i class="fa fa-arrow-right"></i>Fusce Nec</a></li>
+			<li class="col-sm-12 col-xs-6 space_left"><a href="#"><i class="fa fa-arrow-right"></i>Integer</a></li>
+			<li class="col-sm-12 col-xs-6 space_left"><a href="#"><i class="fa fa-arrow-right"></i>Dapibus</a></li>
+		</ul>
+	   </div>
+	  </div>
+	  <div class="col-sm-6 space_all">
+	   <div class="footer_2 clearfix">
+	    <ul>
+		    <li class="col-sm-12 col-xs-6 space_left"><a href="#"><i class="fa fa-arrow-right"></i>Lacinia</a></li>
+			<li class="col-sm-12 col-xs-6 space_left"><a href="#"><i class="fa fa-arrow-right"></i>Dignissim</a></li>
+			<li class="col-sm-12 col-xs-6 space_left"><a href="#"><i class="fa fa-arrow-right"></i>Sed</a></li>
+			<li class="col-sm-12 col-xs-6 space_left"><a href="#"><i class="fa fa-arrow-right"></i> Sagittis</a></li>
+			<li class="col-sm-12 col-xs-6 space_left"><a href="#"><i class="fa fa-arrow-right"></i>Adipiscing</a></li>
+			<li class="col-sm-12 col-xs-6 space_left"><a href="#"><i class="fa fa-arrow-right"></i>Diam</a></li>
+		</ul>
+	   </div>
+	  </div>
+	 </div>
+	</div>
+	 <div class="col-sm-4">
+	 <div class="footer_1 clearfix">
+	  <h3> ELEMENTUM</h3>
+	 </div>
+	 <div class="col-sm-12 space_all">
+	  <div class="footer_3">
+	   <input type="text" class="form-control" placeholder="Name">
+	  </div>
+	 </div>
+	 <div class="col-sm-12 space_all">
+	  <div class="footer_4">
+	   <input type="text" class="form-control" placeholder="Email">
+	  </div>
+	 </div>
+	 <div class="col-sm-12 space_all">
+	  <div class="footer_5 clearfix">
+	   <a class="button hvr-shutter-out-horizontal button" href="#">SUBSCRIBE</a> 
+	  </div>
+	 </div>
+	</div>
+	</div>
+   </div>
+   <div class="col-sm-12">
+    <div class="col-sm-6 space_all">
+	 <div class="footer_6">
+	  <p>© 2016 Interient. All Rights Reserved. Design By <a href="http://www.templateonweb.com">Template On Web</a></p>
+	 </div>
+	</div>
+	<div class="col-sm-6 space_all">
+	 <div class="footer_7">
+	  <ul>
+	      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+		  <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+		  <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+		  <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+		  <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+		  <li><a href="#"><i class="fa fa-rss"></i></a></li>
+		  <li><a href="#"><i class="fa fa-skype"></i></a></li>
+		  <li><a href="#"><i class="fa fa-share-alt"></i></a></li>
+	  </ul>
+	 </div>
+	</div>
+   </div>
+  </div>
+ </div>
+</section>
+<script>
+$(document).ready(function(){
+	/*****Fixed Menu******/
+	var secondaryNav = $('.cd-secondary-nav'),
+	   secondaryNavTopPosition = secondaryNav.offset().top;
+	   navbar_height = document.querySelector('.navbar').offsetHeight;
+	   
+		$(window).on('scroll', function(){
+		    if($(window).scrollTop() > secondaryNavTopPosition + navbar_height ) {
+				secondaryNav.addClass('is-fixed');	
+				document.body.style.paddingTop = navbar_height + 'px';
+				
+			} else {
+				secondaryNav.removeClass('is-fixed');
+				document.body.style.paddingTop = '0'
+			}
+		});	
+		
+});
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+    $('#list').click(function(event){event.preventDefault();$('#products .item').addClass('list-group-item');});
+    $('#grid').click(function(event){event.preventDefault();$('#products .item').removeClass('list-group-item');$('#products .item').addClass('grid-group-item');});
+});
+</script>
+	
+<script type="text/javascript">
+	$(document).on('click', '.panel-heading span.clickable', function (e) {
+    var $this = $(this);
+    if (!$this.hasClass('panel-collapsed')) {
+        $this.parents('.panel').find('.panel-body').slideUp();
+        $this.addClass('panel-collapsed');
+        $this.find('i').removeClass('glyphicon-minus').addClass('glyphicon-plus');
+    } else {
+        $this.parents('.panel').find('.panel-body').slideDown();
+        $this.removeClass('panel-collapsed');
+        $this.find('i').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+    }
+});
+$(document).on('click', '.panel div.clickable', function (e) {
+    var $this = $(this);
+    if (!$this.hasClass('panel-collapsed')) {
+        $this.parents('.panel').find('.panel-body').slideUp();
+        $this.addClass('panel-collapsed');
+        $this.find('i').removeClass('glyphicon-minus').addClass('glyphicon-plus');
+    } else {
+        $this.parents('.panel').find('.panel-body').slideDown();
+        $this.removeClass('panel-collapsed');
+        $this.find('i').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+    }
+});
+$(document).ready(function () {
+    $('.panel-heading span.clickable').click();
+    $('.panel div.clickable').click();
+});
+
+	</script>
+	
+<script src="js/ziehharmonika.js"></script>
+<script>
+$(document).ready(function() {
+		$('.ziehharmonika').ziehharmonika({
+			collapsible: true,
+			prefix: '★',
+			scroll: false
+		});
+	});
+</script>
+
+</body>
+ 
+
+</html>

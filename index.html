@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BMCAUTO</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/global.css" rel="stylesheet">
+	<link href="css/index.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+	<link href="css/ken-burns.css" rel="stylesheet" type="text/css" media="all" />
+	<link type="text/css" rel="stylesheet" href="css/animate.css">
+	<link href="https://fonts.googleapis.com/css?family=Alata&display=swap" rel="stylesheet">
+	<script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<link rel="icon" href="img/top-logo1.png" type="image/png">
+  </head>
+<body>
+<section id="top">
+ <div class="container">
+  <div class="row">
+   <div class="col-sm-12">
+    <div class="top_1 clearfix">
+	 <div class="col-sm-6">
+	  <div class="top_1l">
+	   <ul class="social-network social-circle">
+                        <li><a href="#" class="icoRss" title="Rss"><i class="fa fa-rss"></i></a></li>
+                        <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                    </ul>
+	  </div>
+	 </div>
+	 <div class="col-sm-6">
+	  <div class="top_1r text-right">
+	   <ul>
+	    <li><i class="fa fa-envelope"></i> info@gmail.com</li>
+		<li><i class="fa fa-phone"></i> +123 4567 890 123</li>
+	   </ul>
+	  </div>
+	 </div>
+	</div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="header" class="clearfix cd-secondary-nav">
+	<div class="container-fluid">
+	 <div class="row">
+	  <div class="col-sm-12">
+		<nav class="navbar navbar-default">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+			   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				  <span class="sr-only">Toggle navigation</span>
+				  <span class="icon-bar"></span>
+				  <span class="icon-bar"></span>
+				  <span class="icon-bar"></span>
+			   </button>
+			   <a href="index.html">
+				  <img src="img/top-logo.png" alt="BMCAUTO Logo" style="height: 70px; width: 400px;">
+			   </a>
+			</div>
+   
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			   <ul class="nav navbar-nav">
+				  <li><a class="m_tag active_m" href="index.html">Home</a></li>
+				  <li><a class="m_tag" href="about.html">About</a></li>
+				  <li class="dropdown">
+					 <a href="#" class="dropdown-toggle m_tag" data-toggle="dropdown">Product <b class="caret"></b></a>
+					 <ul class="dropdown-menu drop_m">
+						<li><a href="product.html">Product</a></li>
+						<li><a href="product-details.html">Product Details</a></li>
+					 </ul>
+				  </li>
+				  <li class="dropdown">
+					 <a href="#" class="dropdown-toggle m_tag" data-toggle="dropdown">Blog <b class="caret"></b></a>
+					 <ul class="dropdown-menu drop_m">
+						<li><a href="blog.html">Blog</a></li>
+						<li><a href="details.html">Blog Details</a></li>
+					 </ul>
+				  </li>
+				  <li><a class="m_tag" href="contact.html">Contact</a></li>
+				  <li class="dropdown">
+					 <a href="#" class="dropdown-toggle m_tag" data-toggle="dropdown">More <b class="caret"></b></a>
+					 <ul class="dropdown-menu drop_m">
+						<li><a href="about.html">About</a></li>
+						<li><a href="blog.html">Blog</a></li>
+						<li><a href="details.html">Details</a></li>
+						<li><a href="contact.html">Contact</a></li>
+					 </ul>
+				  </li>
+			   </ul>
+			   
+			  <!-- Right aligned section for Sign Up and Sign In -->
+<ul class="nav navbar-nav navbar-right">
+	<!-- Sign Up Link -->
+	<li><a class="m_tag" href="#" data-toggle="modal" data-target="#registerModal">Sign Up</a></li>
+	
+	<!-- Sign In Link -->
+	<li><a class="m_tag" href="#" data-toggle="modal" data-target="#loginModal">Sign In</a></li>
+  </ul>
+  
+ <!-- Modal for Sign Up -->
+<div id="registerModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		  <h4 class="modal-title" id="registerModalLabel">Sign Up</h4>
+		</div>
+		<div class="modal-body">
+		  <form class="form" method="post" action="#" accept-charset="UTF-8" id="register-form">
+			<div class="form-group text-center">
+			  <label for="profilePhoto" class="d-block">Profile Photo</label>
+			  <div id="profilePhotoContainer" class="profile-photo-circle">
+				<img id="profilePhotoPreview" src="#" alt="Profile Photo Preview" style="display:none;">
+				<input type="file" class="form-control-file" id="profilePhoto" accept="image/*">
+			  </div>
+			</div>
+			<div class="form-group">
+			  <label for="registerEmail">Email address</label>
+			  <input type="email" class="form-control" id="registerEmail" name="registerEmail" placeholder="Email address" required="">
+			  <span class="error-message" id="emailError"></span>
+			</div>
+			<div class="form-group">
+			  <label for="registerPassword">Password</label>
+			  <div class="input-group">
+				<input type="password" class="form-control" id="registerPassword" name="registerPassword" placeholder="Password" required="">
+				<span class="input-group-addon">
+				  <i class="fa fa-eye" id="togglePassword"></i>
+				</span>
+			  </div>
+			  <span class="error-message" id="passwordError"></span>
+			</div>
+			<div class="form-group">
+			  <label for="confirmPassword">Confirm Password</label>
+			  <div class="input-group">
+				<input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required="">
+				<span class="input-group-addon">
+				  <i class="fa fa-eye" id="toggleConfirmPassword"></i>
+				</span>
+			  </div>
+			  <span class="error-message" id="confirmPasswordError"></span>
+			</div>
+			<div class="form-group">
+			  <button type="submit" class="btn btn-primary btn-block" id="registerSubmit">Register</button>
+			</div>
+		  </form>
+		  <div class="text-center">
+			<p>Already have an account? <a href="#" data-toggle="modal" data-target="#loginModal" data-dismiss="modal">Sign In</a></p>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </div>  
+  <script>
+	document.getElementById('register-form').addEventListener('submit', function(event) {
+	  // Prevent form submission
+	  event.preventDefault();
+	  
+	  // Clear previous error messages
+	  document.getElementById('emailError').textContent = '';
+	  document.getElementById('passwordError').textContent = '';
+	  document.getElementById('confirmPasswordError').textContent = '';
+  
+	  // Get form elements
+	  var email = document.getElementById('registerEmail').value;
+	  var password = document.getElementById('registerPassword').value;
+	  var confirmPassword = document.getElementById('confirmPassword').value;
+  
+	  // Email validation regex
+	  var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+	  var valid = true;
+  
+	  // Email validation
+	  if (!emailPattern.test(email)) {
+		document.getElementById('emailError').textContent = 'Please enter a valid email address.';
+		valid = false;
+	  }
+  
+	  // Passwords match validation
+	  if (password !== confirmPassword) {
+		document.getElementById('confirmPasswordError').textContent = 'Passwords do not match.';
+		valid = false;
+	  }
+  
+	  if (valid) {
+		// If all validations pass, submit the form
+		this.submit();
+	  }
+	});
+  
+	// Optional: Live validation on input change
+	document.getElementById('registerEmail').addEventListener('input', function() {
+	  var email = this.value;
+	  var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	  if (!emailPattern.test(email)) {
+		document.getElementById('emailError').textContent = 'Invalid email address.';
+	  } else {
+		document.getElementById('emailError').textContent = '';
+	  }
+	});
+  
+	document.getElementById('registerPassword').addEventListener('input', function() {
+	  var password = this.value;
+	  var confirmPassword = document.getElementById('confirmPassword').value;
+	  if (password !== confirmPassword) {
+		document.getElementById('confirmPasswordError').textContent = 'Passwords do not match.';
+	  } else {
+		document.getElementById('confirmPasswordError').textContent = '';
+	  }
+	});
+  
+	document.getElementById('confirmPassword').addEventListener('input', function() {
+	  var confirmPassword = this.value;
+	  var password = document.getElementById('registerPassword').value;
+	  if (confirmPassword !== password) {
+		document.getElementById('confirmPasswordError').textContent = 'Passwords do not match.';
+	  } else {
+		document.getElementById('confirmPasswordError').textContent = '';
+	  }
+	});
+  </script>
+  
+	
+  
+  <!-- Modal for Sign In -->
+  <div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		  <h4 class="modal-title" id="loginModalLabel">Sign In</h4>
+		</div>
+		<div class="modal-body">
+		  <form class="form" method="post" action="#" accept-charset="UTF-8" id="login-nav">
+			<div class="form-group">
+			  <label class="sr-only" for="loginEmail">Email address</label>
+			  <input type="email" class="form-control" id="loginEmail" placeholder="Email address" required="">
+			</div>
+			<div class="form-group">
+			  <label class="sr-only" for="loginPassword">Password</label>
+			  <input type="password" class="form-control" id="loginPassword" placeholder="Password" required="">
+			</div>
+			<div class="checkbox">
+			  <label>
+				<input type="checkbox"> Remember me
+			  </label>
+			</div>
+			<div class="form-group">
+			  <button type="submit" class="btn btn-success btn-block">Sign In</button>
+			</div>
+		  </form>
+		</div>
+		<div class="modal-footer">
+			<p>Don't have an account? <a href="#" data-toggle="modal" data-target="#registerModal" data-dismiss="modal">Sign Up</a></p>
+		  </div>
+	  </div>
+	</div>
+  </div>
+  
+  <style>
+  /* Style pour les champs de mot de passe avec l'icône */
+  .input-group {
+    position: relative;
+    width: 100%;
+  }
+
+  .input-group .form-control {
+    padding-right: 40px; /* espace pour l'icône */
+  }
+
+  .input-group .input-group-addon {
+    position: absolute;
+    right: 10px; /* position de l'icône à droite du champ */
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    border: none; /* supprimer la bordure par défaut */
+    background: transparent; /* fond transparent */
+    color: #888; /* couleur de l'icône */
+  }
+
+  /* Style pour les messages d'erreur */
+  .error-message {
+    color: red;
+    font-size: 0.875em;
+    display: block;
+    margin-top: 5px;
+  }
+
+  /* Style pour les icônes d'affichage de mot de passe */
+  .fa-eye, .fa-eye-slash {
+    font-size: 1.2em;
+  }
+
+  .fa-eye-slash {
+    color: #007bff; /* couleur de l'icône lorsqu'elle est active */
+  }
+
+	.profile-photo-circle {
+	  position: relative;
+	  width: 120px;
+	  height: 120px;
+	  border-radius: 50%;
+	  border: 2px solid #ddd;
+	  overflow: hidden;
+	  background-color: #f9f9f9;
+	  margin: 0 auto;
+	}
+  
+	.profile-photo-circle img {
+	  width: 100%;
+	  height: 100%;
+	  object-fit: cover;
+	}
+  
+	.profile-photo-circle input[type="file"] {
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;
+	  opacity: 0;
+	  cursor: pointer;
+	}
+  
+	.input-group {
+	  position: relative;
+	}
+  
+	.input-group .input-group-addon {
+	  position: absolute;
+	  right: 0;
+	  top: 0;
+	  height: 100%;
+	  padding: 0 10px;
+	  cursor: pointer;
+	}
+  
+	.error-message {
+	  color: red;
+	  font-size: 0.875em;
+	  display: block;
+	  margin-top: 5px;
+	}
+  
+	.fa-eye {
+	  font-size: 1.2em;
+	}
+  </style>
+  
+  
+  <!-- Add JavaScript for previewing the uploaded image -->
+  <script>
+	document.getElementById('profilePhoto').addEventListener('change', function(event) {
+	  var reader = new FileReader();
+	  reader.onload = function(e) {
+		var img = document.getElementById('profilePhotoPreview');
+		img.src = e.target.result;
+		img.style.display = 'block';
+	  };
+	  reader.readAsDataURL(event.target.files[0]);
+	});
+  document.getElementById('togglePassword').addEventListener('click', function() {
+    var passwordField = document.getElementById('registerPassword');
+    var type = passwordField.type === 'password' ? 'text' : 'password';
+    passwordField.type = type;
+    this.classList.toggle('fa-eye-slash');
+  });
+
+  document.getElementById('toggleConfirmPassword').addEventListener('click', function() {
+    var confirmPasswordField = document.getElementById('confirmPassword');
+    var type = confirmPasswordField.type === 'password' ? 'text' : 'password';
+    confirmPasswordField.type = type;
+    this.classList.toggle('fa-eye-slash');
+  });
+  </script>
+  
+   </section>
+   
+
+<section id="center" class="center_home">
+<div class="banner">
+		<div id="kb" class="carousel kb_elastic animate_text kb_wrapper" data-ride="carousel" data-interval="6000" data-pause="hover">
+			<!-- Wrapper-for-Slides -->
+            <div class="carousel-inner" role="listbox">  
+                <div class="item active"><!-- First-Slide -->
+                    <img src="img/001.jpg" class="img-responsive">
+                    <div class="carousel-caption kb_caption kb_caption_right">
+                        <h1 data-animation="animated flipInX" class="">We Provide Our best Service</h1>
+                        <p data-animation="animated flipInX" class="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy  text ever since the when an unknown printer took a galley of type and scrambled [...]</p>
+						<h4><a class="button hvr-shutter-out-horizontal" href="#">Read More</a></h4>
+                    </div>
+                </div>  
+                <div class="item"> <!-- Second-Slide -->
+                    <img src="img/002.jpg" alt="" class="img-responsive">
+                    <div class="carousel-caption kb_caption kb_caption_right">
+                        <h1 data-animation="animated fadeInDown">We Provide Our best Service</h1>
+                        <p data-animation="animated fadeInUp">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy  text ever since the when an unknown printer took a galley of type and scrambled [...]</p>
+						<h4><a class="button hvr-shutter-out-horizontal" href="#">Read More</a></h4>
+                    </div>
+                </div> 
+                <div class="item"><!-- Third-Slide -->
+                    <img src="img/003.jpg" alt="" class="img-responsive">
+                    <div class="carousel-caption kb_caption kb_caption_right">
+                        <h1 data-animation="animated fadeInDown">We Provide Our best Service</h1>
+                        <p data-animation="animated fadeInUp">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy  text ever since the when an unknown printer took a galley of type and scrambled [...]</p>
+						<h4><a class="button hvr-shutter-out-horizontal" href="#">Read More</a></h4>
+                    </div>
+                </div> 
+            </div> 
+            <!-- Left-Button -->
+            <a class="left carousel-control kb_control_left" href="#kb" role="button" data-slide="prev">
+				<span class="fa fa-angle-left kb_icons" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a> 
+            <!-- Right-Button -->
+            <a class="right carousel-control kb_control_right" href="#kb" role="button" data-slide="next">
+                <span class="fa fa-angle-right kb_icons" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a> 
+        </div>
+		<script src="js/custom.js"></script>
+	</div>
+  
