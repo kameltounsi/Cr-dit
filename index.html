@@ -15,38 +15,10 @@
 	<script src="js/jquery-2.1.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 	<link rel="icon" href="img/top-logo1.png" type="image/png">
+	<!-- SweetAlert CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
   </head>
 <body>
-<section id="top">
- <div class="container">
-  <div class="row">
-   <div class="col-sm-12">
-    <div class="top_1 clearfix">
-	 <div class="col-sm-6">
-	  <div class="top_1l">
-	   <ul class="social-network social-circle">
-                        <li><a href="#" class="icoRss" title="Rss"><i class="fa fa-rss"></i></a></li>
-                        <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-                    </ul>
-	  </div>
-	 </div>
-	 <div class="col-sm-6">
-	  <div class="top_1r text-right">
-	   <ul>
-	    <li><i class="fa fa-envelope"></i> info@gmail.com</li>
-		<li><i class="fa fa-phone"></i> +123 4567 890 123</li>
-	   </ul>
-	  </div>
-	 </div>
-	</div>
-   </div>
-  </div>
- </div>
-</section>
-
 <section id="header" class="clearfix cd-secondary-nav">
 	<div class="container-fluid">
 	 <div class="row">
@@ -97,173 +69,419 @@
 			   </ul>
 			   
 			  <!-- Right aligned section for Sign Up and Sign In -->
-<ul class="nav navbar-nav navbar-right">
-	<!-- Sign Up Link -->
-	<li><a class="m_tag" href="#" data-toggle="modal" data-target="#registerModal">Sign Up</a></li>
-	
-	<!-- Sign In Link -->
-	<li><a class="m_tag" href="#" data-toggle="modal" data-target="#loginModal">Sign In</a></li>
-  </ul>
-  
+              <ul class="nav navbar-nav navbar-right" id="auth-buttons">
+                <!-- Sign Up Link -->
+                <li><a class="m_tag" href="#" data-toggle="modal" data-target="#registerModal">Sign Up</a></li>
+            
+                <!-- Sign In Link -->
+                <li><a class="m_tag" href="#" data-toggle="modal" data-target="#loginModal">Sign In</a></li>
+            </ul>
+            <!-- User Avatar with Dropdown Menu -->
+<div id="user-avatar" class="navbar-right" style="display: none;">
+    <div id="avatarContainer" style="position: relative; display: inline-block;">
+        <img id="profileImage" src="path/to/default-avatar.jpg" alt="User Avatar" class="img-circle" width="50" height="50" style="cursor: pointer;">
+        <!-- Dropdown Menu -->
+        <div id="dropdownMenu" class="dropdown-menu" style="display: none; position: absolute; top: 100%; right: 0; background-color: #fff; border: 1px solid #ddd; box-shadow: 0 2px 5px rgba(0,0,0,0.15); z-index: 1000;">
+            <a href="#" id="modifyProfileLink" class="dropdown-item">Modify Profile</a>
+            <a href="#" id="logoutLink" class="dropdown-item">Logout</a>
+        </div>
+    </div>
+</div>
+            
+<style>/* Add this CSS to your stylesheet */
+#user-avatar {
+    display: none; /* Masquer l'avatar par défaut */
+}
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+        z-index: 1000;
+    }
+    
+    .dropdown-item {
+        padding: 10px 15px;
+        text-decoration: none;
+        color: #333;
+        display: block;
+    }
+    
+    .dropdown-item:hover {
+        background-color: #f8f9fa;
+    }
+    </style>
  <!-- Modal for Sign Up -->
 <div id="registerModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel">
-	<div class="modal-dialog" role="document">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		  <h4 class="modal-title" id="registerModalLabel">Sign Up</h4>
-		</div>
-		<div class="modal-body">
-		  <form class="form" method="post" action="#" accept-charset="UTF-8" id="register-form">
-			<div class="form-group text-center">
-			  <label for="profilePhoto" class="d-block">Profile Photo</label>
-			  <div id="profilePhotoContainer" class="profile-photo-circle">
-				<img id="profilePhotoPreview" src="#" alt="Profile Photo Preview" style="display:none;">
-				<input type="file" class="form-control-file" id="profilePhoto" accept="image/*">
-			  </div>
-			</div>
-			<div class="form-group">
-			  <label for="registerEmail">Email address</label>
-			  <input type="email" class="form-control" id="registerEmail" name="registerEmail" placeholder="Email address" required="">
-			  <span class="error-message" id="emailError"></span>
-			</div>
-			<div class="form-group">
-			  <label for="registerPassword">Password</label>
-			  <div class="input-group">
-				<input type="password" class="form-control" id="registerPassword" name="registerPassword" placeholder="Password" required="">
-				<span class="input-group-addon">
-				  <i class="fa fa-eye" id="togglePassword"></i>
-				</span>
-			  </div>
-			  <span class="error-message" id="passwordError"></span>
-			</div>
-			<div class="form-group">
-			  <label for="confirmPassword">Confirm Password</label>
-			  <div class="input-group">
-				<input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required="">
-				<span class="input-group-addon">
-				  <i class="fa fa-eye" id="toggleConfirmPassword"></i>
-				</span>
-			  </div>
-			  <span class="error-message" id="confirmPasswordError"></span>
-			</div>
-			<div class="form-group">
-			  <button type="submit" class="btn btn-primary btn-block" id="registerSubmit">Register</button>
-			</div>
-		  </form>
-		  <div class="text-center">
-			<p>Already have an account? <a href="#" data-toggle="modal" data-target="#loginModal" data-dismiss="modal">Sign In</a></p>
-		  </div>
-		</div>
-	  </div>
-	</div>
-  </div>  
-  <script>
-	document.getElementById('register-form').addEventListener('submit', function(event) {
-	  // Prevent form submission
-	  event.preventDefault();
-	  
-	  // Clear previous error messages
-	  document.getElementById('emailError').textContent = '';
-	  document.getElementById('passwordError').textContent = '';
-	  document.getElementById('confirmPasswordError').textContent = '';
-  
-	  // Get form elements
-	  var email = document.getElementById('registerEmail').value;
-	  var password = document.getElementById('registerPassword').value;
-	  var confirmPassword = document.getElementById('confirmPassword').value;
-  
-	  // Email validation regex
-	  var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  
-	  var valid = true;
-  
-	  // Email validation
-	  if (!emailPattern.test(email)) {
-		document.getElementById('emailError').textContent = 'Please enter a valid email address.';
-		valid = false;
-	  }
-  
-	  // Passwords match validation
-	  if (password !== confirmPassword) {
-		document.getElementById('confirmPasswordError').textContent = 'Passwords do not match.';
-		valid = false;
-	  }
-  
-	  if (valid) {
-		// If all validations pass, submit the form
-		this.submit();
-	  }
-	});
-  
-	// Optional: Live validation on input change
-	document.getElementById('registerEmail').addEventListener('input', function() {
-	  var email = this.value;
-	  var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-	  if (!emailPattern.test(email)) {
-		document.getElementById('emailError').textContent = 'Invalid email address.';
-	  } else {
-		document.getElementById('emailError').textContent = '';
-	  }
-	});
-  
-	document.getElementById('registerPassword').addEventListener('input', function() {
-	  var password = this.value;
-	  var confirmPassword = document.getElementById('confirmPassword').value;
-	  if (password !== confirmPassword) {
-		document.getElementById('confirmPasswordError').textContent = 'Passwords do not match.';
-	  } else {
-		document.getElementById('confirmPasswordError').textContent = '';
-	  }
-	});
-  
-	document.getElementById('confirmPassword').addEventListener('input', function() {
-	  var confirmPassword = this.value;
-	  var password = document.getElementById('registerPassword').value;
-	  if (confirmPassword !== password) {
-		document.getElementById('confirmPasswordError').textContent = 'Passwords do not match.';
-	  } else {
-		document.getElementById('confirmPasswordError').textContent = '';
-	  }
-	});
-  </script>
-  
-	
-  
-  <!-- Modal for Sign In -->
-  <div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
-	<div class="modal-dialog" role="document">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		  <h4 class="modal-title" id="loginModalLabel">Sign In</h4>
-		</div>
-		<div class="modal-body">
-		  <form class="form" method="post" action="#" accept-charset="UTF-8" id="login-nav">
-			<div class="form-group">
-			  <label class="sr-only" for="loginEmail">Email address</label>
-			  <input type="email" class="form-control" id="loginEmail" placeholder="Email address" required="">
-			</div>
-			<div class="form-group">
-			  <label class="sr-only" for="loginPassword">Password</label>
-			  <input type="password" class="form-control" id="loginPassword" placeholder="Password" required="">
-			</div>
-			<div class="checkbox">
-			  <label>
-				<input type="checkbox"> Remember me
-			  </label>
-			</div>
-			<div class="form-group">
-			  <button type="submit" class="btn btn-success btn-block">Sign In</button>
-			</div>
-		  </form>
-		</div>
-		<div class="modal-footer">
-			<p>Don't have an account? <a href="#" data-toggle="modal" data-target="#registerModal" data-dismiss="modal">Sign Up</a></p>
-		  </div>
-	  </div>
-	</div>
-  </div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="registerModalLabel">Sign Up</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form" method="post" action="registerController.php" accept-charset="UTF-8" id="register-form" enctype="multipart/form-data">
+                    <div class="form-group text-center">
+                        <label for="profilePhoto" class="d-block">Profile Photo</label>
+                        <div id="profilePhotoContainer" class="profile-photo-circle">
+                            <img id="profilePhotoPreview" src="#" alt="Profile Photo Preview" style="display:none;">
+                            <input type="file" class="form-control-file" id="profilePhoto" name="profilePhoto" accept="image/*">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email address</label>
+                        <input type="email" class="form-control" id="registerEmail" name="registerEmail" placeholder="Email address" required="">
+                        <span class="error-message" id="emailError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Password</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="registerPassword" name="registerPassword" placeholder="Password" required="">
+                            <span class="input-group-addon">
+                                <i class="fa fa-eye" id="togglePassword"></i>
+                            </span>
+                        </div>
+                        <span class="error-message" id="passwordError"></span>
+                        <small id="passwordStrength" class="form-text text-muted"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required="">
+                            <span class="input-group-addon">
+                                <i class="fa fa-eye" id="toggleConfirmPassword"></i>
+                            </span>
+                        </div>
+                        <span class="error-message" id="confirmPasswordError"></span>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block" id="registerSubmit">Register</button>
+                    </div>
+                </form>
+                <div class="text-center">
+                    <p>Already have an account? <a href="#" data-toggle="modal" data-target="#loginModal" data-dismiss="modal">Sign In</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Include SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- JavaScript for handling form submission and email uniqueness -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('register-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+        console.log('Login button clicked');
+
+        // Clear previous error messages
+        document.getElementById('emailError').textContent = '';
+        document.getElementById('passwordError').textContent = '';
+        document.getElementById('confirmPasswordError').textContent = '';
+
+        // Get form elements
+        var email = document.getElementById('registerEmail').value;
+        var password = document.getElementById('registerPassword').value;
+        var confirmPassword = document.getElementById('confirmPassword').value;
+
+        // Email validation regex
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        var valid = true;
+
+        // Email validation
+        if (!emailPattern.test(email)) {
+            document.getElementById('emailError').textContent = 'Please enter a valid email address.';
+            valid = false;
+        }
+
+        // Password strength validation
+        if (!isStrongPassword(password)) {
+            document.getElementById('passwordError').textContent = 'Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.';
+            valid = false;
+        } else {
+            document.getElementById('passwordError').textContent = '';
+        }
+
+        // Passwords match validation
+        if (password !== confirmPassword) {
+            document.getElementById('confirmPasswordError').textContent = 'Passwords do not match.';
+            valid = false;
+        }
+
+        if (valid) {
+            // Check if email is unique
+            fetch('checkEmail.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.emailExists) {
+                    Swal.fire({
+                        title: 'Email Already Used!',
+                        text: 'The email address you entered is already in use. Please choose another one.',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                } else {
+                    // If email is unique, submit the form
+                    var formData = new FormData(this);
+                    
+                    fetch('registerController.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            Swal.fire({
+                                title: 'Success!',
+                                text: data.message,
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            }).then(() => {
+                                document.getElementById('register-form').reset();
+                                $('#registerModal').modal('hide'); // Close the modal
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: data.message,
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'An unexpected error occurred.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    });
+                }
+            })
+            .catch(error => {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'An unexpected error occurred while checking the email.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            });
+        }
+    });
+
+    // Optional: Live validation on input change
+    document.getElementById('registerEmail').addEventListener('input', function() {
+        var email = this.value;
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            document.getElementById('emailError').textContent = 'Invalid email address.';
+        } else {
+            document.getElementById('emailError').textContent = '';
+        }
+    });
+
+    document.getElementById('registerPassword').addEventListener('input', function() {
+        var password = this.value;
+        var confirmPassword = document.getElementById('confirmPassword').value;
+        if (password !== confirmPassword) {
+            document.getElementById('confirmPasswordError').textContent = 'Passwords do not match.';
+        } else {
+            document.getElementById('confirmPasswordError').textContent = '';
+        }
+        // Check password strength and update UI
+        var strength = getPasswordStrength(password);
+        document.getElementById('passwordStrength').textContent = strength.message;
+        document.getElementById('passwordStrength').style.color = strength.color;
+    });
+
+    document.getElementById('confirmPassword').addEventListener('input', function() {
+        var confirmPassword = this.value;
+        var password = document.getElementById('registerPassword').value;
+        if (confirmPassword !== password) {
+            document.getElementById('confirmPasswordError').textContent = 'Passwords do not match.';
+        } else {
+            document.getElementById('confirmPasswordError').textContent = '';
+        }
+    });
+
+    // Password strength check function
+    function isStrongPassword(password) {
+        var pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.,])[A-Za-z\d@$!%*?&.,]{8,}$/;
+        return pattern.test(password);
+    }
+
+    // Password strength message function
+    function getPasswordStrength(password) {
+        var strength = { message: '', color: '' };
+        if (password.length < 8) {
+            strength.message = 'Password too short.';
+            strength.color = 'red';
+        } else if (!/[a-z]/.test(password)) {
+            strength.message = 'Include at least one lowercase letter.';
+            strength.color = 'orange';
+        } else if (!/[A-Z]/.test(password)) {
+            strength.message = 'Include at least one uppercase letter.';
+            strength.color = 'orange';
+        } else if (!/\d/.test(password)) {
+            strength.message = 'Include at least one digit.';
+            strength.color = 'orange';
+        } else if (!/[@$!%*?&,.]/.test(password)) {
+            strength.message = 'Include at least one special character.';
+            strength.color = 'orange';
+        } else {
+            strength.message = 'Password is strong.';
+            strength.color = 'green';
+        }
+        return strength;
+    }
+});
+</script>
+
+<!-- Modal for Sign In -->
+<div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="loginModalLabel">Sign In</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form" id="login-nav">
+                    <div class="form-group">
+                        <label class="sr-only" for="loginEmail">Email address</label>
+                        <input type="email" class="form-control" id="loginEmail" placeholder="Email address" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="loginPassword">Password</label>
+                        <input type="password" class="form-control" id="loginPassword" placeholder="Password" required>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Remember me
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block">Sign In</button>
+                    </div>
+                </form>
+                <div id="loginErrorMessage" style="color: red; display: none;"></div>
+            </div>
+            <div class="modal-footer">
+                <p>Don't have an account? <a href="#" data-toggle="modal" data-target="#registerModal" data-dismiss="modal">Sign Up</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Gestion de la soumission du formulaire de connexion
+    document.getElementById('login-nav').addEventListener('submit', function(event) {
+        event.preventDefault(); // Empêche la soumission normale du formulaire
+
+        // Récupérer les valeurs des champs email et mot de passe
+        var email = document.getElementById('loginEmail').value;
+        var password = document.getElementById('loginPassword').value;
+
+        // Envoyer les données via AJAX
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'login.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);
+                if (response.status === 'success') {
+                    // Connexion réussie
+                    afficherAvatar(response.user.pdp);
+                    $('#loginModal').modal('hide'); // Ferme le modal de connexion
+                } else {
+                    // Connexion échouée
+                    afficherErreurConnexion(response.message);
+                }
+            } else {
+                afficherErreurConnexion('An error occurred while logging in.');
+            }
+        };
+        xhr.send(JSON.stringify({
+            email: email,
+            password: password
+        }));
+    });
+
+    // Fonction pour afficher l'avatar après une connexion réussie
+    function afficherAvatar(userProfileImage) {
+        document.getElementById('auth-buttons').style.display = 'none';
+        document.getElementById('user-avatar').style.display = 'block';
+        document.getElementById('profileImage').src = userProfileImage || 'path/to/default-avatar.jpg';
+    }
+
+    // Affichage d'un message d'erreur si la connexion échoue
+    function afficherErreurConnexion(message) {
+        var errorMsg = document.getElementById('loginErrorMessage');
+        errorMsg.textContent = message;
+        errorMsg.style.display = 'block';
+    }
+
+    // Gestion du clic sur l'image de profil pour afficher/masquer le menu déroulant
+    document.getElementById('profileImage').addEventListener('click', function() {
+        var dropdownMenu = document.getElementById('dropdownMenu');
+        dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Masquer le menu déroulant si l'utilisateur clique en dehors du menu
+    document.addEventListener('click', function(event) {
+        if (!document.getElementById('avatarContainer').contains(event.target)) {
+            document.getElementById('dropdownMenu').style.display = 'none';
+        }
+    });
+
+    // Gestion du clic sur le bouton Logout
+    document.getElementById('logoutLink').addEventListener('click', function(event) {
+        event.preventDefault();
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Do you really want to log out?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, log out!',
+            cancelButtonText: 'No, cancel!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Effectuer la déconnexion côté serveur
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'logout.php', true); // Script de déconnexion côté serveur
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        // Réinitialisation de l'interface après la déconnexion
+                        document.getElementById('auth-buttons').style.display = 'block';
+                        document.getElementById('user-avatar').style.display = 'none';
+                        document.getElementById('profileImage').src = 'path/to/default-avatar.jpg';
+                    }
+                };
+                xhr.send();
+            }
+        });
+    });
+});
+
+
+</script>
+
   
   <style>
   /* Style pour les champs de mot de passe avec l'icône */
@@ -385,7 +603,147 @@
   
    </section>
    
+<!-- Modal for Modify Profile -->
+<div id="modifyProfileModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modifyProfileModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="modifyProfileModalLabel">Modify Profile</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form" method="post" action="modifyProfile.php" accept-charset="UTF-8" id="modify-profile-form" enctype="multipart/form-data">
+                    <div class="form-group text-center">
+                        <label for="profilePhoto" class="d-block">Profile Photo</label>
+                        <div id="profilePhotoContainer" class="profile-photo-circle">
+                            <img id="profilePhotoPreview" src="#" alt="Profile Photo Preview" style="display:none;" class="img-circle" width="100" height="100">
+                            <input type="file" class="form-control-file" id="profilePhoto" name="profilePhoto" accept="image/*">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="modifyEmail">Email address</label>
+                        <input type="email" class="form-control" id="modifyEmail" name="modifyEmail" placeholder="Email address" required="">
+                        <span class="error-message" id="modifyEmailError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="modifyPassword">Password</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="modifyPassword" name="modifyPassword" placeholder="Password">
+                            <span class="input-group-addon">
+                                <i class="fa fa-eye" id="toggleModifyPassword"></i>
+                            </span>
+                        </div>
+                        <span class="error-message" id="modifyPasswordError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmModifyPassword">Confirm Password</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="confirmModifyPassword" name="confirmModifyPassword" placeholder="Confirm Password">
+                            <span class="input-group-addon">
+                                <i class="fa fa-eye" id="toggleConfirmModifyPassword"></i>
+                            </span>
+                        </div>
+                        <span class="error-message" id="confirmModifyPasswordError"></span>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block" id="modifyProfileSubmit">Update Profile</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Gestion du clic sur le bouton "Modify Profile"
+    document.getElementById('modifyProfileLink').addEventListener('click', function(event) {
+        event.preventDefault();
+        
+        // Récupérer les données de l'utilisateur authentifié (supposons que vous les avez dans une variable globale)
+        var user = {
+            email: 'user@example.com', // Remplacer par la valeur réelle
+            profilePhoto: 'path/to/profile-photo.jpg' // Remplacer par la valeur réelle
+        };
 
+        // Remplir le modal avec les données de l'utilisateur
+        document.getElementById('profilePhotoPreview').src = user.profilePhoto;
+        document.getElementById('profilePhotoPreview').style.display = user.profilePhoto ? 'block' : 'none';
+        document.getElementById('modifyEmail').value = user.email;
+
+        // Afficher le modal
+        $('#modifyProfileModal').modal('show');
+    });
+
+    // Gestion de la soumission du formulaire de modification du profil
+    document.getElementById('modify-profile-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Empêche la soumission normale du formulaire
+
+        // Effacer les messages d'erreur précédents
+        document.getElementById('modifyEmailError').textContent = '';
+        document.getElementById('modifyPasswordError').textContent = '';
+        document.getElementById('confirmModifyPasswordError').textContent = '';
+
+        // Obtenir les valeurs des champs
+        var email = document.getElementById('modifyEmail').value;
+        var password = document.getElementById('modifyPassword').value;
+        var confirmPassword = document.getElementById('confirmModifyPassword').value;
+        
+        var valid = true;
+
+        // Validation de l'email
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            document.getElementById('modifyEmailError').textContent = 'Please enter a valid email address.';
+            valid = false;
+        }
+
+        // Validation des mots de passe
+        if (password && (password !== confirmPassword)) {
+            document.getElementById('confirmModifyPasswordError').textContent = 'Passwords do not match.';
+            valid = false;
+        }
+
+        if (valid) {
+            // Soumettre les données via AJAX
+            var formData = new FormData(this);
+            
+            fetch('modifyProfile.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: data.message,
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    }).then(() => {
+                        $('#modifyProfileModal').modal('hide'); // Fermer le modal
+                    });
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: data.message,
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            })
+            .catch(error => {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'An unexpected error occurred.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            });
+        }
+    });
+});
+
+</script>
 <section id="center" class="center_home">
 <div class="banner">
 		<div id="kb" class="carousel kb_elastic animate_text kb_wrapper" data-ride="carousel" data-interval="6000" data-pause="hover">
@@ -429,4 +787,5 @@
         </div>
 		<script src="js/custom.js"></script>
 	</div>
+	
   
