@@ -16,9 +16,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $userId = $_SESSION['user_id'];
-    $email = $data['modifyEmail'];
-    $password = isset($data['modifyPassword']) ? $data['modifyPassword'] : null;
-    $confirmPassword = isset($data['confirmModifyPassword']) ? $data['confirmModifyPassword'] : null;
+    $email = isset($data['modifyEmail']) ? trim($data['modifyEmail']) : null;
+    $password = isset($data['modifyPassword']) ? trim($data['modifyPassword']) : null;
+    $confirmPassword = isset($data['confirmModifyPassword']) ? trim($data['confirmModifyPassword']) : null;
 
     // Valider les mots de passe
     if ($password && $password !== $confirmPassword) {
@@ -30,33 +30,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         $pdo = GetConnexion(); // Fonction pour obtenir la connexion PDO
 
-        // Préparer la requête SQL pour mettre à jour l'email
+        // Préparer la requête SQL pour mettre à jour l'email et/ou le mot de passe
         $updateFields = [];
+        $params = [];
+
         if ($email) {
             $updateFields[] = "mail = :email";
+            $params[':email'] = $email;
         }
         if ($password) {
             $updateFields[] = "password = :password";
+            $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+            $params[':password'] = $hashedPassword;
         }
 
         if (count($updateFields) > 0) {
             $sql = "UPDATE users SET " . implode(", ", $updateFields) . " WHERE id = :id";
+            $params[':id'] = $userId;
+
             $stmt = $pdo->prepare($sql);
-            
-            if ($email) {
-                $stmt->bindParam(':email', $email);
+
+            // Lier les paramètres
+            foreach ($params as $param => $value) {
+                $stmt->bindValue($param, $value);
             }
-            if ($password) {
-                $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-                $stmt->bindParam(':password', $hashedPassword);
-            }
-            $stmt->bindParam(':id', $userId);
 
             $stmt->execute();
-        }
 
-        $response['status'] = 'success';
-        $response['message'] = 'Profile updated successfully.';
+            $response['status'] = 'success';
+            $response['message'] = 'Profile updated successfully.';
+        } else {
+            $response['message'] = 'No changes were made.';
+        }
     } catch (PDOException $e) {
         $response['message'] = 'Error updating profile: ' . $e->getMessage();
     }
