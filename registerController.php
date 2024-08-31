@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Gestion de l'upload de fichier
     $pdp = ''; // Valeur par défaut
-    $uploadFileDir = './uploads/';
+    $uploadFileDir = 'uploads/';
     
     // Créer le répertoire si nécessaire
     if (!is_dir($uploadFileDir)) {
