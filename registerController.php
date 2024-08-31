@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     
-    $role = 'user'; // Définir un rôle par défaut ou récupérez-le d'un autre endroit
+    $role = 'User'; // Définir un rôle par défaut ou récupérez-le d'un autre endroit
 
     // Validation
     if ($password !== $confirmPassword) {

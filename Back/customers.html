@@ -133,54 +133,119 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+    function handleRoleChange(event) {
+    const select = event.target;
+    const userId = select.dataset.userId;
+    const newRole = select.value;
 
-    // Fetch user data from users.php
-    fetch('/car_rent/back/affichusers.php')
-        .then(response => response.json())
-        .then(data => {
-            users = data;
-            const userTableBody = document.getElementById('user-table-body');
+    fetch('../back/updateuserrole.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+            id: userId,
+            role: newRole,
+            action: 'updateRole'
+        }).toString()
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json(); // Assume response is JSON
+    })
+    .then(data => {
+        if (data.success) {
+            Swal.fire(
+                'Success!',
+                `User role updated to ${newRole}`,
+                'success'
+            );
+        } else {
+            Swal.fire(
+                'Error!',
+                data.message || 'Unknown error',
+                'error'
+            );
+        }
+    })
+    .catch(error => {
+        console.error('Error updating user role:', error);
+        Swal.fire(
+            'Error!',
+            'Error updating user role. Please check the console for more details.',
+            'error'
+        );
+    });
+}
 
-            users.forEach(user => {
-                const row = document.createElement('tr');
+// Fetch user data from users.php
+fetch('/car_rent/back/affichusers.php')
+    .then(response => response.json())
+    .then(data => {
+        users = data;
+        const userTableBody = document.getElementById('user-table-body');
 
-                // Profile Picture
-                const pdpCell = document.createElement('td');
-                const pdpImg = document.createElement('img');
-                pdpImg.src = user.pdp ? baseURL + user.pdp : 'assets/imgs/default-avatar.png';
-                pdpImg.alt = 'Profile Picture';
-                pdpImg.className = 'profile-pic'; // Apply the CSS class
-                pdpCell.appendChild(pdpImg);
-                row.appendChild(pdpCell);
+        users.forEach(user => {
+            const row = document.createElement('tr');
 
-                // Email
-                const emailCell = document.createElement('td');
-                emailCell.textContent = user.mail;
-                row.appendChild(emailCell);
+            // Profile Picture
+            const pdpCell = document.createElement('td');
+            const pdpImg = document.createElement('img');
+            pdpImg.src = user.pdp ? baseURL + user.pdp : 'assets/imgs/default-avatar.png';
+            pdpImg.alt = 'Profile Picture';
+            pdpImg.className = 'profile-pic'; // Apply the CSS class
+            pdpCell.appendChild(pdpImg);
+            row.appendChild(pdpCell);
 
-                // Role
-                const roleCell = document.createElement('td');
-                roleCell.textContent = user.role;
-                row.appendChild(roleCell);
+            // Email
+            const emailCell = document.createElement('td');
+            emailCell.textContent = user.mail;
+            row.appendChild(emailCell);
 
-                // Actions
-                const actionsCell = document.createElement('td');
-                const deleteButton = document.createElement('button');
-                deleteButton.textContent = 'Delete';
-                deleteButton.className = 'delete-btn';
-                deleteButton.addEventListener('click', () => deleteUser(user.id)); // Call deleteUser function
-                actionsCell.appendChild(deleteButton);
-                row.appendChild(actionsCell);
+            // Role
+            const roleCell = document.createElement('td');
+            const roleSelect = document.createElement('select');
+            roleSelect.className = 'role-select';
+            roleSelect.dataset.userId = user.id;
 
-                // Add the row to the table
-                userTableBody.appendChild(row);
+            // Add role options
+            ['User', 'Admin', 'Agent de location'].forEach(role => {
+                const option = document.createElement('option');
+                option.value = role;
+                option.textContent = role;
+                if (role === user.role) {
+                    option.selected = true;
+                }
+                roleSelect.appendChild(option);
             });
 
-            // Attach event listener to search input
-            searchInput.addEventListener('input', filterTable);
-            searchTypeSelect.addEventListener('change', filterTable);
-        })
-        .catch(error => console.error('Error fetching user data:', error));
+            roleSelect.addEventListener('change', handleRoleChange);
+            roleCell.appendChild(roleSelect);
+            row.appendChild(roleCell);
+
+            // Actions
+            const actionsCell = document.createElement('td');
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.className = 'delete-btn';
+            deleteButton.addEventListener('click', () => deleteUser(user.id)); // Call deleteUser function
+            actionsCell.appendChild(deleteButton);
+            row.appendChild(actionsCell);
+
+            // Add the row to the table
+            userTableBody.appendChild(row);
+        });
+
+        // Attach event listener to search input
+        searchInput.addEventListener('input', filterTable);
+        searchTypeSelect.addEventListener('change', filterTable);
+    })
+    .catch(error => console.error('Error fetching user data:', error));
+
+
 
     function deleteUser(userId) {
         if (!userId) {
