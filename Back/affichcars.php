@@ -8,7 +8,7 @@ try {
     $pdo = GetConnexion();
 
     // Query to fetch car records
-    $stmt = $pdo->query("SELECT id, nom, model, img1, img2, img3, ville FROM voitures");
+    $stmt = $pdo->query("SELECT id, nom, model, img1, img2, img3, ville, prix FROM voitures");
 
     // Fetch all rows as an associative array
     $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);

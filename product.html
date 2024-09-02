@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Carpa</title>
+    <title>BMCAUTO - CARS</title>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/global.css" rel="stylesheet">
 	<link href="css/product.css" rel="stylesheet">
@@ -14,602 +14,796 @@
 	<link href="https://fonts.googleapis.com/css?family=Alata&display=swap" rel="stylesheet">
 	<script src="js/jquery-2.1.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <link rel="icon" href="img/top-logo1.png" type="image/png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
   </head>
   
 <body>
-<section id="top">
- <div class="container">
-  <div class="row">
-   <div class="col-sm-12">
-    <div class="top_1 clearfix">
-	 <div class="col-sm-6">
-	  <div class="top_1l">
-	   <ul class="social-network social-circle">
-                        <li><a href="#" class="icoRss" title="Rss"><i class="fa fa-rss"></i></a></li>
-                        <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-                    </ul>
-	  </div>
-	 </div>
-	 <div class="col-sm-6">
-	  <div class="top_1r text-right">
-	   <ul>
-	    <li><i class="fa fa-envelope"></i> info@gmail.com</li>
-		<li><i class="fa fa-phone"></i> +123 4567 890 123</li>
-	   </ul>
-	  </div>
-	 </div>
-	</div>
-   </div>
-  </div>
- </div>
-</section>
-
-<section id="header" class="clearfix cd-secondary-nav">
- <div class="container-fluid">
-  <div class="row">
-   <div class="col-sm-12">
-     <nav class="navbar navbar-default">
-            <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-               <span class="sr-only">Toggle navigation</span>
-               <span class="icon-bar"></span>
-               <span class="icon-bar"></span>
-               <span class="icon-bar"></span>
-               </button>
-               <a class="navbar-brand" href="index.html"><i class="fa fa-car"></i> CARPA</a>            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-               <ul class="nav navbar-nav">
-                  <li><a class="m_tag" href="index.html">Home</a></li>
-                  <li><a class="m_tag" href="about.html">About</a></li>
-				  <li class="dropdown">
-                     <a href="#" class="dropdown-toggle m_tag active_m" data-toggle="dropdown">Product <b class="caret"></b></a>
-                     <ul class="dropdown-menu drop_m">
-                        <li><a href="product.html">Product</a></li>
-                        <li><a href="product-details.html">Product Details</a></li>
-                     </ul>
-                  </li>
-				  <li class="dropdown">
-                     <a href="#" class="dropdown-toggle m_tag" data-toggle="dropdown">Blog <b class="caret"></b></a>
-                     <ul class="dropdown-menu drop_m">
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="details.html">Blog Details</a></li>
-                     </ul>
-                  </li>
-				  <li><a class="m_tag" href="contact.html">Contact</a></li>
-                  <li class="dropdown">
-                     <a href="#" class="dropdown-toggle m_tag" data-toggle="dropdown">More <b class="caret"></b></a>
-                     <ul class="dropdown-menu drop_m">
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="details.html">Details</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                     </ul>
-                  </li>
-               </ul>
-               
-               <ul class="nav navbar-nav navbar-right">
-                  <li><a class="m_tag" href="#">Sign Up</a></li>
-                  <li class="dropdown">
-                     <a href="#" class="dropdown-toggle m_tag" data-toggle="dropdown">Sign in <b class="caret"></b></a>
-                     <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
-                        <li>
-                           <div class="row">
-                              <div class="col-md-12">
-                                 <form class="form" method="post" action="#" accept-charset="UTF-8" id="login-nav">
-                                    <div class="form-group">
-                                       <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                                       <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required="">
-                                    </div>
-                                    <div class="form-group">
-                                       <label class="sr-only" for="exampleInputPassword2">Password</label>
-                                       <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required="">
-                                    </div>
-                                    <div class="checkbox">
-                                       <label>
-                                       <input type="checkbox"> Remember me
-                                       </label>
-                                    </div>
-                                    <div class="form-group">
-                                       <button type="submit" class="btn btn-success btn-block button_1">Sign in</button>
-                                    </div>
-                                 </form>
-                              </div>
-                           </div>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                           <input class="btn btn-primary btn-block button_2" type="button" id="sign-in-google" value="Sign In with Google">
-                           <input class="btn btn-primary btn-block button_3" type="button" id="sign-in-twitter" value="Sign In with Twitter">
-                        </li>
-                     </ul>
-                  </li>
-               </ul>
+    <section id="header" class="clearfix cd-secondary-nav">
+        <div class="container-fluid">
+         <div class="row">
+          <div class="col-sm-12">
+            <nav class="navbar navbar-default">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                   </button>
+                   <a href="index.html">
+                      <img src="img/top-logo.png" alt="BMCAUTO Logo" style="height: 70px; width: 400px;">
+                   </a>
+                </div>
+       
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                   <ul class="nav navbar-nav">
+                      <li><a class="m_tag" href="index.html">Home</a></li>
+                      <li><a class="m_tag active_m" href="product.html">Voitures</a></li>
+                      <li><a class="m_tag" href="product.html">Liste des paiements</a></li>
+                   </ul>
+                   
+                  <!-- Right aligned section for Sign Up and Sign In -->
+                  <ul class="nav navbar-nav navbar-right" id="auth-buttons">
+                    <!-- Sign Up Link -->
+                    <li><a class="m_tag" href="#" data-toggle="modal" data-target="#registerModal">Sign Up</a></li>
+                
+                    <!-- Sign In Link -->
+                    <li><a class="m_tag" href="#" data-toggle="modal" data-target="#loginModal">Sign In</a></li>
+                </ul>
+                <!-- User Avatar with Dropdown Menu -->
+    <div id="user-avatar" class="navbar-right" style="display: none;">
+        <div id="avatarContainer" style="position: relative; display: inline-block;">
+            <img id="profileImage" src="path/to/default-avatar.jpg" alt="User Avatar" class="img-circle" width="50" height="50" style="cursor: pointer;">
+            <!-- Dropdown Menu -->
+            <div id="dropdownMenu" class="dropdown-menu" style="display: none; position: absolute; top: 100%; right: 0; background-color: #fff; border: 1px solid #ddd; box-shadow: 0 2px 5px rgba(0,0,0,0.15); z-index: 1000;">
+                <a href="#" id="modifyProfileLink" class="dropdown-item">Modify Profile</a>
+                <a href="#" id="logoutLink" class="dropdown-item">Logout</a>
             </div>
-            <!-- /.navbar-collapse -->
-         </nav>
-   </div>
-  </div>
- </div>
-</section>
+        </div>
+    </div>
+     <!-- Modal for Sign Up -->
+    <div id="registerModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="registerModalLabel">Sign Up</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form" method="post" action="registerController.php" accept-charset="UTF-8" id="register-form" enctype="multipart/form-data">
+                        <div class="form-group text-center">
+                            <label for="profilePhoto" class="d-block">Profile Photo</label>
+                            <div id="profilePhotoContainer" class="profile-photo-circle">
+                                <img id="profilePhotoPreview" src="#" alt="Profile Photo Preview" style="display:none;">
+                                <input type="file" class="form-control-file" id="profilePhoto" name="profilePhoto" accept="image/*">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerEmail">Email address</label>
+                            <input type="email" class="form-control" id="registerEmail" name="registerEmail" placeholder="Email address" required="">
+                            <span class="error-message" id="emailError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerPassword">Password</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="registerPassword" name="registerPassword" placeholder="Password" required="">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-eye" id="togglePassword"></i>
+                                </span>
+                            </div>
+                            <span class="error-message" id="passwordError"></span>
+                            <small id="passwordStrength" class="form-text text-muted"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required="">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-eye" id="toggleConfirmPassword"></i>
+                                </span>
+                            </div>
+                            <span class="error-message" id="confirmPasswordError"></span>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block" id="registerSubmit">Register</button>
+                        </div>
+                    </form>
+                    <div class="text-center">
+                        <p>Already have an account? <a href="#" data-toggle="modal" data-target="#loginModal" data-dismiss="modal">Sign In</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Include SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- JavaScript for handling form submission and email uniqueness -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('register-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            console.log('Login button clicked');
+    
+            // Clear previous error messages
+            document.getElementById('emailError').textContent = '';
+            document.getElementById('passwordError').textContent = '';
+            document.getElementById('confirmPasswordError').textContent = '';
+    
+            // Get form elements
+            var email = document.getElementById('registerEmail').value;
+            var password = document.getElementById('registerPassword').value;
+            var confirmPassword = document.getElementById('confirmPassword').value;
+    
+            // Email validation regex
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+            var valid = true;
+    
+            // Email validation
+            if (!emailPattern.test(email)) {
+                document.getElementById('emailError').textContent = 'Please enter a valid email address.';
+                valid = false;
+            }
+    
+            // Password strength validation
+            if (!isStrongPassword(password)) {
+                document.getElementById('passwordError').textContent = 'Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.';
+                valid = false;
+            } else {
+                document.getElementById('passwordError').textContent = '';
+            }
+    
+            // Passwords match validation
+            if (password !== confirmPassword) {
+                document.getElementById('confirmPasswordError').textContent = 'Passwords do not match.';
+                valid = false;
+            }
+    
+            if (valid) {
+                // Check if email is unique
+                fetch('checkEmail.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.emailExists) {
+                        Swal.fire({
+                            title: 'Email Already Used!',
+                            text: 'The email address you entered is already in use. Please choose another one.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    } else {
+                        // If email is unique, submit the form
+                        var formData = new FormData(this);
+                        
+                        fetch('registerController.php', {
+                            method: 'POST',
+                            body: formData
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.status === 'success') {
+                                Swal.fire({
+                                    title: 'Success!',
+                                    text: data.message,
+                                    icon: 'success',
+                                    confirmButtonText: 'OK'
+                                }).then(() => {
+                                    document.getElementById('register-form').reset();
+                                    $('#registerModal').modal('hide'); // Close the modal
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: 'Error!',
+                                    text: data.message,
+                                    icon: 'error',
+                                    confirmButtonText: 'OK'
+                                });
+                            }
+                        })
+                        .catch(error => {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'An unexpected error occurred.',
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        });
+                    }
+                })
+                .catch(error => {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'An unexpected error occurred while checking the email.',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                });
+            }
+        });
+    
+        // Optional: Live validation on input change
+        document.getElementById('registerEmail').addEventListener('input', function() {
+            var email = this.value;
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                document.getElementById('emailError').textContent = 'Invalid email address.';
+            } else {
+                document.getElementById('emailError').textContent = '';
+            }
+        });
+    
+        document.getElementById('registerPassword').addEventListener('input', function() {
+            var password = this.value;
+            var confirmPassword = document.getElementById('confirmPassword').value;
+            if (password !== confirmPassword) {
+                document.getElementById('confirmPasswordError').textContent = 'Passwords do not match.';
+            } else {
+                document.getElementById('confirmPasswordError').textContent = '';
+            }
+            // Check password strength and update UI
+            var strength = getPasswordStrength(password);
+            document.getElementById('passwordStrength').textContent = strength.message;
+            document.getElementById('passwordStrength').style.color = strength.color;
+        });
+    
+        document.getElementById('confirmPassword').addEventListener('input', function() {
+            var confirmPassword = this.value;
+            var password = document.getElementById('registerPassword').value;
+            if (confirmPassword !== password) {
+                document.getElementById('confirmPasswordError').textContent = 'Passwords do not match.';
+            } else {
+                document.getElementById('confirmPasswordError').textContent = '';
+            }
+        });
+    
+        // Password strength check function
+        function isStrongPassword(password) {
+            var pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.,])[A-Za-z\d@$!%*?&.,]{8,}$/;
+            return pattern.test(password);
+        }
+    
+        // Password strength message function
+        function getPasswordStrength(password) {
+            var strength = { message: '', color: '' };
+            if (password.length < 8) {
+                strength.message = 'Password too short.';
+                strength.color = 'red';
+            } else if (!/[a-z]/.test(password)) {
+                strength.message = 'Include at least one lowercase letter.';
+                strength.color = 'orange';
+            } else if (!/[A-Z]/.test(password)) {
+                strength.message = 'Include at least one uppercase letter.';
+                strength.color = 'orange';
+            } else if (!/\d/.test(password)) {
+                strength.message = 'Include at least one digit.';
+                strength.color = 'orange';
+            } else if (!/[@$!%*?&,.]/.test(password)) {
+                strength.message = 'Include at least one special character.';
+                strength.color = 'orange';
+            } else {
+                strength.message = 'Password is strong.';
+                strength.color = 'green';
+            }
+            return strength;
+        }
+    });
+    </script>
+    
+    <!-- Modal for Sign In -->
+    <div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="loginModalLabel">Sign In</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form" id="login-nav">
+                        <div class="form-group">
+                            <label class="sr-only" for="loginEmail">Email address</label>
+                            <input type="email" class="form-control" id="loginEmail" placeholder="Email address" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="loginPassword">Password</label>
+                            <input type="password" class="form-control" id="loginPassword" placeholder="Password" required>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> Remember me
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success btn-block">Sign In</button>
+                        </div>
+                    </form>
+                    <div id="loginErrorMessage" style="color: red; display: none;"></div>
+                </div>
+                <div class="modal-footer">
+                    <p>Don't have an account? <a href="#" data-toggle="modal" data-target="#registerModal" data-dismiss="modal">Sign Up</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check session status when the page loads
+            function checkSession() {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', 'check_session.php', true); // PHP script to check session
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        if (response.status === 'connected') {
+                            displayAvatar(response.user.pdp);
+                            if (response.user.role === 'Admin') {
+                                window.location.href = 'back/index.html';
+                            }
+                        }
+                    }
+                };
+                xhr.send();
+            }
+        
+            checkSession(); // Call the function when the page loads
+        
+            // Handle form submission for login
+            document.getElementById('login-nav').addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent normal form submission
+        
+                // Get email and password field values
+                var email = document.getElementById('loginEmail').value;
+                var password = document.getElementById('loginPassword').value;
+        
+                // Send data via AJAX
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'login.php', true);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        if (response.status === 'success') {
+                            if (response.user.role === 'Admin') {
+                                window.location.href = 'back/index.html';
+                            } else {
+                                displayAvatar(response.user.pdp);
+                                $('#loginModal').modal('hide'); // Close the login modal
+                            }
+                        } else {
+                            displayLoginError(response.message);
+                        }
+                    } else {
+                        displayLoginError('An error occurred while logging in.');
+                    }
+                };
+                xhr.send(JSON.stringify({
+                    email: email,
+                    password: password
+                }));
+            });
+        
+            // Function to display the avatar after a successful login
+            function displayAvatar(userProfileImage) {
+                document.getElementById('auth-buttons').style.display = 'none';
+                document.getElementById('user-avatar').style.display = 'block';
+                document.getElementById('profileImage').src = userProfileImage || 'path/to/default-avatar.jpg';
+            }
+        
+            // Display an error message if login fails
+            function displayLoginError(message) {
+                var errorMsg = document.getElementById('loginErrorMessage');
+                errorMsg.textContent = message;
+                errorMsg.style.display = 'block';
+            }
+        
+            // Handle profile image click to show/hide dropdown menu
+            document.getElementById('profileImage').addEventListener('click', function() {
+                var dropdownMenu = document.getElementById('dropdownMenu');
+                dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+            });
+        
+            // Hide dropdown menu if clicking outside of the avatar container
+            document.addEventListener('click', function(event) {
+                if (!document.getElementById('avatarContainer').contains(event.target)) {
+                    document.getElementById('dropdownMenu').style.display = 'none';
+                }
+            });
+        
+            // Handle Logout button click
+            document.getElementById('logoutLink').addEventListener('click', function(event) {
+                event.preventDefault();
+        
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "Do you really want to log out?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, log out!',
+                    cancelButtonText: 'No, cancel!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Perform logout on the server side
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('POST', 'logout.php', true); // Server-side logout script
+                        xhr.onload = function() {
+                            if (xhr.status === 200) {
+                                // Reset the interface after logout
+                                document.getElementById('auth-buttons').style.display = 'block';
+                                document.getElementById('user-avatar').style.display = 'none';
+                                document.getElementById('profileImage').src = 'path/to/default-avatar.jpg';
+
+                            }
+                        };
+                        xhr.send();
+                        window.location.href = 'index.html'; // Redirect to index.html
+
+                    }
+                });
+            });
+        });
+        </script>
+      
+      <!-- Add JavaScript for previewing the uploaded image -->
+      <script>
+        document.getElementById('profilePhoto').addEventListener('change', function(event) {
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            var img = document.getElementById('profilePhotoPreview');
+            img.src = e.target.result;
+            img.style.display = 'block';
+          };
+          reader.readAsDataURL(event.target.files[0]);
+        });
+      document.getElementById('togglePassword').addEventListener('click', function() {
+        var passwordField = document.getElementById('registerPassword');
+        var type = passwordField.type === 'password' ? 'text' : 'password';
+        passwordField.type = type;
+        this.classList.toggle('fa-eye-slash');
+      });
+    
+      document.getElementById('toggleConfirmPassword').addEventListener('click', function() {
+        var confirmPasswordField = document.getElementById('confirmPassword');
+        var type = confirmPasswordField.type === 'password' ? 'text' : 'password';
+        confirmPasswordField.type = type;
+        this.classList.toggle('fa-eye-slash');
+      });
+      </script>
+      
+       </section>
+       
+    <!-- Modal for Modify Profile -->
+    <div id="modifyProfileModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modifyProfileModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modifyProfileModalLabel">Modify Profile</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form" method="post" action="modifyProfile.php" accept-charset="UTF-8" id="modify-profile-form" enctype="multipart/form-data">
+                        <div class="form-group text-center">
+                            <label for="profilePhoto" class="d-block">Profile Photo</label>
+                            <div id="profilePhotoContainer" class="profile-photo-circle">
+                                <img id="profilePhotoPreview" alt="Profile Photo Preview" class="img-circle" width="100" height="100" style="display:none;">
+                                <input type="file" class="form-control-file" id="profilePhoto" name="profilePhoto" accept="image/*">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="modifyEmail">Email address</label>
+                            <input type="email" class="form-control" id="modifyEmail" name="modifyEmail" placeholder="Email address" required="">
+                            <span class="error-message" id="modifyEmailError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="modifyPassword">Password</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="modifyPassword" name="modifyPassword" placeholder="Password">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-eye" id="toggleModifyPassword"></i>
+                                </span>
+                            </div>
+                            <span class="error-message" id="modifyPasswordError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmModifyPassword">Confirm Password</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="confirmModifyPassword" name="confirmModifyPassword" placeholder="Confirm Password">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-eye" id="toggleConfirmModifyPassword"></i>
+                                </span>
+                            </div>
+                            <span class="error-message" id="confirmModifyPasswordError"></span>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block" id="modifyProfileSubmit">Update Profile</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Gestion du clic sur le bouton "Modify Profile"
+        document.getElementById('modifyProfileLink').addEventListener('click', function(event) {
+            event.preventDefault();
+    
+            // Fetch user data using an AJAX call
+            fetch('getUserData.php')
+                .then(response => response.json())
+                .then(user => {
+                    if (user.status === 'success') {
+                        const profilePhotoPreview = document.getElementById('profilePhotoPreview');
+                        
+                        if (user.data.profilePhoto) {
+                            profilePhotoPreview.src = user.data.profilePhoto;
+                            profilePhotoPreview.style.display = 'block';
+                        } else {
+                            profilePhotoPreview.style.display = 'none';
+                        }
+                        
+                        document.getElementById('modifyEmail').value = user.data.email;
+    
+                        // Display the modal
+                        $('#modifyProfileModal').modal('show');
+                    } else {
+                        Swal.fire({
+                            title: 'Error!',
+                            text: user.message,
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                })
+                .catch(error => {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'An unexpected error occurred.',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                });
+        });
+    
+        // Gestion de la soumission du formulaire de modification du profil
+        document.getElementById('modify-profile-form').addEventListener('submit', function(event) {
+            // Votre logique existante pour soumettre le formulaire
+        });
+    });
+    </script>
+    </section>
 
 <section id="product_main">
  <div class="container">
   <div class="row">
    <div class="product_main_1">
-    <h2>PRODUCT</h2>
-	<p><a href="#"> HOME </a> <i class="fa fa-angle-double-right"></i> <a href="#"> PRODUCT </a></p>
+    <h2>CARS</h2>
+	<p><a href="#"> HOME </a> <i class="fa fa-angle-double-right"></i> <a href="#"> CARS </a></p>
    </div>
   </div>
  </div>
 </section>
-<section id="mauris">
- <div class="container">
-  <div class="row">
-   <div class="col-sm-12">
-    <div class="col-sm-3">
-	  <div class="list_1l clearfix">
-	   <div class="list_1l1 clearfix">
-	    <h4 class="mgt bg_1 normal">Shop By Categories</h4>
-	    <div class="ziehharmonika">
-			<h3 data-prefix="★" class="active mgt"><a href="product-details.html">Tree</a><div class="arrowDown"></div><div class="collapseIcon">–</div><div class="arrowDown"></div><div class="collapseIcon">–</div><div class="arrowDown"></div><div class="collapseIcon">–</div><div class="arrowDown"></div><div class="collapseIcon">–</div><div class="arrowDown"></div><div class="collapseIcon">–</div></h3>
-			<div class="clickable" style="display: block;">
-              <ul>
-			   <li><a href="product-details.html">Balsam Fir</a></li>
-			   <li><a href="product-details.html">Fraser Fir</a></li>
-			   <li><a href="product-details.html">Canaan Fir</a></li>
-			   <li><a href="product-details.html">Douglas Fir</a></li>
-			  </ul>
-           </div>
-		   <h3 data-prefix="★"><a href="product-details.html">Candles</a><div class="arrowDown"></div><div class="collapseIcon">+</div><div class="arrowDown"></div><div class="collapseIcon">+</div><div class="arrowDown"></div><div class="collapseIcon">+</div><div class="arrowDown"></div><div class="collapseIcon">+</div><div class="arrowDown"></div><div class="collapseIcon">+</div></h3>
-			<div class="clickable" style="">
-              <ul>
-			   <li><a href="product-details.html">Yankee Candles</a></li>
-			   <li><a href="product-details.html">Colonial Candle</a></li>
-			   <li><a href="product-details.html">PartyLite</a></li>
-			   <li><a href="product-details.html">Root Candles</a></li>
-			  </ul>
-           </div>
-		   <h3 data-prefix="★" class=""><a href="product-details.html">Linens</a><div class="arrowDown"></div><div class="collapseIcon">+</div><div class="arrowDown"></div><div class="collapseIcon">+</div><div class="arrowDown"></div><div class="collapseIcon">+</div><div class="arrowDown"></div><div class="collapseIcon">+</div><div class="arrowDown"></div><div class="collapseIcon">+</div></h3>
-			<div class="clickable" style="display: none;">
-              <ul>
-			   <li><a href="product-details.html">Ornaments</a></li>
-			   <li><a href="product-details.html">Christmas tree</a></li>
-			   <li><a href="product-details.html">Tinsel</a></li>
-			   <li><a href="product-details.html">Tree skirt</a></li>
-			  </ul>
-           </div>
-		   <h3 data-prefix="★"><a href="product-details.html">Tree stand</a><div class="arrowDown"></div><div class="collapseIcon">+</div><div class="arrowDown"></div><div class="collapseIcon">+</div><div class="arrowDown"></div><div class="collapseIcon">+</div><div class="arrowDown"></div><div class="collapseIcon">+</div><div class="arrowDown"></div><div class="collapseIcon">+</div></h3>
-			<div class="clickable" style="">
-              <ul>
-			    <li><a href="product-details.html">Ornaments</a></li>
-			   <li><a href="product-details.html">Christmas tree</a></li>
-			   <li><a href="product-details.html">Tinsel</a></li>
-			   <li><a href="product-details.html">Tree skirt</a></li>
-			  </ul>
-           </div>
-		   <h3 data-prefix="★" class=""><a href="product-details.html">Fresh poinsettias</a><div class="arrowDown"></div><div class="collapseIcon">+</div><div class="arrowDown"></div><div class="collapseIcon">+</div><div class="arrowDown"></div><div class="collapseIcon">+</div><div class="arrowDown"></div><div class="collapseIcon">+</div><div class="arrowDown"></div><div class="collapseIcon">+</div></h3>
-			<div class="clickable" style="display: none;">
-              <ul>
-			   <li><a href="product-details.html">Yankee Candles</a></li>
-			   <li><a href="product-details.html">Colonial Candle</a></li>
-			   <li><a href="product-details.html">PartyLite</a></li>
-			   <li><a href="product-details.html">Root Candles</a></li>
-			  </ul>
-           </div>
-		  </div>
-	   </div><br>
-	   <div class="list_1l2 clearfix">
-	    <h4 class="mgt bg_1 normal">Filter by</h4>
-		<div class="list_1l2i clearfix">
-		<h5 class="mgt">Availability</h5>
-		<h6><input type="checkbox"> <a href="product-details.html">In stock (11)</a></h6>
-		<h6><input type="checkbox"> <a href="product-details.html">Out of stock (2)</a></h6>
-		<hr>
-		<h5>Price</h5>
-		<input placeholder="From" class="form-control" type="text">
-		<input placeholder="To" class="form-control" type="text">
-		<hr>
-		<h5>Color</h5>
-		<ul>
-		    <li class="bg_6 act"></li>
-			<li class="bg_2"></li>
-			<li class="bg_3"></li>
-			<li class="bg_4"></li>
-			<li class="bg_5"></li>
-		   </ul>
-		<ul>
-		    <li class="bg_6 act"></li>
-			<li class="bg_2"></li>
-			<li class="bg_3"></li>
-			<li class="bg_4"></li>
-			<li class="bg_5"></li>
-		   </ul>
-		<hr>
-		<h5>Size</h5>
-		<ul>
-		    <li class="bg_3 act_1">XS</li>
-			<li class="bg_3 line">L</li>
-			<li class="bg_3 line">XL</li>
-			<li class="bg_3 line">S</li>
-		   </ul>
-		   </div>
-	   </div><br>
-	   <div class="list_1l3 clearfix">
-	    <h4 class="mgt bg_1 normal">Special Product</h4>
-		<div class="list_1l2i clearfix">
-		 <div class="list_1l2ii mgt clearfix">
-		  <a href="product-details.html"><img src="img/15.jpg" alt="abc"></a>
-		 <h5 class="mgt"><a href="product-details.html">Holiday Outgik Ornament Ball</a></h5>
-		 <h6>$22.00</h6>
-		 <span class="col_4">
-		  <i class="fa fa-star"></i>
-		  <i class="fa fa-star"></i>
-		  <i class="fa fa-star"></i>
-		  <i class="fa fa-star"></i>
-		  <i class="fa fa-star-o"></i>
-		 </span>
-		 </div>
-		 <div class="list_1l2ii clearfix">
-		  <a href="product-details.html"><img src="img/16.jpg" alt="abc"></a>
-		 <h5 class="mgt"><a href="product-details.html">The Greatest Golden Gift</a></h5>
-		 <h6>$26.00</h6>
-		 <span class="col_4">
-		  <i class="fa fa-star"></i>
-		  <i class="fa fa-star"></i>
-		  <i class="fa fa-star"></i>
-		  <i class="fa fa-star"></i>
-		  <i class="fa fa-star"></i>
-		 </span>
-		 </div>
-		 <div class="list_1l2ii clearfix">
-		  <a href="product-details.html"><img src="img/17.jpg" alt="abc"></a>
-		 <h5 class="mgt"><a href="product-details.html">Christmas Chocolate Ball</a></h5>
-		 <h6>$28.00</h6>
-		 <span class="col_4">
-		  <i class="fa fa-star"></i>
-		  <i class="fa fa-star"></i>
-		  <i class="fa fa-star"></i>
-		  <i class="fa fa-star"></i>
-		  <i class="fa fa-star-half-o"></i>
-		 </span>
-		 </div>
-		</div>
-	   </div><br>
-	   <div class="list_1l4 clearfix">
-	    <h4 class="mgt bg_1 normal">Archives</h4>
-		<div class="list_1l2i clearfix">
-		<h6 class="mgt"><a href="detail.html"><i class="fa fa-calendar"></i> May 2020</a></h6>
-		<h6><a href="detail.html"><i class="fa fa-calendar"></i> June 2020</a></h6>
-		<h6><a href="product-details.html"><i class="fa fa-calendar"></i> July 2020</a></h6>
-		<h6><a href="product-details.html"><i class="fa fa-calendar"></i> Aug 2020</a></h6>
-		<h6><a href="product-details.html"><i class="fa fa-calendar"></i> Sep 2020</a></h6>
-		<h6 class="pdb border_none pb_0"><a href="product-details.html"><i class="fa fa-calendar"></i> Oct 2020</a></h6>
-		</div>
-	   </div><br>
-	   <div class="list_1l4 clearfix">
-	    <h4 class="mgt bg_1 normal">Latest Twitter</h4>
-		<div class="list_1l2i clearfix">
-	     <p class="mgt font_16">Make sure you are following <a class="col_1 bold" href="product-details.html">@PortaMarket</a> for all your Semper Porta needs!</p>
-		 <p class="font_16">Make sure you are following <a class="col_1 bold" href="product-details.html">@PortaMarket</a> for all your Semper Porta needs!</p>
-		 <p class="font_16">Make sure you are following <a class="col_1 bold" href="product-details.html">@PortaMarket</a> for all your Semper Porta needs!</p>
-		</div>
-	   </div>
-	  </div>
-	 </div>	
-    <div class="col-sm-9">
-     
-     <div class="mauris_3">
-    <div class="well well-sm">
-        <strong>Category Title</strong>
-        <div class="btn-group">
-            <a href="product-details.html" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
-            </span>List</a> <a href="product-details.html" id="grid" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th"></span>Grid</a>
-        </div>
-    </div>
-    <div id="products" class="row list-group">
-        <div class="item  col-xs-4 col-lg-4">
-            <div class="thumbnail">
-                <img class="group list-group-image" src="img/48.jpg" alt="">
-                <div class="caption">
-                    <h4 class="group inner list-group-item-heading">
-                        Aliquam Erat</h4>
-                    <p class="group inner list-group-item-text">
-                        Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-6">
-                            <p class="lead">
-                                $21.000</p>
-                        </div>
-                        <div class="col-xs-12 col-md-6">
-                            <a class="btn btn-success" href="product-details.html">Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="item  col-xs-4 col-lg-4">
-            <div class="thumbnail">
-                <img class="group list-group-image" src="img/49.jpg" alt="">
-                <div class="caption">
-                    <h4 class="group inner list-group-item-heading">
-                        Dolore Magna</h4>
-                    <p class="group inner list-group-item-text">
-                        Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-6">
-                            <p class="lead">
-                                $21.000</p>
-                        </div>
-                        <div class="col-xs-12 col-md-6">
-                            <a class="btn btn-success" href="product-details.html">Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="item  col-xs-4 col-lg-4">
-            <div class="thumbnail">
-                <img class="group list-group-image" src="img/50.jpg" alt="">
-                <div class="caption">
-                    <h4 class="group inner list-group-item-heading">
-                        Diam Nonummy</h4>
-                    <p class="group inner list-group-item-text">
-                        Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-6">
-                            <p class="lead">
-                                $21.000</p>
-                        </div>
-                        <div class="col-xs-12 col-md-6">
-                            <a class="btn btn-success" href="product-details.html">Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="item  col-xs-4 col-lg-4">
-            <div class="thumbnail">
-                <img class="group list-group-image" src="img/51.jpg" alt="">
-                <div class="caption">
-                    <h4 class="group inner list-group-item-heading">
-                        Ipsum Dolor</h4>
-                    <p class="group inner list-group-item-text">
-                        Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-6">
-                            <p class="lead">
-                                $21.000</p>
-                        </div>
-                        <div class="col-xs-12 col-md-6">
-                            <a class="btn btn-success" href="product-details.html">Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="item  col-xs-4 col-lg-4">
-            <div class="thumbnail">
-                <img class="group list-group-image" src="img/52.jpg" alt="">
-                <div class="caption">
-                    <h4 class="group inner list-group-item-heading">
-                        Lorem Ipsum</h4>
-                    <p class="group inner list-group-item-text">
-                        Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-6">
-                            <p class="lead">
-                                $21.000</p>
-                        </div>
-                        <div class="col-xs-12 col-md-6">
-                            <a class="btn btn-success" href="product-details.html">Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="item  col-xs-4 col-lg-4">
-            <div class="thumbnail">
-                <img class="group list-group-image" src="img/53.jpg" alt="">
-                <div class="caption">
-                    <h4 class="group inner list-group-item-heading">
-                        Magna Aliquam</h4>
-                    <p class="group inner list-group-item-text">
-                        Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-6">
-                            <p class="lead">
-                                $21.000</p>
-                        </div>
-                        <div class="col-xs-12 col-md-6">
-                            <a class="btn btn-success" href="product-details.html">Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-     </div>
-     <div class="mauris_6">
-      <p class="text-center"><a class="button hvr-shutter-out-horizontal" href="product-details.html" class="button">View More</a></p>
-     </div>
-    </div>
-   </div>
-  </div>
- </div>
-</section>
-<section id="footer">
- <div class="container">
-  <div class="row">
-   <div class="col-sm-12">
-    <div class="footer_main clearfix">
-	 <div class="col-sm-4">
-	 <div class="footer_1 clearfix">
-	  <h3>NULLA QUIS</h3>
-	  <p>Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.torquent per conubia nostra,</p>
-	  <h4><i class="fa fa-phone"></i>+91 1234 567 890</h4>
-	  <h5><i class="fa fa-envelope"></i><a href="#">info@gmail.com</a></h5>
-	 </div>
-	</div>
-	 <div class="col-sm-4">
-	 <div class="footer_1 clearfix">
-	  <h3>QUIS SEM</h3>
-	 </div>
-	 <div class="col-sm-12 space_all">
-	  <div class="col-sm-6 space_all">
-	   <div class="footer_2">
-	    <ul>
-		    <li class="col-sm-12 col-xs-6 space_left"><a href="#"><i class="fa fa-arrow-right"></i>Massa</a></li>
-			<li class="col-sm-12 col-xs-6 space_left"><a href="#"><i class="fa fa-arrow-right"></i>Quis Sem</a></li>
-			<li class="col-sm-12 col-xs-6 space_left"><a href="#"><i class="fa fa-arrow-right"></i>Semper</a></li>
-			<li class="col-sm-12 col-xs-6 space_left"><a href="#"><i class="fa fa-arrow-right"></i>Fusce Nec</a></li>
-			<li class="col-sm-12 col-xs-6 space_left"><a href="#"><i class="fa fa-arrow-right"></i>Integer</a></li>
-			<li class="col-sm-12 col-xs-6 space_left"><a href="#"><i class="fa fa-arrow-right"></i>Dapibus</a></li>
-		</ul>
-	   </div>
-	  </div>
-	  <div class="col-sm-6 space_all">
-	   <div class="footer_2 clearfix">
-	    <ul>
-		    <li class="col-sm-12 col-xs-6 space_left"><a href="#"><i class="fa fa-arrow-right"></i>Lacinia</a></li>
-			<li class="col-sm-12 col-xs-6 space_left"><a href="#"><i class="fa fa-arrow-right"></i>Dignissim</a></li>
-			<li class="col-sm-12 col-xs-6 space_left"><a href="#"><i class="fa fa-arrow-right"></i>Sed</a></li>
-			<li class="col-sm-12 col-xs-6 space_left"><a href="#"><i class="fa fa-arrow-right"></i> Sagittis</a></li>
-			<li class="col-sm-12 col-xs-6 space_left"><a href="#"><i class="fa fa-arrow-right"></i>Adipiscing</a></li>
-			<li class="col-sm-12 col-xs-6 space_left"><a href="#"><i class="fa fa-arrow-right"></i>Diam</a></li>
-		</ul>
-	   </div>
-	  </div>
-	 </div>
-	</div>
-	 <div class="col-sm-4">
-	 <div class="footer_1 clearfix">
-	  <h3> ELEMENTUM</h3>
-	 </div>
-	 <div class="col-sm-12 space_all">
-	  <div class="footer_3">
-	   <input type="text" class="form-control" placeholder="Name">
-	  </div>
-	 </div>
-	 <div class="col-sm-12 space_all">
-	  <div class="footer_4">
-	   <input type="text" class="form-control" placeholder="Email">
-	  </div>
-	 </div>
-	 <div class="col-sm-12 space_all">
-	  <div class="footer_5 clearfix">
-	   <a class="button hvr-shutter-out-horizontal button" href="#">SUBSCRIBE</a> 
-	  </div>
-	 </div>
-	</div>
-	</div>
-   </div>
-   <div class="col-sm-12">
-    <div class="col-sm-6 space_all">
-	 <div class="footer_6">
-	  <p>© 2016 Interient. All Rights Reserved. Design By <a href="http://www.templateonweb.com">Template On Web</a></p>
-	 </div>
-	</div>
-	<div class="col-sm-6 space_all">
-	 <div class="footer_7">
-	  <ul>
-	      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-		  <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-		  <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-		  <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-		  <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-		  <li><a href="#"><i class="fa fa-rss"></i></a></li>
-		  <li><a href="#"><i class="fa fa-skype"></i></a></li>
-		  <li><a href="#"><i class="fa fa-share-alt"></i></a></li>
-	  </ul>
-	 </div>
-	</div>
-   </div>
-  </div>
- </div>
-</section>
+<div class="car-grid" id="carGrid">
+    <!-- Les voitures seront affichées ici -->
+</div>
+
 <script>
-$(document).ready(function(){
-	/*****Fixed Menu******/
-	var secondaryNav = $('.cd-secondary-nav'),
-	   secondaryNavTopPosition = secondaryNav.offset().top;
-	   navbar_height = document.querySelector('.navbar').offsetHeight;
-	   
-		$(window).on('scroll', function(){
-		    if($(window).scrollTop() > secondaryNavTopPosition + navbar_height ) {
-				secondaryNav.addClass('is-fixed');	
-				document.body.style.paddingTop = navbar_height + 'px';
-				
-			} else {
-				secondaryNav.removeClass('is-fixed');
-				document.body.style.paddingTop = '0'
-			}
-		});	
-		
-});
-</script>
-
-<script type="text/javascript">
-	$(document).ready(function() {
-    $('#list').click(function(event){event.preventDefault();$('#products .item').addClass('list-group-item');});
-    $('#grid').click(function(event){event.preventDefault();$('#products .item').removeClass('list-group-item');$('#products .item').addClass('grid-group-item');});
-});
-</script>
-	
-<script type="text/javascript">
-	$(document).on('click', '.panel-heading span.clickable', function (e) {
-    var $this = $(this);
-    if (!$this.hasClass('panel-collapsed')) {
-        $this.parents('.panel').find('.panel-body').slideUp();
-        $this.addClass('panel-collapsed');
-        $this.find('i').removeClass('glyphicon-minus').addClass('glyphicon-plus');
-    } else {
-        $this.parents('.panel').find('.panel-body').slideDown();
-        $this.removeClass('panel-collapsed');
-        $this.find('i').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+function fetchCars() {
+  // Check if the user is authenticated
+  fetch('check_session.php', { // Assuming your PHP file is named auth_check.php
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
     }
-});
-$(document).on('click', '.panel div.clickable', function (e) {
-    var $this = $(this);
-    if (!$this.hasClass('panel-collapsed')) {
-        $this.parents('.panel').find('.panel-body').slideUp();
-        $this.addClass('panel-collapsed');
-        $this.find('i').removeClass('glyphicon-minus').addClass('glyphicon-plus');
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.status === 'connected') {
+      // User is authenticated, proceed with fetching the cars
+      fetchCarsData();
     } else {
-        $this.parents('.panel').find('.panel-body').slideDown();
-        $this.removeClass('panel-collapsed');
-        $this.find('i').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+      // User is not authenticated, show the Sign In modal
+      $('#loginModal').modal('show');
     }
-});
-$(document).ready(function () {
-    $('.panel-heading span.clickable').click();
-    $('.panel div.clickable').click();
-});
+  })
+  .catch(error => {
+    console.error('Erreur:', error);
+  });
+}
 
-	</script>
-	
-<script src="js/ziehharmonika.js"></script>
-<script>
-$(document).ready(function() {
-		$('.ziehharmonika').ziehharmonika({
-			collapsible: true,
-			prefix: '★',
-			scroll: false
-		});
-	});
+function fetchCarsData() {
+  fetch('affichcars.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(response => response.json())
+  .then(cars => {
+    console.log(cars); // Log the data to check
+
+    const carGrid = document.getElementById('carGrid');
+    carGrid.innerHTML = '';
+
+    cars.forEach(car => {
+      const carItem = document.createElement('div');
+      carItem.className = 'car-item';
+
+      const imgContainer = document.createElement('div');
+      imgContainer.className = 'img-container';
+
+      const img = document.createElement('img');
+      img.src = car.img1.replace('../', '');
+      imgContainer.appendChild(img);
+
+      const nextButton = document.createElement('button');
+      nextButton.textContent = 'Next';
+      nextButton.className = 'next-button';
+
+      const prevButton = document.createElement('button');
+      prevButton.textContent = 'Previous';
+      prevButton.className = 'prev-button';
+
+      let currentImageIndex = 0;
+      const images = [car.img1, car.img2, car.img3]
+        .filter(image => image && image.trim() !== '') // Filter out empty images
+        .map(img => img.replace('../', ''));
+
+      if (images.length > 0) {
+        img.src = images[currentImageIndex];
+
+        nextButton.addEventListener('click', () => {
+          currentImageIndex = (currentImageIndex + 1) % images.length;
+          img.src = images[currentImageIndex];
+        });
+
+        prevButton.addEventListener('click', () => {
+          currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+          img.src = images[currentImageIndex];
+        });
+      } else {
+        imgContainer.innerHTML = "<p>No images available</p>";
+      }
+
+      imgContainer.appendChild(prevButton);
+      imgContainer.appendChild(nextButton);
+
+      const carName = document.createElement('h3');
+      carName.textContent = car.nom + ' ' + car.model;
+
+      const carCity = document.createElement('p');
+      carCity.textContent = 'Ville: ' + car.ville;
+
+      const carPrice = document.createElement('p');
+      carPrice.className = 'price';
+      carPrice.textContent = 'Prix: ' + car.prix + ' DT';
+
+      // Create the "Réserver" button
+      const reserveButton = document.createElement('button');
+      reserveButton.textContent = 'Réserver';
+      reserveButton.className = 'reserve-button';
+
+      // Event listener for the reservation action
+      reserveButton.addEventListener('click', () => {
+        alert(`Vous avez réservé: ${car.nom} ${car.model}`);
+        // Implement the reservation logic here
+      });
+
+      carItem.appendChild(imgContainer);
+      carItem.appendChild(carName);
+      carItem.appendChild(carCity);
+      carItem.appendChild(carPrice);
+      carItem.appendChild(reserveButton);
+
+      carGrid.appendChild(carItem);
+    });
+  })
+  .catch(error => {
+    console.error('Erreur:', error);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', fetchCars);
+
+
 </script>
+<style>
+    .reserve-button {
+    background-color: #007bff; /* Blue background color */
+    color: white; /* White text */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px; /* Adjust the font size */
+    margin: 15px; /* Margin for spacing */
+    transition: background-color 0.3s;
+}
 
+.reserve-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+    .car-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1.5fr); /* Colonnes plus larges */
+    gap: 30px; /* Plus d'espace entre les éléments */
+    padding: 60px; /* Plus de padding autour de la grille */
+}
+
+.car-item {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    position: relative;
+}
+
+.car-item:hover {
+    transform: scale(1.05);
+}
+
+.img-container {
+    position: relative;
+}
+
+.car-item img {
+    width: 100%;
+    height: 450px; /* Augmentez la hauteur de l'image */
+    object-fit: cover;
+}
+
+.next-button,
+.prev-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.next-button {
+    right: 10px;
+}
+
+.prev-button {
+    left: 10px;
+}
+
+.car-item h3 {
+    margin: 15px;
+    font-size: 20px; /* Augmentez la taille de la police */
+    color: #333;
+}
+
+.car-item p {
+    margin: 15px;
+    font-size: 16px; /* Augmentez la taille de la police */
+    color: #666;
+}
+
+.car-item .price {
+    font-size: 18px; /* Augmentez la taille de la police */
+    color: #000;
+    font-weight: bold;
+    margin: 15px;
+}
+
+</style>
 </body>
- 
-
-</html>
+ </html>

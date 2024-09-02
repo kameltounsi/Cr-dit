@@ -41,31 +41,8 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			   <ul class="nav navbar-nav">
 				  <li><a class="m_tag active_m" href="index.html">Home</a></li>
-				  <li><a class="m_tag" href="about.html">About</a></li>
-				  <li class="dropdown">
-					 <a href="#" class="dropdown-toggle m_tag" data-toggle="dropdown">Product <b class="caret"></b></a>
-					 <ul class="dropdown-menu drop_m">
-						<li><a href="product.html">Product</a></li>
-						<li><a href="product-details.html">Product Details</a></li>
-					 </ul>
-				  </li>
-				  <li class="dropdown">
-					 <a href="#" class="dropdown-toggle m_tag" data-toggle="dropdown">Blog <b class="caret"></b></a>
-					 <ul class="dropdown-menu drop_m">
-						<li><a href="blog.html">Blog</a></li>
-						<li><a href="details.html">Blog Details</a></li>
-					 </ul>
-				  </li>
-				  <li><a class="m_tag" href="contact.html">Contact</a></li>
-				  <li class="dropdown">
-					 <a href="#" class="dropdown-toggle m_tag" data-toggle="dropdown">More <b class="caret"></b></a>
-					 <ul class="dropdown-menu drop_m">
-						<li><a href="about.html">About</a></li>
-						<li><a href="blog.html">Blog</a></li>
-						<li><a href="details.html">Details</a></li>
-						<li><a href="contact.html">Contact</a></li>
-					 </ul>
-				  </li>
+                  <li><a class="m_tag" href="product.html">Voitures</a></li>
+                  <li><a class="m_tag" href="product.html">Liste des paiements</a></li>
 			   </ul>
 			   
 			  <!-- Right aligned section for Sign Up and Sign In -->
@@ -87,34 +64,7 @@
         </div>
     </div>
 </div>
-            
-<style>/* Add this CSS to your stylesheet */
-#user-avatar {
-    display: none; /* Masquer l'avatar par défaut */
-}
-    .dropdown-menu {
-        display: none;
-        position: absolute;
-        top: 100%;
-        right: 0;
-        background-color: white;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-        z-index: 1000;
-    }
-    
-    .dropdown-item {
-        padding: 10px 15px;
-        text-decoration: none;
-        color: #333;
-        display: block;
-    }
-    
-    .dropdown-item:hover {
-        background-color: #f8f9fa;
-    }
-    </style>
+
  <!-- Modal for Sign Up -->
 <div id="registerModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel">
     <div class="modal-dialog" role="document">
@@ -396,7 +346,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (response.status === 'connected') {
                         displayAvatar(response.user.pdp);
                         if (response.user.role === 'Admin') {
-                            window.location.href = 'back/index.php';
+                            window.location.href = 'back/index.html';
                         }
                     }
                 }
@@ -423,7 +373,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     var response = JSON.parse(xhr.responseText);
                     if (response.status === 'success') {
                         if (response.user.role === 'Admin') {
-                            window.location.href = 'back/index.php';
+                            window.location.href = 'back/index.html';
                         } else {
                             displayAvatar(response.user.pdp);
                             $('#loginModal').modal('hide'); // Close the login modal
@@ -500,101 +450,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     </script>
-    
-  
-  <style>
-  /* Style pour les champs de mot de passe avec l'icône */
-  .input-group {
-    position: relative;
-    width: 100%;
-  }
 
-  .input-group .form-control {
-    padding-right: 40px; /* espace pour l'icône */
-  }
-
-  .input-group .input-group-addon {
-    position: absolute;
-    right: 10px; /* position de l'icône à droite du champ */
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    border: none; /* supprimer la bordure par défaut */
-    background: transparent; /* fond transparent */
-    color: #888; /* couleur de l'icône */
-  }
-
-  /* Style pour les messages d'erreur */
-  .error-message {
-    color: red;
-    font-size: 0.875em;
-    display: block;
-    margin-top: 5px;
-  }
-
-  /* Style pour les icônes d'affichage de mot de passe */
-  .fa-eye, .fa-eye-slash {
-    font-size: 1.2em;
-  }
-
-  .fa-eye-slash {
-    color: #007bff; /* couleur de l'icône lorsqu'elle est active */
-  }
-
-	.profile-photo-circle {
-	  position: relative;
-	  width: 120px;
-	  height: 120px;
-	  border-radius: 50%;
-	  border: 2px solid #ddd;
-	  overflow: hidden;
-	  background-color: #f9f9f9;
-	  margin: 0 auto;
-	}
-  
-	.profile-photo-circle img {
-	  width: 100%;
-	  height: 100%;
-	  object-fit: cover;
-	}
-  
-	.profile-photo-circle input[type="file"] {
-	  position: absolute;
-	  top: 0;
-	  left: 0;
-	  width: 100%;
-	  height: 100%;
-	  opacity: 0;
-	  cursor: pointer;
-	}
-  
-	.input-group {
-	  position: relative;
-	}
-  
-	.input-group .input-group-addon {
-	  position: absolute;
-	  right: 0;
-	  top: 0;
-	  height: 100%;
-	  padding: 0 10px;
-	  cursor: pointer;
-	}
-  
-	.error-message {
-	  color: red;
-	  font-size: 0.875em;
-	  display: block;
-	  margin-top: 5px;
-	}
-  
-	.fa-eye {
-	  font-size: 1.2em;
-	}
-  </style>
-  
-  
-  <!-- Add JavaScript for previewing the uploaded image -->
   <script>
 	document.getElementById('profilePhoto').addEventListener('change', function(event) {
 	  var reader = new FileReader();

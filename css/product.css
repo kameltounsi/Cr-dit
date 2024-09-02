@@ -7,7 +7,7 @@ Licence: <a href="http://www.templateonweb.com/terms.php?v=content&contentid=152
 */
 /********************* product_main ****************/
 #product_main{ 
- background-image: url(../img/54.jpg);
+ background-image: url(../img/003.jpg);
  padding-bottom: 180px;
  padding-top: 180px;
  background-repeat: no-repeat;
@@ -510,6 +510,229 @@ margin-bottom:5px;
 @media (min-width:1201px) and (max-width:1325px) {
 
 }
+.input-group {
+    position: relative;
+    width: 100%;
+  }
+
+  .input-group .form-control {
+    padding-right: 40px; /* espace pour l'icône */
+  }
+
+  .input-group .input-group-addon {
+    position: absolute;
+    right: 10px; /* position de l'icône à droite du champ */
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    border: none; /* supprimer la bordure par défaut */
+    background: transparent; /* fond transparent */
+    color: #888; /* couleur de l'icône */
+  }
+
+  /* Style pour les messages d'erreur */
+  .error-message {
+    color: red;
+    font-size: 0.875em;
+    display: block;
+    margin-top: 5px;
+  }
+
+  /* Style pour les icônes d'affichage de mot de passe */
+  .fa-eye, .fa-eye-slash {
+    font-size: 1.2em;
+  }
+
+  .fa-eye-slash {
+    color: #007bff; /* couleur de l'icône lorsqu'elle est active */
+  }
+
+    .profile-photo-circle {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 2px solid #ddd;
+      overflow: hidden;
+      background-color: #f9f9f9;
+      margin: 0 auto;
+    }
+  
+    .profile-photo-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  
+    .profile-photo-circle input[type="file"] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+  
+    .input-group {
+      position: relative;
+    }
+  
+    .input-group .input-group-addon {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%;
+      padding: 0 10px;
+      cursor: pointer;
+    }
+  
+    .error-message {
+      color: red;
+      font-size: 0.875em;
+      display: block;
+      margin-top: 5px;
+    }
+    .car-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 20px;
+  }
+
+  .car-item {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+  }
+
+  .car-item:hover {
+      transform: scale(1.05);
+  }
+
+  .car-item img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+  }
+
+  .car-item h3 {
+      margin: 10px;
+      font-size: 18px;
+      color: #333;
+  }
+
+  .car-item p {
+      margin: 10px;
+      font-size: 14px;
+      color: #666;
+  }
+
+  .car-item .price {
+      font-size: 16px;
+      color: #000;
+      font-weight: bold;
+      margin: 10px;
+  }
+
+    .fa-eye {
+      font-size: 1.2em;
+    }
+    #user-avatar {
+        display: none; /* Masquer l'avatar par défaut */
+    }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        
+        .dropdown-item {
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #333;
+            display: block;
+        }
+        
+        .dropdown-item:hover {
+            background-color: #f8f9fa;
+        }
+        .car-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1.5fr); /* Colonnes plus larges */
+          gap: 30px; /* Plus d'espace entre les éléments */
+          padding: 60px; /* Plus de padding autour de la grille */
+      }
+      
+      .car-item {
+          border: 1px solid #ccc;
+          border-radius: 8px;
+          overflow: hidden;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          transition: transform 0.3s;
+          position: relative;
+      }
+      
+      .car-item:hover {
+          transform: scale(1.05);
+      }
+      
+      .img-container {
+          position: relative;
+      }
+      
+      .car-item img {
+          width: 100%;
+          height: 450px; /* Augmentez la hauteur de l'image */
+          object-fit: cover;
+      }
+      
+      .next-button,
+      .prev-button {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          background-color: rgba(0, 0, 0, 0.5);
+          color: white;
+          border: none;
+          padding: 10px;
+          cursor: pointer;
+      }
+      
+      .next-button {
+          right: 10px;
+      }
+      
+      .prev-button {
+          left: 10px;
+      }
+      
+      .car-item h3 {
+          margin: 15px;
+          font-size: 20px; /* Augmentez la taille de la police */
+          color: #333;
+      }
+      
+      .car-item p {
+          margin: 15px;
+          font-size: 16px; /* Augmentez la taille de la police */
+          color: #666;
+      }
+      
+      .car-item .price {
+          font-size: 18px; /* Augmentez la taille de la police */
+          color: #000;
+          font-weight: bold;
+          margin: 15px;
+      }
 
 
 
