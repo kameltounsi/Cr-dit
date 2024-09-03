@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Supposons que vous stockez les rôles dans une session après la connexion de l'utilisateur
+$user_role = $_SESSION['user_role'] ?? '';
+if ($user_role !== 'Admin' && $user_role !== 'Agent de location') {
+    // Redirigez l'utilisateur vers la page d'accueil ou une page d'erreur
+    header("Location: ../index.html");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +38,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="index.php">
                         <span class="icon">
                             <ion-icon name="home-outline"></ion-icon>
                         </span>
@@ -35,53 +46,48 @@
                     </a>
                 </li>
 
+                <?php if ($user_role === 'Admin') { ?>
+                    <li>
+                        <a href="customers.php">
+                            <span class="icon">
+                                <ion-icon name="people-outline"></ion-icon>
+                            </span>
+                            <span class="title">Customers</span>
+                        </a>
+                    </li>
+                <?php } ?>
+
+                <?php if ($user_role === 'Agent de location') { ?>
+                    <li>
+                        <a href="../back/voitures.php">
+                            <span class="icon">
+                                <ion-icon name="car-sport-outline"></ion-icon>
+                            </span>
+                            <span class="title">Cars</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <span class="icon">
+                                <ion-icon name="calendar-outline"></ion-icon>
+                            </span>
+                            <span class="title">Reservations</span>
+                        </a>
+                    </li>
+                <?php } ?>
+
                 <li>
-                    <a href="customers.html">
+                    <a href="../index.html">
                         <span class="icon">
-                            <ion-icon name="people-outline"></ion-icon>
+                            <ion-icon name="business-outline"></ion-icon>
                         </span>
-                        <span class="title">Customers</span>
+                        <span class="title">Go to Front</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="../back/voitures.php">
-                        <span class="icon">
-                            <ion-icon name="car-sport-outline"></ion-icon>
-                        </span>
-                        <span class="title">Voitures</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="help-outline"></ion-icon>
-                        </span>
-                        <span class="title">Help</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="settings-outline"></ion-icon>
-                        </span>
-                        <span class="title">Settings</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="lock-closed-outline"></ion-icon>
-                        </span>
-                        <span class="title">Password</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#">
+                    <a href="#" id="signOutLink">
                         <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
                         </span>
@@ -90,6 +96,31 @@
                 </li>
             </ul>
         </div>
+    </div>
+    <script src="assets/js/main.js"></script>
+
+<!-- ====== ionicons ======= -->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script>fetch('logout.php', {
+    method: 'POST',
+})
+.then(response => response.text()) // Changez temporairement en text pour déboguer
+.then(data => {
+    console.log(data); // Affichez la réponse complète dans la console
+    try {
+        const jsonData = JSON.parse(data);
+        if (jsonData.status === 'success') {
+            window.location.href = '../index.html';
+        } else {
+            console.error('Logout failed');
+        }
+    } catch (e) {
+        console.error('Error parsing JSON:', e);
+    }
+})
+.catch(error => console.error('Error:', error));
+</script>
 
         <!-- ========================= Main ==================== -->
         <div class="main">
@@ -104,10 +135,11 @@
                         <ion-icon name="search-outline"></ion-icon>
                     </label>
                 </div>
-
                 <div class="user">
-                    <img src="assets/imgs/customer01.jpg" alt="">
-                </div>
+    <img src="<?php echo htmlspecialchars('../' . ($_SESSION['user_pdp'] ?? 'assets/imgs/default_profile.jpg')); ?>" alt="User Profile">
+</div>
+
+
             </div>
 
             <!-- ======================= Cards ================== -->

@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Supposons que vous stockez les rôles dans une session après la connexion de l'utilisateur
+$user_role = $_SESSION['user_role'] ?? '';
+if ($user_role !== 'Admin' && $user_role !== 'Agent de location') {
+    // Redirigez l'utilisateur vers la page d'accueil ou une page d'erreur
+    header("Location: ../index.html");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,15 +24,78 @@
 </head>
 
 <body>
-    <div class="container">
-        <!-- Navigation -->
+<div class="container">
         <div class="navigation">
             <ul>
-                <li><a href="../back/index.html"><span class="icon"><ion-icon name="home-outline"></ion-icon></span><span class="title">Dashboard</span></a></li>
-                <li><a href="#"><span class="icon"><ion-icon name="car-outline"></ion-icon></span><span class="title">Cars</span></a></li>
-                <!-- Add other navigation items here -->
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="logo-apple"></ion-icon>
+                        </span>
+                        <span class="title">Brand Name</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.php">
+                        <span class="icon">
+                            <ion-icon name="home-outline"></ion-icon>
+                        </span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+
+                <?php if ($user_role === 'Admin') { ?>
+                    <li>
+                        <a href="customers.php">
+                            <span class="icon">
+                                <ion-icon name="people-outline"></ion-icon>
+                            </span>
+                            <span class="title">Customers</span>
+                        </a>
+                    </li>
+                <?php } ?>
+
+                <?php if ($user_role === 'Agent de location') { ?>
+                    <li>
+                        <a href="../back/voitures.php">
+                            <span class="icon">
+                                <ion-icon name="car-sport-outline"></ion-icon>
+                            </span>
+                            <span class="title">Cars</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <span class="icon">
+                                <ion-icon name="calendar-outline"></ion-icon>
+                            </span>
+                            <span class="title">Reservations</span>
+                        </a>
+                    </li>
+                <?php } ?>
+
+                <li>
+                    <a href="../index.html">
+                        <span class="icon">
+                            <ion-icon name="business-outline"></ion-icon>
+                        </span>
+                        <span class="title">Go to Front</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" id="signOutLink">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                        <span class="title">Sign Out</span>
+                    </a>
+                </li>
             </ul>
         </div>
+    </div>
 
         <!-- Main Content -->
         <div class="main">
