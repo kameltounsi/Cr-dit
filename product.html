@@ -376,6 +376,7 @@
                                 window.location.href = 'back/index.html';
                             } else {
                                 displayAvatar(response.user.pdp);
+                                fetchCarsData();
                                 $('#loginModal').modal('hide'); // Close the login modal
                             }
                         } else {
@@ -599,9 +600,8 @@
 </div>
 
 <script>
-function fetchCars() {
-  // Check if the user is authenticated
-  fetch('check_session.php', { // Assuming your PHP file is named auth_check.php
+function checkSession() {
+  fetch('check_session.php', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -610,10 +610,10 @@ function fetchCars() {
   .then(response => response.json())
   .then(data => {
     if (data.status === 'connected') {
-      // User is authenticated, proceed with fetching the cars
+      // Utilisateur connecté, on affiche les voitures
       fetchCarsData();
     } else {
-      // User is not authenticated, show the Sign In modal
+      // Utilisateur non connecté, on montre le modal de connexion
       $('#loginModal').modal('show');
     }
   })
@@ -631,7 +631,7 @@ function fetchCarsData() {
   })
   .then(response => response.json())
   .then(cars => {
-    console.log(cars); // Log the data to check
+    console.log(cars);
 
     const carGrid = document.getElementById('carGrid');
     carGrid.innerHTML = '';
@@ -657,7 +657,7 @@ function fetchCarsData() {
 
       let currentImageIndex = 0;
       const images = [car.img1, car.img2, car.img3]
-        .filter(image => image && image.trim() !== '') // Filter out empty images
+        .filter(image => image && image.trim() !== '')
         .map(img => img.replace('../', ''));
 
       if (images.length > 0) {
@@ -689,15 +689,13 @@ function fetchCarsData() {
       carPrice.className = 'price';
       carPrice.textContent = 'Prix: ' + car.prix + ' DT';
 
-      // Create the "Réserver" button
       const reserveButton = document.createElement('button');
       reserveButton.textContent = 'Réserver';
       reserveButton.className = 'reserve-button';
 
-      // Event listener for the reservation action
       reserveButton.addEventListener('click', () => {
         alert(`Vous avez réservé: ${car.nom} ${car.model}`);
-        // Implement the reservation logic here
+        // Ajouter la logique de réservation ici
       });
 
       carItem.appendChild(imgContainer);
@@ -714,8 +712,13 @@ function fetchCarsData() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', fetchCars);
+document.addEventListener('DOMContentLoaded', checkSession);
 
+// Appeler cette fonction lors d'une connexion réussie
+function onLoginSuccess() {
+  $('#loginModal').modal('hide'); // Fermer le modal de connexion
+  fetchCarsData(); // Charger les voitures
+}
 
 </script>
 <style>
