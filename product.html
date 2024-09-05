@@ -631,11 +631,34 @@
   </div>
  </div>
 </section>
+
+<div class="search-form">
+    <select id="searchOption">
+        <option value="nom">Nom</option>
+        <option value="model">Modèle</option>
+        <option value="ville">Ville</option>
+    </select>
+    <input type="text" id="searchInput" placeholder="Recherchez...">
+    <input type="number" id="minPrice" placeholder="Prix Min">
+    <input type="number" id="maxPrice" placeholder="Prix Max">
+</div>
+
 <div class="car-grid" id="carGrid">
     <!-- Les voitures seront affichées ici -->
 </div>
 
+
+
+
+
 <script>
+document.getElementById('searchInput').addEventListener('input', performDynamicSearch);
+document.getElementById('searchOption').addEventListener('change', performDynamicSearch);
+document.getElementById('minPrice').addEventListener('input', performDynamicSearch);
+document.getElementById('maxPrice').addEventListener('input', performDynamicSearch);
+
+let allCars = [];
+
 function checkSession() {
   fetch('check_session.php', {
     method: 'GET',
@@ -646,10 +669,8 @@ function checkSession() {
   .then(response => response.json())
   .then(data => {
     if (data.status === 'connected') {
-      // Utilisateur connecté, on affiche les voitures
       fetchCarsData();
     } else {
-      // Utilisateur non connecté, on montre le modal de connexion
       $('#loginModal').modal('show');
     }
   })
@@ -667,88 +688,129 @@ function fetchCarsData() {
   })
   .then(response => response.json())
   .then(cars => {
-    console.log(cars);
-
-    const carGrid = document.getElementById('carGrid');
-    carGrid.innerHTML = '';
-
-    cars.forEach(car => {
-      const carItem = document.createElement('div');
-      carItem.className = 'car-item';
-
-      const imgContainer = document.createElement('div');
-      imgContainer.className = 'img-container';
-
-      const img = document.createElement('img');
-      img.src = car.img1.replace('../', '');
-      imgContainer.appendChild(img);
-
-      const nextButton = document.createElement('button');
-      nextButton.textContent = 'Next';
-      nextButton.className = 'next-button';
-
-      const prevButton = document.createElement('button');
-      prevButton.textContent = 'Previous';
-      prevButton.className = 'prev-button';
-
-      let currentImageIndex = 0;
-      const images = [car.img1, car.img2, car.img3]
-        .filter(image => image && image.trim() !== '')
-        .map(img => img.replace('../', ''));
-
-      if (images.length > 0) {
-        img.src = images[currentImageIndex];
-
-        nextButton.addEventListener('click', () => {
-          currentImageIndex = (currentImageIndex + 1) % images.length;
-          img.src = images[currentImageIndex];
-        });
-
-        prevButton.addEventListener('click', () => {
-          currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-          img.src = images[currentImageIndex];
-        });
-      } else {
-        imgContainer.innerHTML = "<p>No images available</p>";
-      }
-
-      imgContainer.appendChild(prevButton);
-      imgContainer.appendChild(nextButton);
-
-      const carName = document.createElement('h3');
-      carName.textContent = car.nom + ' ' + car.model;
-
-      const carCity = document.createElement('p');
-      carCity.textContent = 'Ville: ' + car.ville;
-
-      const carPrice = document.createElement('p');
-      carPrice.className = 'price';
-      carPrice.textContent = 'Prix: ' + car.prix + ' DT';
-
-      const reserveButton = document.createElement('button');
-      reserveButton.textContent = 'Réserver';
-      reserveButton.className = 'reserve-button';
-
-      reserveButton.addEventListener('click', () => {
-        alert(`Vous avez réservé: ${car.nom} ${car.model}`);
-        // Ajouter la logique de réservation ici
-      });
-
-      carItem.appendChild(imgContainer);
-      carItem.appendChild(carName);
-      carItem.appendChild(carCity);
-      carItem.appendChild(carPrice);
-      carItem.appendChild(reserveButton);
-
-      carGrid.appendChild(carItem);
-    });
+    allCars = cars;
+    displayCars(allCars);
   })
   .catch(error => {
     console.error('Erreur:', error);
   });
 }
 
+function displayCars(cars) {
+  const carGrid = document.getElementById('carGrid');
+  carGrid.innerHTML = '';
+
+  if (cars.length === 0) {
+    carGrid.innerHTML = '<p>Aucune voiture trouvée.</p>';
+    return;
+  }
+
+  cars.forEach(car => {
+    const carItem = document.createElement('div');
+    carItem.className = 'car-item';
+
+    const imgContainer = document.createElement('div');
+    imgContainer.className = 'img-container';
+
+    const img = document.createElement('img');
+    img.src = car.img1.replace('../', '');
+    imgContainer.appendChild(img);
+
+    const nextButton = document.createElement('button');
+    nextButton.textContent = 'Next';
+    nextButton.className = 'next-button';
+
+    const prevButton = document.createElement('button');
+    prevButton.textContent = 'Previous';
+    prevButton.className = 'prev-button';
+
+    let currentImageIndex = 0;
+    const images = [car.img1, car.img2, car.img3]
+      .filter(image => image && image.trim() !== '')
+      .map(img => img.replace('../', ''));
+
+    if (images.length > 0) {
+      img.src = images[currentImageIndex];
+
+      nextButton.addEventListener('click', () => {
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        img.src = images[currentImageIndex];
+      });
+
+      prevButton.addEventListener('click', () => {
+        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+        img.src = images[currentImageIndex];
+      });
+    } else {
+      imgContainer.innerHTML = "<p>Aucune image disponible</p>";
+    }
+
+    imgContainer.appendChild(prevButton);
+    imgContainer.appendChild(nextButton);
+
+    const carName = document.createElement('h3');
+    carName.textContent = car.nom + ' ' + car.model;
+
+    const carCity = document.createElement('p');
+    carCity.textContent = 'Ville: ' + car.ville;
+
+    const carPrice = document.createElement('p');
+    carPrice.className = 'price';
+    carPrice.textContent = 'Prix: ' + car.prix + ' DT';
+
+    const reserveButton = document.createElement('button');
+    reserveButton.textContent = 'Réserver';
+    reserveButton.className = 'reserve-button';
+
+    reserveButton.addEventListener('click', () => {
+      alert(`Vous avez réservé: ${car.nom} ${car.model}`);
+    });
+
+    carItem.appendChild(imgContainer);
+    carItem.appendChild(carName);
+    carItem.appendChild(carCity);
+    carItem.appendChild(carPrice);
+    carItem.appendChild(reserveButton);
+
+    carGrid.appendChild(carItem);
+  });
+}
+
+function performDynamicSearch() {
+  const searchInput = document.getElementById('searchInput').value.trim().toLowerCase();
+  const searchOption = document.getElementById('searchOption').value;
+  const minPrice = parseFloat(document.getElementById('minPrice').value);
+  const maxPrice = parseFloat(document.getElementById('maxPrice').value);
+
+  const filteredCars = allCars.filter(car => {
+    // Filtrage par critère sélectionné
+    let matchesSearch = false;
+    if (searchOption === 'nom') {
+      matchesSearch = car.nom.toLowerCase().includes(searchInput);
+    } else if (searchOption === 'model') {
+      matchesSearch = car.model.toLowerCase().includes(searchInput);
+    } else if (searchOption === 'ville') {
+      matchesSearch = car.ville.toLowerCase().includes(searchInput);
+    }
+
+    // Filtrage par prix
+    let matchesPrice = true;
+    if (!isNaN(minPrice) && car.prix < minPrice) {
+      matchesPrice = false;
+    }
+    if (!isNaN(maxPrice) && car.prix > maxPrice) {
+      matchesPrice = false;
+    }
+
+    return matchesSearch && matchesPrice;
+  });
+
+  displayCars(filteredCars);
+}
+
 document.addEventListener('DOMContentLoaded', checkSession);
+
+
 
 // Appeler cette fonction lors d'une connexion réussie
 function onLoginSuccess() {
@@ -758,6 +820,24 @@ function onLoginSuccess() {
 
 </script>
 <style>
+.search-form {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.search-form select, .search-form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.search-form input {
+    width: 300px;
+}
+
     .reserve-button {
     background-color: #007bff; /* Blue background color */
     color: white; /* White text */
