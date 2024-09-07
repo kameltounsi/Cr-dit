@@ -21,6 +21,8 @@ $user_mail = isset($_SESSION['user_email']) ? $_SESSION['user_email'] : null;
     <script src="js/bootstrap.min.js"></script>
 	<link rel="icon" href="img/top-logo1.png" type="image/png">
     <link rel="stylesheet" href="liste.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 	<!-- SweetAlert CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
@@ -633,6 +635,9 @@ if (isset($_SESSION['user_id'])) {
     // Récupérer les paiements et informations de voiture
     $payments = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+    // Obtenir la date actuelle
+    $currentDate = date('Y-m-d');
+
     // Afficher la liste des paiements sous forme de cartes
     if (count($payments) > 0) {
         echo '<div class="card-container">';
@@ -664,6 +669,11 @@ if (isset($_SESSION['user_id'])) {
             // Afficher le status avec la couleur correspondante
             echo '<p><strong>Status:</strong> <span style="' . $statusColor . '">' . $payment['status'] . '</span></p>';
 
+            // Vérifier si la réservation peut être annulée (si la date de début est supérieure à la date actuelle)
+            if ($payment['date_debut'] > $currentDate) {
+                echo '<button class="cancel-btn" onclick="annulerReservation(' . $payment['id'] . ')">Annuler</button>';
+            }
+
             echo '</div>';
             echo '</div>';
         }
@@ -676,3 +686,67 @@ if (isset($_SESSION['user_id'])) {
     echo '<p>Vous devez être connecté pour voir vos paiements.</p>';
 }
 ?>
+
+<script>
+    function annulerReservation(reservationId) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, cancel it!',
+            cancelButtonText: 'No, keep it'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Faire une requête AJAX pour annuler la réservation
+                fetch('annuler_reservation.php?id=' + reservationId)
+                    .then(response => {
+                        // Vérifier si la réponse est OK
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json(); // Récupérer la réponse en JSON
+                    })
+                    .then(data => {
+                        console.log('Response data:', data); // Vérifier ce que contient data
+                        if (data.success) {
+                            // Afficher un message de succès
+                            Swal.fire({
+                                title: 'Cancelled!',
+                                text: data.message,
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            }).then(() => {
+                                // Optionnel : Recharger la page ou effectuer une autre action après succès
+                                window.location.reload();
+                            });
+                        } else {
+                            // Afficher un message d'erreur si l'annulation a échoué
+                            Swal.fire({
+                                title: 'Failed!',
+                                text: data.message,
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error); // Afficher les erreurs dans la console
+                        // Afficher un message d'erreur en cas de problème avec la requête
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'Something went wrong.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    });
+            }
+        });
+    }
+</script>
+
+
+
+
