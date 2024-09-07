@@ -61,3 +61,28 @@
     color: #dc3545; /* Rouge */
     font-weight: bold;
 }
+   /* Style du bouton annuler */
+   .cancel-btn {
+    background-color: #d33;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+/* Effet au survol */
+.cancel-btn:hover {
+    background-color: #a50000;
+}
+
+/* Effet lors du clic */
+.cancel-btn:active {
+    background-color: #900;
+}

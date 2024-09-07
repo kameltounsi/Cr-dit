@@ -1,0 +1,108 @@
+/* Style général pour la table */
+table {
+    width: 100%; /* Utilisez 100% pour que le tableau prenne toute la largeur du conteneur */
+    border-collapse: collapse;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    border-radius: 10px;
+    overflow: hidden;
+    table-layout: auto; /* Ajustez le tableau en fonction de son contenu */
+    padding: 0; /* Supprimer le padding */
+}
+body {
+    zoom: 90%;
+}
+
+/* Style pour les en-têtes de table */
+thead th {
+    background-color: blue;
+    color: #ffffff;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 1px solid #ccc;
+    text-transform: uppercase;
+}
+
+/* Style pour les lignes du corps de la table */
+tbody tr {
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s ease;
+}
+
+/* Survoler les lignes pour un effet interactif */
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Style pour les cellules */
+td {
+    padding: 10px 15px;
+    color: #333;
+    text-align: left;
+}
+
+/* Style pour les cellules de statut (ajouté pour les différencier visuellement) */
+tbody tr td span {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    text-transform: capitalize;
+}
+
+span.confirmed {
+    background-color: #28a745;
+    color: #fff;
+}
+
+span.pending {
+    background-color: #ffc107;
+    color: #fff;
+}
+
+span.cancelled {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+/* Supprimer la bordure des boutons d'action */
+button {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #c82333;
+}
+
+/* Amélioration de la présentation des données */
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Responsive pour mobile */
+@media (max-width: 768px) {
+    table {
+        font-size: 12px;
+    }
+
+    thead th {
+        padding: 10px;
+    }
+
+    td {
+        padding: 8px;
+    }
+
+    button {
+        padding: 6px 10px;
+    }
+}

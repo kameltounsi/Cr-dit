@@ -31,9 +31,9 @@ if ($user_role !== 'Admin' && $user_role !== 'Agent de location') {
                 <li>
                     <a href="#">
                         <span class="icon">
-                            <ion-icon name="logo-apple"></ion-icon>
+                            <ion-icon name="logo-car"></ion-icon>
                         </span>
-                        <span class="title">Brand Name</span>
+                        <span class="title">BMC Auto</span>
                     </a>
                 </li>
 
@@ -68,7 +68,7 @@ if ($user_role !== 'Admin' && $user_role !== 'Agent de location') {
                     </li>
 
                     <li>
-                        <a href="#">
+                        <a href="reservation_back.php">
                             <span class="icon">
                                 <ion-icon name="calendar-outline"></ion-icon>
                             </span>

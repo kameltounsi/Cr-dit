@@ -1,7 +1,5 @@
 <?php
 session_start();
-
-// Supposons que vous stockez les rôles dans une session après la connexion de l'utilisateur
 $user_role = $_SESSION['user_role'] ?? '';
 if ($user_role !== 'Admin' && $user_role !== 'Agent de location') {
     // Redirigez l'utilisateur vers la page d'accueil ou une page d'erreur
@@ -11,7 +9,6 @@ if ($user_role !== 'Admin' && $user_role !== 'Agent de location') {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,9 +19,7 @@ if ($user_role !== 'Admin' && $user_role !== 'Agent de location') {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="icon" href="/car_rent/img/top-logo1.png" type="image/png">
     <link rel="stylesheet" href="voitures.css">
-
 </head>
-
 <body>
 <div class="container">
         <div class="navigation">
@@ -34,10 +29,9 @@ if ($user_role !== 'Admin' && $user_role !== 'Agent de location') {
                         <span class="icon">
                             <ion-icon name="logo-apple"></ion-icon>
                         </span>
-                        <span class="title">Brand Name</span>
+                        <span class="title">BMC Auto</span>
                     </a>
                 </li>
-
                 <li>
                     <a href="index.php">
                         <span class="icon">
@@ -46,7 +40,6 @@ if ($user_role !== 'Admin' && $user_role !== 'Agent de location') {
                         <span class="title">Dashboard</span>
                     </a>
                 </li>
-
                 <?php if ($user_role === 'Admin') { ?>
                     <li>
                         <a href="customers.php">
@@ -57,7 +50,6 @@ if ($user_role !== 'Admin' && $user_role !== 'Agent de location') {
                         </a>
                     </li>
                 <?php } ?>
-
                 <?php if ($user_role === 'Agent de location') { ?>
                     <li>
                         <a href="../back/voitures.php">
@@ -67,9 +59,8 @@ if ($user_role !== 'Admin' && $user_role !== 'Agent de location') {
                             <span class="title">Cars</span>
                         </a>
                     </li>
-
                     <li>
-                        <a href="#">
+                        <a href="reservation_back.php">
                             <span class="icon">
                                 <ion-icon name="calendar-outline"></ion-icon>
                             </span>
@@ -77,7 +68,6 @@ if ($user_role !== 'Admin' && $user_role !== 'Agent de location') {
                         </a>
                     </li>
                 <?php } ?>
-
                 <li>
                     <a href="../index.html">
                         <span class="icon">
@@ -86,7 +76,6 @@ if ($user_role !== 'Admin' && $user_role !== 'Agent de location') {
                         <span class="title">Go to Front</span>
                     </a>
                 </li>
-
                 <li>
                     <a href="#" id="signOutLink">
                         <span class="icon">
@@ -98,7 +87,6 @@ if ($user_role !== 'Admin' && $user_role !== 'Agent de location') {
             </ul>
         </div>
     </div>
-
         <!-- Main Content -->
         <div class="main">
             <div class="topbar">
@@ -129,7 +117,6 @@ if ($user_role !== 'Admin' && $user_role !== 'Agent de location') {
                     <div class="cardHeader">
                         <h2>Car List</h2>
                     </div>
-
                     <table>
                         <thead>
                             <tr>
@@ -145,27 +132,22 @@ if ($user_role !== 'Admin' && $user_role !== 'Agent de location') {
                             </tr>
                         </thead>
                         <tbody id="car-table-body">
-                            <!-- Table rows will be generated dynamically by JavaScript -->
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-<!-- Modal pour Modifier une Voiture -->
 <div id="editCarModal" class="modal">
     <div class="modal-content">
         <span class="closeBtn" onclick="closeEditModal()">&times;</span>
         <h2>Edit Car</h2>
         <form id="editCarForm" action="edit_car.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" id="editCarId" name="car_id">
-
             <label for="editNom">Car Name:</label>
             <input type="text" id="editNom" name="nom" required>
-
             <label for="editModel">Car Model:</label>
             <select id="editModel" name="model" required>
-                <!-- États-Unis -->
                 <option value="Ford">Ford</option>
                 <option value="Chevrolet">Chevrolet</option>
                 <option value="Tesla">Tesla</option>
@@ -174,23 +156,17 @@ if ($user_role !== 'Admin' && $user_role !== 'Agent de location') {
                 <option value="Jeep">Jeep</option>
                 <option value="Buick">Buick</option>
                 <option value="Chrysler">Chrysler</option>
-
-                <!-- France -->
                 <option value="Renault">Renault</option>
                 <option value="Peugeot">Peugeot</option>
                 <option value="Citroën">Citroën</option>
                 <option value="DS Automobiles">DS Automobiles</option>
                 <option value="Bugatti">Bugatti</option>
-
-                <!-- Allemagne -->
                 <option value="Mercedes-Benz">Mercedes-Benz</option>
                 <option value="BMW">BMW</option>
                 <option value="Audi">Audi</option>
                 <option value="Volkswagen">Volkswagen</option>
                 <option value="Porsche">Porsche</option>
                 <option value="Opel">Opel</option>
-
-                <!-- Japon -->
                 <option value="Toyota">Toyota</option>
                 <option value="Honda">Honda</option>
                 <option value="Nissan">Nissan</option>
@@ -199,19 +175,13 @@ if ($user_role !== 'Admin' && $user_role !== 'Agent de location') {
                 <option value="Mitsubishi">Mitsubishi</option>
                 <option value="Suzuki">Suzuki</option>
                 <option value="Lexus">Lexus</option>
-
-                <!-- Ajouter d'autres marques de voitures au besoin -->
             </select>
-
             <label for="editImg1">Image 1:</label>
             <input type="file" id="editImg1" name="img1" accept="image/*">
-
             <label for="editImg2">Image 2:</label>
             <input type="file" id="editImg2" name="img2" accept="image/*">
-
             <label for="editImg3">Image 3:</label>
             <input type="file" id="editImg3" name="img3" accept="image/*">
-
             <label for="editVille">Ville:</label>
             <select id="editVille" name="ville" required>
                 <option value="">Sélectionner une ville</option>
@@ -240,12 +210,8 @@ if ($user_role !== 'Admin' && $user_role !== 'Agent de location') {
                 <option value="Tozeur">Tozeur</option>
                 <option value="Kebili">Kebili</option>
             </select>
-
-            <!-- Champ pour le prix -->
             <label for="editPrix">Prix:</label>
             <input type="number" id="editPrix" name="prix" step="0.01" required>
-
-            <!-- Ajouter de l'espace entre le prix et le bouton -->
             <div style="margin-top: 15px;">
                 <button id="editCarButton" type="submit">Save Changes</button>
             </div>
@@ -254,32 +220,18 @@ if ($user_role !== 'Admin' && $user_role !== 'Agent de location') {
 </div>
 <script>
 function openEditModal(carId, carName, carModel, carVille, carPrix, img1, img2, img3) {
-    // Remplir les champs du formulaire avec les valeurs existantes
     document.getElementById("editCarId").value = carId;
     document.getElementById("editNom").value = carName;
     document.getElementById("editModel").value = carModel;
     document.getElementById("editVille").value = carVille;
     document.getElementById("editPrix").value = carPrix;
-
-    // Optionnel: Charger les images existantes si nécessaire (vous pouvez afficher les images actuelles dans le modal)
-    // document.getElementById("editImg1Preview").src = img1;
-    // document.getElementById("editImg2Preview").src = img2;
-    // document.getElementById("editImg3Preview").src = img3;
-
-    // Afficher le modal de modification
     document.getElementById("editCarModal").style.display = "block";
 }
-
 function closeEditModal() {
-    // Fermer le modal de modification
     document.getElementById("editCarModal").style.display = "none";
 }
-
-// Écouter l'événement de soumission du formulaire
 document.getElementById("editCarForm").addEventListener("submit", function(event) {
     event.preventDefault(); // Empêche l'envoi habituel du formulaire
-
-    // Afficher une confirmation avant de soumettre le formulaire
     Swal.fire({
         title: 'Are you sure?',
         text: 'Do you want to save these changes?',
@@ -290,16 +242,13 @@ document.getElementById("editCarForm").addEventListener("submit", function(event
         reverseButtons: true
     }).then((result) => {
         if (result.isConfirmed) {
-            // Si l'utilisateur confirme, soumettre le formulaire avec fetch
             const formData = new FormData(this); // Récupère les données du formulaire
-
             fetch("edit_car.php", {
                 method: "POST",
                 body: formData
             })
             .then(response => response.text()) // Ou .json() si votre serveur retourne du JSON
             .then(result => {
-                // Afficher une notification de succès
                 Swal.fire({
                     title: 'Success!',
                     text: 'Car updated successfully!',
@@ -311,7 +260,6 @@ document.getElementById("editCarForm").addEventListener("submit", function(event
                 });
             })
             .catch(error => {
-                // Afficher une notification d'erreur en cas d'échec
                 Swal.fire({
                     title: 'Error!',
                     text: 'There was an error updating the car. Please try again.',
@@ -322,9 +270,7 @@ document.getElementById("editCarForm").addEventListener("submit", function(event
         }
     });
 });
-
 </script>
-<!-- Modal for Adding a Car -->
 <div id="carModal" class="modal">
     <div class="modal-content">
         <span class="closeBtn" onclick="closeModal()">&times;</span>
@@ -332,10 +278,8 @@ document.getElementById("editCarForm").addEventListener("submit", function(event
         <form id="carForm" action="add_car.php" method="POST" enctype="multipart/form-data">
             <label for="nom">Car Name:</label>
             <input type="text" id="nom" name="nom" required>
-
             <label for="model">Car Model:</label>
             <select id="model" name="model" required>
-                <!-- États-Unis -->
                 <option value="Ford">Ford</option>
                 <option value="Chevrolet">Chevrolet</option>
                 <option value="Tesla">Tesla</option>
@@ -344,23 +288,17 @@ document.getElementById("editCarForm").addEventListener("submit", function(event
                 <option value="Jeep">Jeep</option>
                 <option value="Buick">Buick</option>
                 <option value="Chrysler">Chrysler</option>
-
-                <!-- France -->
                 <option value="Renault">Renault</option>
                 <option value="Peugeot">Peugeot</option>
                 <option value="Citroën">Citroën</option>
                 <option value="DS Automobiles">DS Automobiles</option>
                 <option value="Bugatti">Bugatti</option>
-
-                <!-- Allemagne -->
                 <option value="Mercedes-Benz">Mercedes-Benz</option>
                 <option value="BMW">BMW</option>
                 <option value="Audi">Audi</option>
                 <option value="Volkswagen">Volkswagen</option>
                 <option value="Porsche">Porsche</option>
                 <option value="Opel">Opel</option>
-
-                <!-- Japon -->
                 <option value="Toyota">Toyota</option>
                 <option value="Honda">Honda</option>
                 <option value="Nissan">Nissan</option>
@@ -369,19 +307,13 @@ document.getElementById("editCarForm").addEventListener("submit", function(event
                 <option value="Mitsubishi">Mitsubishi</option>
                 <option value="Suzuki">Suzuki</option>
                 <option value="Lexus">Lexus</option>
-
-                <!-- Add more car brands as needed -->
             </select>
-
             <label for="img1">Image 1:</label>
             <input type="file" id="img1" name="img1" accept="image/*" required>
-
             <label for="img2">Image 2:</label>
             <input type="file" id="img2" name="img2" accept="image/*">
-
             <label for="img3">Image 3:</label>
             <input type="file" id="img3" name="img3" accept="image/*">
-
             <label for="ville">Ville:</label>
             <select id="ville" name="ville" required>
                 <option value="">Sélectionner une ville</option>
@@ -410,20 +342,14 @@ document.getElementById("editCarForm").addEventListener("submit", function(event
                 <option value="Tozeur">Tozeur</option>
                 <option value="Kebili">Kebili</option>
             </select>
-
-            <!-- Nouveau champ pour le prix -->
             <label for="prix">Prix:</label>
             <input type="number" id="prix" name="prix" step="0.01" required>
-
-            <!-- Ajouter de l'espace entre le prix et le bouton -->
             <div style="margin-top: 15px;">
                 <button id="addCarButton" type="submit">Add</button>
             </div>
         </form>
     </div>
 </div>
-
-
     <script>
         function deleteCar(carId) {
     if (!carId) {
@@ -489,7 +415,6 @@ document.getElementById("editCarForm").addEventListener("submit", function(event
         <script>
 document.getElementById("carForm").addEventListener("submit", function(event) {
     event.preventDefault(); // Empêche l'envoi habituel du formulaire
-
     Swal.fire({
         title: 'Are you sure?',
         text: 'Do you want to add this car?',
@@ -500,8 +425,7 @@ document.getElementById("carForm").addEventListener("submit", function(event) {
         reverseButtons: true
     }).then((result) => {
         if (result.isConfirmed) {
-            const formData = new FormData(this); // Récupère les données du formulaire
-            
+            const formData = new FormData(this); // Récupère les données du formulaire  
             fetch("add_car.php", {
                 method: "POST",
                 body: formData
@@ -537,22 +461,15 @@ document.getElementById("carForm").addEventListener("submit", function(event) {
         }
     });
 });
-
-
-
-        </script>
+    </script>
     <!-- Script for dynamic data and modal -->
     <script>
         const baseURL = '../';  // Adjusted path to go up one directory level
-
         document.addEventListener('DOMContentLoaded', () => {
             const searchTypeSelect = document.getElementById('search-type');
             const searchInput = document.getElementById('search-input');
             const carTableBody = document.getElementById('car-table-body');
-
             let cars = [];
-
-            // Function to filter table rows
             function filterTable() {
                 const searchTerm = searchInput.value.toLowerCase();
                 const searchType = searchTypeSelect.value;
@@ -561,9 +478,7 @@ document.getElementById("carForm").addEventListener("submit", function(event) {
                     const name = row.querySelector('td:nth-child(1)').textContent.toLowerCase();
                     const model = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
                     const city = row.querySelector('td:nth-child(6)').textContent.toLowerCase();
-
                     let match = false;
-
                     if (searchType === 'nom') {
                         match = name.includes(searchTerm);
                     } else if (searchType === 'model') {
@@ -571,7 +486,6 @@ document.getElementById("carForm").addEventListener("submit", function(event) {
                     } else if (searchType === 'ville') {
                         match = city.includes(searchTerm);
                     }
-
                     if (match) {
                         row.style.display = '';
                     } else {
@@ -579,17 +493,13 @@ document.getElementById("carForm").addEventListener("submit", function(event) {
                     }
                 });
             }
-// Function to delete car
-            // Fetch car data from the server
             fetch('/car_rent/back/affichcars.php')
     .then(response => response.json())
     .then(data => {
         cars = data;
         carTableBody.innerHTML = '';  // Vide le corps du tableau avant de le remplir à nouveau
-
         cars.forEach(car => {
             const row = document.createElement('tr');
-
             row.innerHTML = `
                 <td>${car.nom}</td>
                 <td>${car.model}</td>
@@ -603,42 +513,27 @@ document.getElementById("carForm").addEventListener("submit", function(event) {
                     <button class="deleteBtn" onclick="deleteCar(${car.id})">Delete</button>
                 </td>
             `;
-
             carTableBody.appendChild(row);
         });
     })
     .catch(error => console.error('Error fetching car data:', error));
-
-// Event listener for search input and type change
 searchInput.addEventListener('input', filterTable);
 searchTypeSelect.addEventListener('change', filterTable);
-
         });
-
-        // Function to open modal for adding a car
         function openModal() {
             document.getElementById('carModal').style.display = 'block';
         }
-
-        // Function to close modal
         function closeModal() {
             document.getElementById('carModal').style.display = 'none';
         }
-
-        // Placeholder function for editing a car
         function editCar(carId) {
             // Logic for editing car will go here
             alert('Edit car with ID: ' + carId);
         }
     </script>
-
-    <!-- Include ionicons for icons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
-
 </html>
-
 </body>
-
 </html>
