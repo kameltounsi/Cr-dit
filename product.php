@@ -128,8 +128,8 @@ $user_mail = isset($_SESSION['user_email']) ? $_SESSION['user_email'] : null;
     </div>
     <div id="reservationModal" class="modal" style="display: none;">
     <div class="modal-content">
-        <span class="close">&times;</span>
-        <h5 style="text-align: center; font-size: 1.5rem;">Réservation de voiture</h5>
+    <span id="modalCloseButton" class="close">&times;</span>
+    <h5 style="text-align: center; font-size: 1.5rem;">Réservation de voiture</h5>
         <form id="reservationForm">
             <input type="hidden" id="userId" value="<?php echo $user_id; ?>">
             <input type="hidden" id="carId">
@@ -160,6 +160,7 @@ $user_mail = isset($_SESSION['user_email']) ? $_SESSION['user_email'] : null;
             </div>
             <button type="submit">Confirmer la réservation</button>
         </form>
+
     </div>
 </div>
 
@@ -297,7 +298,7 @@ function closeModal() {
     document.getElementById('reservationModal').style.display = 'none';
 }
 
-document.querySelector('.close').addEventListener('click', closeModal);
+document.getElementById('modalCloseButton').addEventListener('click', closeModal);
 
 window.addEventListener('click', (event) => {
     const modal = document.getElementById('reservationModal');
