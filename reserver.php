@@ -21,9 +21,12 @@ if (isset($data['id_user'], $data['id_car'], $data['date_current'], $data['date_
     $telephone = $data['telephone'];
     $mail = $data['mail'];
 
+    // Ajouter le status avec la valeur par défaut 'en cours'
+    $status = 'en cours';
+
     // Préparer la requête d'insertion
-    $sql = "INSERT INTO reservation (id_user, id_car, date_current, date_debut, date_fin, prixtotal, telephone, mail)
-            VALUES (:id_user, :id_car, :date_current, :date_debut, :date_fin, :prixtotal, :telephone, :mail)";
+    $sql = "INSERT INTO reservation (id_user, id_car, date_current, date_debut, date_fin, prixtotal, telephone, mail, status)
+            VALUES (:id_user, :id_car, :date_current, :date_debut, :date_fin, :prixtotal, :telephone, :mail, :status)";
     $stmt = $pdo->prepare($sql);
 
     // Exécuter la requête
@@ -35,7 +38,8 @@ if (isset($data['id_user'], $data['id_car'], $data['date_current'], $data['date_
         ':date_fin' => $date_fin,
         ':prixtotal' => $prixtotal,
         ':telephone' => $telephone,
-        ':mail' => $mail
+        ':mail' => $mail,
+        ':status' => $status // Ajout du status par défaut 'en cours'
     ]);
 
     // Répondre à la requête avec un succès ou une erreur

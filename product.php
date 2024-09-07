@@ -49,8 +49,8 @@ $user_mail = isset($_SESSION['user_email']) ? $_SESSION['user_email'] : null;
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                    <ul class="nav navbar-nav">
                       <li><a class="m_tag" href="index.html">Home</a></li>
-                      <li><a class="m_tag active_m" href="product.html">Voitures</a></li>
-                      <li><a class="m_tag" href="product.html">Liste des paiements</a></li>
+                      <li><a class="m_tag active_m" href="product.php">Voitures</a></li>
+                      <li><a class="m_tag" href="listepaiements.php">Liste des paiements</a></li>
                    </ul>
                    
                   <!-- Right aligned section for Sign Up and Sign In -->
@@ -126,215 +126,6 @@ $user_mail = isset($_SESSION['user_email']) ? $_SESSION['user_email'] : null;
             </div>
         </div>
     </div>
-    <div id="reservationModal" class="modal" style="display: none;">
-    <div class="modal-content">
-    <span id="modalCloseButton" class="close">&times;</span>
-    <h5 style="text-align: center; font-size: 1.5rem;">Réservation de voiture</h5>
-        <form id="reservationForm">
-            <input type="hidden" id="userId" value="<?php echo $user_id; ?>">
-            <input type="hidden" id="carId">
-            <input type="hidden" id="prixUnitaire"> <!-- Ajout du champ caché pour le prix unitaire -->
-            <div>
-                <label for="dateDebut">Date de début</label>
-                <input type="date" id="dateDebut" required>
-                <span id="errorDateDebut" class="error-message"></span>
-            </div>
-            <div>
-                <label for="dateFin">Date de fin</label>
-                <input type="date" id="dateFin" required>
-                <span id="errorDateFin" class="error-message"></span>
-            </div>
-            <div>
-                <label for="prixTotal">Prix total</label>
-                <input type="text" id="prixTotal" class="form-control" readonly>
-            </div>
-            <div>
-                <label for="telephone">Téléphone</label>
-                <input type="text" id="telephone" required>
-                <span id="errorTelephone" class="error-message"></span>
-            </div>
-            <div>
-                <label for="mail">Email</label>
-                <input type="email" id="mail" value="<?php echo $user_mail; ?>" required>
-                <span id="errorMail" class="error-message"></span>
-            </div>
-            <button type="submit">Confirmer la réservation</button>
-        </form>
-
-    </div>
-</div>
-
-
-    <!-- Include SweetAlert2 -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-document.getElementById('reservationForm').addEventListener('submit', submitReservationForm);
-document.getElementById('dateDebut').addEventListener('change', updatePrixTotal);
-document.getElementById('dateFin').addEventListener('change', updatePrixTotal);
-
-function openReservationModal(car) {
-    // Assurez-vous que le champ prixUnitaire est défini ici
-    document.getElementById('carId').value = car.id;
-    document.getElementById('prixUnitaire').value = car.prix;
-    document.getElementById('reservationModal').style.display = 'block';
-}
-
-function calculerNombreJours(dateDebut, dateFin) {
-    const debut = new Date(dateDebut);
-    const fin = new Date(dateFin);
-    const differenceTemps = fin - debut;
-    return Math.max(differenceTemps / (1000 * 3600 * 24), 0);
-}
-
-function updatePrixTotal() {
-    const dateDebut = document.getElementById('dateDebut').value;
-    const dateFin = document.getElementById('dateFin').value;
-    const prixUnitaire = parseFloat(document.getElementById('prixUnitaire').value);
-
-    if (dateDebut && dateFin && prixUnitaire) {
-        const nombreJours = calculerNombreJours(dateDebut, dateFin);
-        const prixTotal = nombreJours * prixUnitaire;
-        document.getElementById('prixTotal').value = `${prixTotal.toFixed(2)} DT`;
-    } else {
-        document.getElementById('prixTotal').value = '0.00 DT';
-    }
-}
-
-function validateForm() {
-    clearErrorMessages();
-
-    const dateDebut = document.getElementById('dateDebut').value;
-    const dateFin = document.getElementById('dateFin').value;
-    const telephone = document.getElementById('telephone').value;
-    const mail = document.getElementById('mail').value;
-    const currentDate = new Date().toISOString().split('T')[0];
-    let isValid = true;
-
-    if (!dateDebut || !dateFin) {
-        showError('errorDateDebut', 'Les dates de début et de fin sont obligatoires.');
-        showError('errorDateFin', 'Les dates de début et de fin sont obligatoires.');
-        isValid = false;
-    }
-
-    if (dateDebut < currentDate || dateFin < currentDate) {
-        showError('errorDateDebut', 'Les dates de début et de fin doivent être supérieures ou égales à la date actuelle.');
-        showError('errorDateFin', 'Les dates de début et de fin doivent être supérieures ou égales à la date actuelle.');
-        isValid = false;
-    }
-
-    if (dateFin <= dateDebut) {
-        showError('errorDateDebut', 'La date de fin doit être supérieure à la date de début.');
-        isValid = false;
-    }
-
-    const phoneRegex = /^[0-9]{8}$/;
-    if (!phoneRegex.test(telephone)) {
-        showError('errorTelephone', 'Le numéro de téléphone doit contenir exactement 8 chiffres.');
-        isValid = false;
-    }
-
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!emailRegex.test(mail)) {
-        showError('errorMail', 'Veuillez entrer une adresse email valide.');
-        isValid = false;
-    }
-
-    return isValid;
-}
-
-function showError(elementId, message) {
-    const element = document.getElementById(elementId);
-    if (element) {
-        element.textContent = message;
-    }
-}
-
-function clearErrorMessages() {
-    document.querySelectorAll('.error-message').forEach(span => {
-        span.textContent = '';
-    });
-}
-
-function submitReservationForm(event) {
-    event.preventDefault();
-
-    if (!validateForm()) {
-        return;
-    }
-
-    const dateDebut = document.getElementById('dateDebut').value;
-    const dateFin = document.getElementById('dateFin').value;
-    const carId = document.getElementById('carId').value;
-
-    // Vérifier la disponibilité de la voiture
-    fetch('checkAvailability.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ carId, dateDebut, dateFin })
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Disponibilité:', data); // Ajoutez ce log pour vérifier la réponse
-        if (!data.available) {
-            Swal.fire('Erreur', 'La voiture est déjà réservée pour ces dates.', 'error');
-        } else {
-            // Si la voiture est disponible, soumettre la réservation
-            const reservationData = {
-                id_user: document.getElementById('userId').value,
-                id_car: document.getElementById('carId').value,
-                date_current: new Date().toISOString().split('T')[0],
-                date_debut: document.getElementById('dateDebut').value,
-                date_fin: document.getElementById('dateFin').value,
-                prixtotal: document.getElementById('prixTotal').value.split(' ')[0],
-                telephone: document.getElementById('telephone').value,
-                mail: document.getElementById('mail').value
-            };
-
-            fetch('reserver.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(reservationData)
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Réservation:', data); // Ajoutez ce log pour vérifier la réponse
-                if (data.success) {
-                    Swal.fire('Réservation confirmée', 'Votre réservation a été confirmée avec succès.', 'success');
-                    closeModal();
-                } else {
-                    Swal.fire('Erreur', 'Une erreur est survenue lors de la réservation.', 'error');
-                }
-            })
-            .catch(error => {
-                console.error('Erreur réservation:', error);
-            });
-        }
-    })
-    .catch(error => {
-        console.error('Erreur disponibilité:', error);
-    });
-}
-
-
-
-function closeModal() {
-    document.getElementById('reservationModal').style.display = 'none';
-}
-
-document.getElementById('modalCloseButton').addEventListener('click', closeModal);
-
-window.addEventListener('click', (event) => {
-    const modal = document.getElementById('reservationModal');
-    if (event.target === modal) {
-        closeModal();
-    }
-});
-</script>
-
     <!-- JavaScript for handling form submission and email uniqueness -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -803,7 +594,7 @@ window.addEventListener('click', (event) => {
   <div class="row">
    <div class="product_main_1">
     <h2>CARS</h2>
-	<p><a href="#"> HOME </a> <i class="fa fa-angle-double-right"></i> <a href="#"> CARS </a></p>
+	<p><a href="index.html"> HOME </a> <i class="fa fa-angle-double-right"></i> <a href="#"> CARS </a></p>
    </div>
   </div>
  </div>
@@ -998,6 +789,212 @@ function onLoginSuccess() {
   fetchCarsData(); // Charger les voitures
 }
 
+</script>
+<div id="reservationModal" class="modal" style="display: none;">
+    <div class="modal-content">
+    <span id="modalCloseButton" class="close">&times;</span>
+    <h5 style="text-align: center; font-size: 1.5rem;">Réservation de voiture</h5>
+        <form id="reservationForm">
+            <input type="hidden" id="userId" value="<?php echo $user_id; ?>">
+            <input type="hidden" id="carId">
+            <input type="hidden" id="prixUnitaire"> <!-- Ajout du champ caché pour le prix unitaire -->
+            <div>
+                <label for="dateDebut">Date de début</label>
+                <input type="date" id="dateDebut" required>
+                <span id="errorDateDebut" class="error-message"></span>
+            </div>
+            <div>
+                <label for="dateFin">Date de fin</label>
+                <input type="date" id="dateFin" required>
+                <span id="errorDateFin" class="error-message"></span>
+            </div>
+            <div>
+                <label for="prixTotal">Prix total</label>
+                <input type="text" id="prixTotal" class="form-control" readonly>
+            </div>
+            <div>
+                <label for="telephone">Téléphone</label>
+                <input type="text" id="telephone" required>
+                <span id="errorTelephone" class="error-message"></span>
+            </div>
+            <div>
+                <label for="mail">Email</label>
+                <input type="email" id="mail" value="<?php echo $user_mail; ?>" required>
+                <span id="errorMail" class="error-message"></span>
+            </div>
+            <button type="submit">Confirmer la réservation</button>
+        </form>
+
+    </div>
+</div>
+    <!-- Include SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+document.getElementById('reservationForm').addEventListener('submit', submitReservationForm);
+document.getElementById('dateDebut').addEventListener('change', updatePrixTotal);
+document.getElementById('dateFin').addEventListener('change', updatePrixTotal);
+
+function openReservationModal(car) {
+    // Assurez-vous que le champ prixUnitaire est défini ici
+    document.getElementById('carId').value = car.id;
+    document.getElementById('prixUnitaire').value = car.prix;
+    document.getElementById('reservationModal').style.display = 'block';
+}
+
+function calculerNombreJours(dateDebut, dateFin) {
+    const debut = new Date(dateDebut);
+    const fin = new Date(dateFin);
+    const differenceTemps = fin - debut;
+    return Math.max(differenceTemps / (1000 * 3600 * 24), 0);
+}
+
+function updatePrixTotal() {
+    const dateDebut = document.getElementById('dateDebut').value;
+    const dateFin = document.getElementById('dateFin').value;
+    const prixUnitaire = parseFloat(document.getElementById('prixUnitaire').value);
+
+    if (dateDebut && dateFin && prixUnitaire) {
+        const nombreJours = calculerNombreJours(dateDebut, dateFin);
+        const prixTotal = nombreJours * prixUnitaire;
+        document.getElementById('prixTotal').value = `${prixTotal.toFixed(2)} DT`;
+    } else {
+        document.getElementById('prixTotal').value = '0.00 DT';
+    }
+}
+
+function validateForm() {
+    clearErrorMessages();
+
+    const dateDebut = document.getElementById('dateDebut').value;
+    const dateFin = document.getElementById('dateFin').value;
+    const telephone = document.getElementById('telephone').value;
+    const mail = document.getElementById('mail').value;
+    const currentDate = new Date().toISOString().split('T')[0];
+    let isValid = true;
+
+    if (!dateDebut || !dateFin) {
+        showError('errorDateDebut', 'Les dates de début et de fin sont obligatoires.');
+        showError('errorDateFin', 'Les dates de début et de fin sont obligatoires.');
+        isValid = false;
+    }
+
+    if (dateDebut < currentDate || dateFin < currentDate) {
+        showError('errorDateDebut', 'Les dates de début et de fin doivent être supérieures ou égales à la date actuelle.');
+        showError('errorDateFin', 'Les dates de début et de fin doivent être supérieures ou égales à la date actuelle.');
+        isValid = false;
+    }
+
+    if (dateFin <= dateDebut) {
+        showError('errorDateDebut', 'La date de fin doit être supérieure à la date de début.');
+        isValid = false;
+    }
+
+    const phoneRegex = /^[0-9]{8}$/;
+    if (!phoneRegex.test(telephone)) {
+        showError('errorTelephone', 'Le numéro de téléphone doit contenir exactement 8 chiffres.');
+        isValid = false;
+    }
+
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(mail)) {
+        showError('errorMail', 'Veuillez entrer une adresse email valide.');
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+function showError(elementId, message) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        element.textContent = message;
+    }
+}
+
+function clearErrorMessages() {
+    document.querySelectorAll('.error-message').forEach(span => {
+        span.textContent = '';
+    });
+}
+
+function submitReservationForm(event) {
+    event.preventDefault();
+
+    if (!validateForm()) {
+        return;
+    }
+
+    const dateDebut = document.getElementById('dateDebut').value;
+    const dateFin = document.getElementById('dateFin').value;
+    const carId = document.getElementById('carId').value;
+
+    // Vérifier la disponibilité de la voiture
+    fetch('checkAvailability.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ carId, dateDebut, dateFin })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Disponibilité:', data); // Ajoutez ce log pour vérifier la réponse
+        if (!data.available) {
+            Swal.fire('Erreur', 'La voiture est déjà réservée pour ces dates.', 'error');
+        } else {
+            // Si la voiture est disponible, soumettre la réservation
+            const reservationData = {
+                id_user: document.getElementById('userId').value,
+                id_car: document.getElementById('carId').value,
+                date_current: new Date().toISOString().split('T')[0],
+                date_debut: document.getElementById('dateDebut').value,
+                date_fin: document.getElementById('dateFin').value,
+                prixtotal: document.getElementById('prixTotal').value.split(' ')[0],
+                telephone: document.getElementById('telephone').value,
+                mail: document.getElementById('mail').value
+            };
+
+            fetch('reserver.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(reservationData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Réservation:', data); // Ajoutez ce log pour vérifier la réponse
+                if (data.success) {
+                    Swal.fire('Réservation confirmée', 'Votre réservation a été confirmée avec succès.', 'success');
+                    closeModal();
+                } else {
+                    Swal.fire('Erreur', 'Une erreur est survenue lors de la réservation.', 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Erreur réservation:', error);
+            });
+        }
+    })
+    .catch(error => {
+        console.error('Erreur disponibilité:', error);
+    });
+}
+
+
+
+function closeModal() {
+    document.getElementById('reservationModal').style.display = 'none';
+}
+
+document.getElementById('modalCloseButton').addEventListener('click', closeModal);
+
+window.addEventListener('click', (event) => {
+    const modal = document.getElementById('reservationModal');
+    if (event.target === modal) {
+        closeModal();
+    }
+});
 </script>
 <style>
 

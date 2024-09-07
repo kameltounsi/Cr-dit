@@ -1,0 +1,227 @@
+    /* Style for car images */
+.car-img {
+    width: 100px; /* Set the width of the images */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 80px; /* Optional: set a max height */
+    object-fit: cover; /* Optional: cover the area without distortion */
+    border-radius: 4px; /* Optional: add rounded corners */
+    display: block; /* Ensure images are displayed as blocks */
+}
+
+        .profile-pic {
+        width: 100px; /* Adjust size as needed */
+        height: 100px; /* Adjust size as needed */
+        border-radius: 50%;
+        object-fit: cover; /* Ensure image covers the area without distortion */
+    }
+        .delete-btn {
+        background-color: red;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .delete-btn:hover {
+        background-color: darkred;
+    }
+    /* Style pour la zone de recherche */
+.search {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+    gap: 10px;
+}
+    .custom-select {
+        background-color: #87CEEB; /* Bleu ciel */
+        border: 1px solid #ADD8E6; /* Bordure en bleu clair */
+        color: #000000; /* Texte en noir pour une bonne lisibilité */
+        padding: 5px; /* Optionnel : ajoute du padding pour améliorer l'apparence */
+    }
+    .custom-select option {
+        background-color: #87CEEB; /* Bleu ciel pour les options */
+        color: #FFFFFF; /* Texte des options en blanc */
+    }
+.search label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#search-type {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+#search-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 200px;
+    transition: border-color 0.3s;
+}
+
+#search-input:focus {
+    border-color: #3085d6;
+    outline: none;
+}
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.7); /* Black w/ opacity */
+    backdrop-filter: blur(5px); /* Add blur to the background */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto; /* Centered vertically */
+    padding: 30px;
+    border-radius: 15px;
+    width: 40%; /* Adjust based on content */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+    animation: slide-down 0.4s ease-in-out; /* Slide down effect */
+}
+
+/* Animation for modal appearance */
+@keyframes slide-down {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* The Close Button */
+.closeBtn {
+    color: #333;
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.closeBtn:hover,
+.closeBtn:focus {
+    color: #f44336;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Styling the form labels and inputs */
+.modal-content label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #555;
+}
+
+.modal-content input[type="text"],
+.modal-content select,
+.modal-content input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+/* Styling the submit button */
+.modal-content button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.modal-content button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Add some hover effect to the submit button */
+.modal-content button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Add some margin to the modal content */
+.modal-content h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+
+/* Style pour les icônes de recherche */
+ion-icon[name="search-outline"] {
+    color: #3085d6;
+    cursor: pointer;
+}
+/* Style pour le tableau des utilisateurs */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+th {
+    background-color: #f4f4f4;
+    color: #333;
+}
+tr:hover {
+    background-color: #f9f9f9;
+}
+.chicButton {
+    background-color: #007bff; /* Primary color */
+    color: white; /* Text color */
+    padding: 12px 24px; /* Padding for button */
+    font-size: 16px; /* Font size */
+    font-weight: bold; /* Bold text */
+    border: none; /* Remove default border */
+    border-radius: 25px; /* Rounded corners */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: all 0.3s ease; /* Smooth transition on hover */
+    left: 15px;
+}
+
+.chicButton:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+    transform: translateY(-2px); /* Slight upward movement on hover */
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+.chicButton:active {
+    background-color: #004085; /* Even darker shade on click */
+    transform: translateY(0); /* Return to normal position on click */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Restore shadow on click */
+}
+
+.chicButton:focus {
+    outline: none; /* Remove focus outline */
+    box-shadow: 0px 0px 0px 4px rgba(0, 123, 255, 0.4); /* Focus shadow */
+}

@@ -1,3 +1,8 @@
+<?php
+session_start(); // Assurez-vous que la session est démarrée
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+$user_mail = isset($_SESSION['user_email']) ? $_SESSION['user_email'] : null;
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,6 +20,8 @@
 	<script src="js/jquery-2.1.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 	<link rel="icon" href="img/top-logo1.png" type="image/png">
+    <link rel="stylesheet" href="liste.css">
+
 	<!-- SweetAlert CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
   </head>
@@ -40,9 +47,9 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			   <ul class="nav navbar-nav">
-				  <li><a class="m_tag active_m" href="index.html">Home</a></li>
+				  <li><a class="m_tag" href="index.html">Home</a></li>
                   <li><a class="m_tag" href="product.php">Voitures</a></li>
-                  <li><a class="m_tag" href="listepaiements.php">Liste des paiements</a></li>
+                  <li><a class="m_tag active_m" href="listepaiements.php">Liste des paiements</a></li>
 			   </ul>
 			   
 			  <!-- Right aligned section for Sign Up and Sign In -->
@@ -603,50 +610,69 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+<?php
+require_once 'Config.php'; // Inclure ton fichier Config.php
 
+// Vérifier si l'utilisateur est authentifié
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
 
-<section id="center" class="center_home">
-<div class="banner">
-		<div id="kb" class="carousel kb_elastic animate_text kb_wrapper" data-ride="carousel" data-interval="6000" data-pause="hover">
-			<!-- Wrapper-for-Slides -->
-            <div class="carousel-inner" role="listbox">  
-                <div class="item active"><!-- First-Slide -->
-                    <img src="img/001.jpg" class="img-responsive">
-                    <div class="carousel-caption kb_caption kb_caption_right">
-                        <h1 data-animation="animated flipInX" class="">We Provide Our best Service</h1>
-                        <p data-animation="animated flipInX" class="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy  text ever since the when an unknown printer took a galley of type and scrambled [...]</p>
-						<h4><a class="button hvr-shutter-out-horizontal" href="#">Read More</a></h4>
-                    </div>
-                </div>  
-                <div class="item"> <!-- Second-Slide -->
-                    <img src="img/002.jpg" alt="" class="img-responsive">
-                    <div class="carousel-caption kb_caption kb_caption_right">
-                        <h1 data-animation="animated fadeInDown">We Provide Our best Service</h1>
-                        <p data-animation="animated fadeInUp">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy  text ever since the when an unknown printer took a galley of type and scrambled [...]</p>
-						<h4><a class="button hvr-shutter-out-horizontal" href="#">Read More</a></h4>
-                    </div>
-                </div> 
-                <div class="item"><!-- Third-Slide -->
-                    <img src="img/003.jpg" alt="" class="img-responsive">
-                    <div class="carousel-caption kb_caption kb_caption_right">
-                        <h1 data-animation="animated fadeInDown">We Provide Our best Service</h1>
-                        <p data-animation="animated fadeInUp">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy  text ever since the when an unknown printer took a galley of type and scrambled [...]</p>
-						<h4><a class="button hvr-shutter-out-horizontal" href="#">Read More</a></h4>
-                    </div>
-                </div> 
-            </div> 
-            <!-- Left-Button -->
-            <a class="left carousel-control kb_control_left" href="#kb" role="button" data-slide="prev">
-				<span class="fa fa-angle-left kb_icons" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a> 
-            <!-- Right-Button -->
-            <a class="right carousel-control kb_control_right" href="#kb" role="button" data-slide="next">
-                <span class="fa fa-angle-right kb_icons" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a> 
-        </div>
-		<script src="js/custom.js"></script>
-	</div>
-	
-  
+    // Connexion PDO
+    $pdo = GetConnexion();
+
+    // Préparer la requête SQL pour récupérer les paiements et les informations sur la voiture
+    $stmt = $pdo->prepare('
+        SELECT reservation.*, voitures.nom AS car_nom, voitures.model AS car_modele
+        FROM reservation
+        JOIN voitures ON reservation.id_car = voitures.id
+        WHERE reservation.id_user = :user_id
+    ');
+    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    // Récupérer les paiements et informations de voiture
+    $payments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Afficher la liste des paiements sous forme de cartes
+    if (count($payments) > 0) {
+        echo '<div class="card-container">';
+
+        foreach ($payments as $payment) {
+            echo '<div class="card">';
+            echo '<h3 class="card-title">Réservation ID: ' . $payment['id'] . '</h3>';
+            echo '<div class="card-body">';
+            echo '<p><strong>Date Début:</strong> ' . $payment['date_debut'] . '</p>';
+            echo '<p><strong>Date Fin:</strong> ' . $payment['date_fin'] . '</p>';
+            echo '<p><strong>Date Courante:</strong> ' . $payment['date_current'] . '</p>';
+            echo '<p><strong>Prix Total:</strong> ' . $payment['prixtotal'] . ' DT</p>';
+            echo '<p><strong>Téléphone:</strong> ' . $payment['telephone'] . '</p>';
+            echo '<p><strong>Mail:</strong> ' . $payment['mail'] . '</p>';
+
+            // Afficher les informations sur la voiture
+            echo '<p><strong>Voiture:</strong> ' . $payment['car_nom'] . ' ' . $payment['car_modele'] . '</p>';
+
+            // Déterminer la classe de couleur pour le status
+            $statusColor = '';
+            if ($payment['status'] === 'en cours') {
+                $statusColor = 'color: #ffcc00; font-weight: bold;'; // Jaune
+            } elseif ($payment['status'] === 'accepté') {
+                $statusColor = 'color: #28a745; font-weight: bold;'; // Vert
+            } elseif ($payment['status'] === 'refusé') {
+                $statusColor = 'color: #dc3545; font-weight: bold;'; // Rouge
+            }
+
+            // Afficher le status avec la couleur correspondante
+            echo '<p><strong>Status:</strong> <span style="' . $statusColor . '">' . $payment['status'] . '</span></p>';
+
+            echo '</div>';
+            echo '</div>';
+        }
+
+        echo '</div>';
+    } else {
+        echo '<p>Aucun paiement trouvé pour cet utilisateur.</p>';
+    }
+} else {
+    echo '<p>Vous devez être connecté pour voir vos paiements.</p>';
+}
+?>

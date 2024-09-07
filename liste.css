@@ -1,0 +1,63 @@
+    /* Conteneur pour les cartes */
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+
+/* Style des cartes */
+.card {
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    background-color: #fff;
+    transition: transform 0.3s ease;
+    margin-top: 20px; /* Ajout de l'espacement en haut */
+}
+
+
+    /* Style pour le titre de la carte */
+    .card-title {
+        margin-top: 0;
+        font-size: 1.2em;
+        color: #333;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
+    }
+
+    /* Style pour le corps de la carte */
+    .card-body p {
+        margin: 10px 0;
+        font-size: 1em;
+        color: #555;
+    }
+
+    /* Ajoute un effet de survol pour agrandir la carte */
+    .card:hover {
+        transform: scale(1.05);
+    }
+
+    /* Pour ajuster l'alignement du texte */
+    p strong {
+        color: #000;
+    }
+    /* Statut en cours - Jaune */
+.status-yellow {
+    color: #ffcc00; /* Jaune */
+    font-weight: bold;
+}
+
+/* Statut accepté - Vert */
+.status-green {
+    color: #28a745; /* Vert */
+    font-weight: bold;
+}
+
+/* Statut refusé - Rouge */
+.status-red {
+    color: #dc3545; /* Rouge */
+    font-weight: bold;
+}
