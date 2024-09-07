@@ -946,7 +946,7 @@ function submitReservationForm(event) {
             const reservationData = {
                 id_user: document.getElementById('userId').value,
                 id_car: document.getElementById('carId').value,
-                date_current: new Date().toISOString().split('T')[0],
+                date_current: new Date().toISOString().split('T')[0]+ 'Z',
                 date_debut: document.getElementById('dateDebut').value,
                 date_fin: document.getElementById('dateFin').value,
                 prixtotal: document.getElementById('prixTotal').value.split(' ')[0],

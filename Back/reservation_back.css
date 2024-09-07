@@ -106,3 +106,63 @@ tbody tr:nth-child(even) {
         padding: 6px 10px;
     }
 }
+/* Style pour la section de tri */
+.sort-section {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sort-section label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    color: #2c3e50;
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+#sort-options {
+    width: 220px;
+    height: auto;
+    padding: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: #333;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+#sort-options:hover {
+    border-color: #3498db;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+#sort-options:focus {
+    outline: none;
+    border-color: #2980b9;
+}
+
+/* Option Style */
+#sort-options option {
+    padding: 10px;
+    background-color: #fff;
+    color: #333;
+}
+
+/* Amélioration pour les petits écrans */
+@media (max-width: 768px) {
+    .sort-section {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #sort-options {
+        width: 100%;
+    }
+}
+

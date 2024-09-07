@@ -20,7 +20,9 @@ if ($user_role !== 'Admin' && $user_role !== 'Agent de location') {
     <!-- ======= Styles ====== -->
     <link rel="stylesheet" href="assets/css/style.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>    
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>  
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
 </head>
 
 <body>
@@ -131,6 +133,8 @@ if ($user_role !== 'Admin' && $user_role !== 'Agent de location') {
                 <div class="recentCustomers">
                     <div class="cardHeader">
                         <h2>Customer List</h2>
+                        <button id="show-stats-btn" class="stats-btn">Show Statistics</button>
+
                     </div>
 
                     <table>
@@ -150,6 +154,158 @@ if ($user_role !== 'Admin' && $user_role !== 'Agent de location') {
             </div>
         </div>
     </div>
+<!-- Statistics Modal -->
+<div id="stats-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>User Reservations</h2>
+        <canvas id="stats-chart"></canvas>
+    </div>
+</div>
+
+<style>
+    /* Style pour le modal */
+.modal {
+    display: none; /* Caché par défaut */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; /* Adjusted margin for positioning */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%; /* Reduced width */
+    max-width: 600px; /* Maximum width */
+    height: 400px; /* Fixed height */
+    overflow: auto; /* Scrollable if content overflows */
+}
+
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+#stats-chart {
+    width: 100%;
+    height: 100%;
+}
+.stats-btn {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.stats-btn:hover {
+    background-color: #45a049;
+}
+
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const showStatsBtn = document.getElementById('show-stats-btn');
+    const statsModal = document.getElementById('stats-modal');
+    const closeModalBtn = document.querySelector('.close-btn');
+    const statsChartCanvas = document.getElementById('stats-chart');
+    let statsChart;
+
+    // Show modal and fetch statistics
+    showStatsBtn.addEventListener('click', () => {
+        statsModal.style.display = 'block';
+
+        // Fetch reservation statistics
+        fetch('../user_reservations_stats.php')
+            .then(response => response.json())
+            .then(data => {
+                const labels = data.map(user => user.mail);
+                const reservationCounts = data.map(user => user.reservation_count);
+
+                // Destroy existing chart if any
+                if (statsChart) {
+                    statsChart.destroy();
+                }
+
+                // Create new chart
+                statsChart = new Chart(statsChartCanvas, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Reservations Count',
+                            data: reservationCounts,
+                            backgroundColor: labels.map((_, index) => `hsl(${(index * 360 / labels.length) % 360}, 70%, 70%)`),
+                            borderColor: 'rgba(0, 0, 0, 0.1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value) { return value; }
+                                }
+                            }
+                        },
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                display: true,
+                                position: 'top',
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(tooltipItem) {
+                                        return tooltipItem.label + ': ' + tooltipItem.raw;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => console.error('Error fetching user reservation stats:', error));
+    });
+
+    // Close modal
+    closeModalBtn.addEventListener('click', () => {
+        statsModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target === statsModal) {
+            statsModal.style.display = 'none';
+        }
+    });
+});
+
+</script>
 
     <!-- =========== Scripts =========  -->
     <script src="assets/js/main.js"></script>

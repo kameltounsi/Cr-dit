@@ -104,14 +104,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cars - List</title>
+    <title>Reservations - List</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="icon" href="/car_rent/img/top-logo1.png" type="image/png">
     <link rel="stylesheet" href="reservation_back.css"></head>
     <link rel="stylesheet" href="voitures.css"></head>
-
     <link href="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.css" rel="stylesheet">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
@@ -125,7 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <span class="icon">
                             <ion-icon name="logo-apple"></ion-icon>
                         </span>
-                        <span class="title">Brand Name</span>
+                        <span class="title">BMC Auto</span>
                     </a>
                 </li>
                 <li>
@@ -189,22 +188,85 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="toggle">
                     <ion-icon name="menu-outline"></ion-icon>
                 </div>
-                <div class="search">
-    <label>
-        <input type="text" id="search-input" placeholder="Search...">
-        <select id="search-type" class="custom-select">
-            <option value="nom">Search by Name</option>
-            <option value="model">Search by Model</option>
-            <option value="ville">Search by City</option>
-        </select>
-    </label>
-</div>
-
                 <div class="user">
-                    <img src="assets/imgs/customer01.jpg" alt="">
-                </div>
+    <img src="<?php echo htmlspecialchars('../' . ($_SESSION['user_pdp'] ?? 'assets/imgs/default_profile.jpg')); ?>" alt="User Profile">
+</div>
             </div>
+            <div class="sort-section">
+    <label for="sort-options">Sort by:</label>
+    <select id="sort-options" multiple>
+        <option value="price-asc">Prix total croissant</option>
+        <option value="price-desc">Prix total décroissant</option>
+        <option value="status">Statut</option>
+        <option value="date-asc">Date croissante</option>
+        <option value="date-desc">Date décroissante</option>
+    </select>
+    <button id="apply-sort">Appliquer</button>
+</div>
+<script>
+document.getElementById('apply-sort').addEventListener('click', function() {
+    const sortOptions = Array.from(document.getElementById('sort-options').selectedOptions).map(option => option.value);
+    let sortedReservations = [...<?= json_encode($reservations) ?>];
 
+    sortOptions.forEach(option => {
+        switch(option) {
+            case 'price-asc':
+                sortedReservations.sort((a, b) => a.prixtotal - b.prixtotal);
+                break;
+            case 'price-desc':
+                sortedReservations.sort((a, b) => b.prixtotal - a.prixtotal);
+                break;
+            case 'status':
+                sortedReservations.sort((a, b) => a.status.localeCompare(b.status));
+                break;
+            case 'date-asc':
+                sortedReservations.sort((a, b) => new Date(a.date_current) - new Date(b.date_current));
+                break;
+            case 'date-desc':
+                sortedReservations.sort((a, b) => new Date(b.date_current) - new Date(a.date_current));
+                break;
+        }
+    });
+
+    displaySortedReservations(sortedReservations);
+});
+
+// Fonction pour afficher les réservations triées
+function displaySortedReservations(reservations) {
+    const tableBody = document.getElementById('reservation-table-body');
+    tableBody.innerHTML = ''; // Efface le contenu existant
+
+    reservations.forEach(reservation => {
+        const row = `
+            <tr>
+                <td>${reservation.id}</td>
+                <td>${reservation.id_user}</td>
+                <td>${reservation.car_nom} ${reservation.car_model}</td>
+                <td>${reservation.date_current}</td>
+                <td>${reservation.prixtotal}</td>
+                <td>${reservation.date_debut}</td>
+                <td>${reservation.date_fin}</td>
+                <td>${reservation.telephone}</td>
+                <td>${reservation.mail}</td>
+                <td><span class="${reservation.status.toLowerCase()}">${reservation.status}</span></td>
+                <td>
+                    ${reservation.status === 'en cours' ? `
+                        <form method="POST" class="status-form" data-action="approve">
+                            <input type="hidden" name="reservation_id" value="${reservation.id}">
+                            <input type="hidden" name="status" value="accepté">
+                            <button type="submit" class="approve-btn" style="background-color: green; color: white">Approve</button>
+                        </form>
+                        <form method="POST" class="status-form" data-action="reject">
+                            <input type="hidden" name="reservation_id" value="${reservation.id}">
+                            <input type="hidden" name="status" value="refusé">
+                            <button type="submit" class="reject-btn" style="background-color: red; color: white;">Reject</button>
+                        </form>` : ''}
+                </td>
+            </tr>`;
+        tableBody.insertAdjacentHTML('beforeend', row);
+    });
+}
+</script>
     <div class="main">
         <div class="topbar">
             <!-- Topbar code here -->

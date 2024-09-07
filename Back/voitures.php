@@ -19,6 +19,8 @@ if ($user_role !== 'Admin' && $user_role !== 'Agent de location') {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="icon" href="/car_rent/img/top-logo1.png" type="image/png">
     <link rel="stylesheet" href="voitures.css">
+    <link rel="stylesheet" href="reservation_back.css">
+
 </head>
 <body>
 <div class="container">
@@ -104,8 +106,8 @@ if ($user_role !== 'Admin' && $user_role !== 'Agent de location') {
                     </label>
                 </div>
                 <div class="user">
-                    <img src="assets/imgs/customer01.jpg" alt="">
-                </div>
+    <img src="<?php echo htmlspecialchars('../' . ($_SESSION['user_pdp'] ?? 'assets/imgs/default_profile.jpg')); ?>" alt="User Profile">
+</div>
             </div>
     <!-- Add Car Button -->
     <div class="addCarBtn">
