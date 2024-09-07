@@ -41,8 +41,8 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			   <ul class="nav navbar-nav">
 				  <li><a class="m_tag active_m" href="index.html">Home</a></li>
-                  <li><a class="m_tag" href="product.html">Voitures</a></li>
-                  <li><a class="m_tag" href="product.html">Liste des paiements</a></li>
+                  <li><a class="m_tag" href="product.php">Voitures</a></li>
+                  <li><a class="m_tag" href="product.php">Liste des paiements</a></li>
 			   </ul>
 			   
 			  <!-- Right aligned section for Sign Up and Sign In -->
@@ -499,7 +499,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="form-group text-center">
                         <label for="profilePhoto" class="d-block">Profile Photo</label>
                         <div id="profilePhotoContainer" class="profile-photo-circle">
-                            <img id="profilePhotoPreview" alt="Profile Photo Preview" class="img-circle" width="100" height="100" style="display:none;">
+                            <img id="profilePhotoPreview" alt="Profile Photo Preview" class="img-circle" width="100" height="100">
                             <input type="file" class="form-control-file" id="profilePhoto" name="profilePhoto" accept="image/*">
                         </div>
                     </div>
@@ -539,7 +539,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Gestion du clic sur le bouton "Modify Profile"
+    // Gestion du clic sur le lien "Modify Profile"
     document.getElementById('modifyProfileLink').addEventListener('click', function(event) {
         event.preventDefault();
 
@@ -550,16 +550,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (user.status === 'success') {
                     const profilePhotoPreview = document.getElementById('profilePhotoPreview');
                     
+                    // Afficher l'image actuelle du profil
                     if (user.data.profilePhoto) {
-                        profilePhotoPreview.src = user.data.profilePhoto;
+                        profilePhotoPreview.src = user.data.profilePhoto; // Lien de l'image actuelle
                         profilePhotoPreview.style.display = 'block';
                     } else {
+                        profilePhotoPreview.src = ''; // Aucun aperçu s'il n'y a pas d'image
                         profilePhotoPreview.style.display = 'none';
                     }
                     
+                    // Remplir l'email dans le champ
                     document.getElementById('modifyEmail').value = user.data.email;
 
-                    // Display the modal
+                    // Afficher le modal
                     $('#modifyProfileModal').modal('show');
                 } else {
                     Swal.fire({
@@ -580,12 +583,27 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     });
 
+    // Prévisualisation de la nouvelle image avant téléchargement
+    document.getElementById('profilePhoto').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const profilePhotoPreview = document.getElementById('profilePhotoPreview');
+                profilePhotoPreview.src = e.target.result; // Afficher l'image sélectionnée
+                profilePhotoPreview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
     // Gestion de la soumission du formulaire de modification du profil
     document.getElementById('modify-profile-form').addEventListener('submit', function(event) {
-        // Votre logique existante pour soumettre le formulaire
+        // Vous pouvez ajouter ici des validations ou des actions supplémentaires avant soumission
     });
 });
 </script>
+
 
 <section id="center" class="center_home">
 <div class="banner">

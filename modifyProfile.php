@@ -27,10 +27,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
+    // Gérer le téléchargement de l'image
+    $imagePath = null;
+    if (isset($_FILES['profileImage']) && $_FILES['profileImage']['error'] === UPLOAD_ERR_OK) {
+        $image = $_FILES['profileImage'];
+        $imageTmpPath = $image['tmp_name'];
+        $imageName = $image['name'];
+        $imageSize = $image['size'];
+        $imageType = $image['type'];
+
+        // Validation de l'image (taille, type, etc.)
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        if (!in_array($imageType, $allowedTypes)) {
+            $response['message'] = 'Invalid image format. Only JPEG, PNG, and GIF are allowed.';
+            echo json_encode($response);
+            exit;
+        }
+
+        // Définir le chemin de téléchargement (à ajuster selon vos besoins)
+        $uploadDir = 'uploads/profile_images/';
+        $imagePath = $uploadDir . uniqid() . '_' . basename($imageName);
+
+        // Déplacer l'image téléchargée dans le répertoire de destination
+        if (!move_uploaded_file($imageTmpPath, $imagePath)) {
+            $response['message'] = 'Error uploading image.';
+            echo json_encode($response);
+            exit;
+        }
+    }
+
     try {
         $pdo = GetConnexion(); // Fonction pour obtenir la connexion PDO
 
-        // Préparer la requête SQL pour mettre à jour l'email et/ou le mot de passe
+        // Préparer la requête SQL pour mettre à jour l'email, le mot de passe et/ou l'image
         $updateFields = [];
         $params = [];
 
@@ -42,6 +71,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $updateFields[] = "password = :password";
             $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
             $params[':password'] = $hashedPassword;
+        }
+        if ($imagePath) {
+            $updateFields[] = "profile_image = :profileImage";
+            $params[':profileImage'] = $imagePath;
         }
 
         if (count($updateFields) > 0) {

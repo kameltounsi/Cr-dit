@@ -1,0 +1,206 @@
+.search-form {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.search-form select, .search-form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.search-form input {
+    width: 300px;
+}
+
+    .reserve-button {
+    background-color: #007bff; /* Blue background color */
+    color: white; /* White text */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px; /* Adjust the font size */
+    margin: 15px; /* Margin for spacing */
+    transition: background-color 0.3s;
+}
+
+.reserve-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+    .car-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1.5fr); /* Colonnes plus larges */
+    gap: 30px; /* Plus d'espace entre les éléments */
+    padding: 60px; /* Plus de padding autour de la grille */
+}
+
+.car-item {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    position: relative;
+}
+
+.car-item:hover {
+    transform: scale(1.05);
+}
+
+.img-container {
+    position: relative;
+}
+
+.car-item img {
+    width: 100%;
+    height: 450px; /* Augmentez la hauteur de l'image */
+    object-fit: cover;
+}
+
+.next-button,
+.prev-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.next-button {
+    right: 10px;
+}
+
+.prev-button {
+    left: 10px;
+}
+
+.car-item h3 {
+    margin: 15px;
+    font-size: 20px; /* Augmentez la taille de la police */
+    color: #333;
+}
+
+.car-item p {
+    margin: 15px;
+    font-size: 16px; /* Augmentez la taille de la police */
+    color: #666;
+}
+
+.car-item .price {
+    font-size: 18px; /* Augmentez la taille de la police */
+    color: #000;
+    font-weight: bold;
+    margin: 15px;
+}
+/* Modal container */
+.modal {
+  display: none;
+  position:fixed;
+  left: 500px;
+  top: 100px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal content box with sleek look */
+.modal-content {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 30px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+  animation: slideDown 0.4s ease-in-out;
+}
+
+/* Slide down animation for opening modal */
+@keyframes slideDown {
+  from {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Close button in the top right corner */
+.close {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  color: #aaa;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #000;
+}
+
+/* Form elements styling */
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-content label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.modal-content input {
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 100%; /* Assurez-vous que les champs remplissent la largeur disponible */
+
+}
+
+.modal-content input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Submit button with modern look */
+.modal-content button[type="submit"] {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-content button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  .modal-content {
+    width: 95%;
+  }
+}
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    display: block;
+    margin-top: 5px;
+}

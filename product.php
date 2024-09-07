@@ -1,3 +1,9 @@
+<?php
+session_start(); // Assurez-vous que la session est démarrée
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+$user_mail = isset($_SESSION['user_email']) ? $_SESSION['user_email'] : null;
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,6 +22,7 @@
     <script src="js/bootstrap.min.js"></script>
     <link rel="icon" href="img/top-logo1.png" type="image/png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="product.css">
 
   </head>
   
@@ -119,10 +126,187 @@
             </div>
         </div>
     </div>
-    
+    <div id="reservationModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h5 style="text-align: center; font-size: 1.5rem;">Réservation de voiture</h5>
+        <form id="reservationForm">
+            <input type="hidden" id="userId" value="<?php echo $user_id; ?>">
+            <input type="hidden" id="carId">
+            <input type="hidden" id="prixUnitaire"> <!-- Ajout du champ caché pour le prix unitaire -->
+            <div>
+                <label for="dateDebut">Date de début</label>
+                <input type="date" id="dateDebut" required>
+                <span id="errorDateDebut" class="error-message"></span>
+            </div>
+            <div>
+                <label for="dateFin">Date de fin</label>
+                <input type="date" id="dateFin" required>
+                <span id="errorDateFin" class="error-message"></span>
+            </div>
+            <div>
+                <label for="prixTotal">Prix total</label>
+                <input type="text" id="prixTotal" class="form-control" readonly>
+            </div>
+            <div>
+                <label for="telephone">Téléphone</label>
+                <input type="text" id="telephone" required>
+                <span id="errorTelephone" class="error-message"></span>
+            </div>
+            <div>
+                <label for="mail">Email</label>
+                <input type="email" id="mail" value="<?php echo $user_mail; ?>" required>
+                <span id="errorMail" class="error-message"></span>
+            </div>
+            <button type="submit">Confirmer la réservation</button>
+        </form>
+    </div>
+</div>
+
+
     <!-- Include SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+    <script>
+document.getElementById('reservationForm').addEventListener('submit', submitReservationForm);
+document.getElementById('dateDebut').addEventListener('change', updatePrixTotal);
+document.getElementById('dateFin').addEventListener('change', updatePrixTotal);
+
+function openReservationModal(car) {
+    // Assurez-vous que le champ prixUnitaire est défini ici
+    document.getElementById('carId').value = car.id;
+    document.getElementById('prixUnitaire').value = car.prix;
+    document.getElementById('reservationModal').style.display = 'block';
+}
+
+function calculerNombreJours(dateDebut, dateFin) {
+    const debut = new Date(dateDebut);
+    const fin = new Date(dateFin);
+    const differenceTemps = fin - debut;
+    return Math.max(differenceTemps / (1000 * 3600 * 24), 0);
+}
+
+function updatePrixTotal() {
+    const dateDebut = document.getElementById('dateDebut').value;
+    const dateFin = document.getElementById('dateFin').value;
+    const prixUnitaire = parseFloat(document.getElementById('prixUnitaire').value);
+
+    if (dateDebut && dateFin && prixUnitaire) {
+        const nombreJours = calculerNombreJours(dateDebut, dateFin);
+        const prixTotal = nombreJours * prixUnitaire;
+        document.getElementById('prixTotal').value = `${prixTotal.toFixed(2)} DT`;
+    } else {
+        document.getElementById('prixTotal').value = '0.00 DT';
+    }
+}
+
+function validateForm() {
+    clearErrorMessages();
+
+    const dateDebut = document.getElementById('dateDebut').value;
+    const dateFin = document.getElementById('dateFin').value;
+    const telephone = document.getElementById('telephone').value;
+    const mail = document.getElementById('mail').value;
+    const currentDate = new Date().toISOString().split('T')[0];
+    let isValid = true;
+
+    if (!dateDebut || !dateFin) {
+        showError('errorDateDebut', 'Les dates de début et de fin sont obligatoires.');
+        showError('errorDateFin', 'Les dates de début et de fin sont obligatoires.');
+        isValid = false;
+    }
+
+    if (dateDebut < currentDate || dateFin < currentDate) {
+        showError('errorDateDebut', 'Les dates de début et de fin doivent être supérieures ou égales à la date actuelle.');
+        showError('errorDateFin', 'Les dates de début et de fin doivent être supérieures ou égales à la date actuelle.');
+        isValid = false;
+    }
+
+    if (dateFin <= dateDebut) {
+        showError('errorDateDebut', 'La date de fin doit être supérieure à la date de début.');
+        isValid = false;
+    }
+
+    const phoneRegex = /^[0-9]{8}$/;
+    if (!phoneRegex.test(telephone)) {
+        showError('errorTelephone', 'Le numéro de téléphone doit contenir exactement 8 chiffres.');
+        isValid = false;
+    }
+
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(mail)) {
+        showError('errorMail', 'Veuillez entrer une adresse email valide.');
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+function showError(elementId, message) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        element.textContent = message;
+    }
+}
+
+function clearErrorMessages() {
+    document.querySelectorAll('.error-message').forEach(span => {
+        span.textContent = '';
+    });
+}
+
+function submitReservationForm(event) {
+    event.preventDefault();
+
+    if (!validateForm()) {
+        return;
+    }
+
+    const reservationData = {
+        id_user: document.getElementById('userId').value,
+        id_car: document.getElementById('carId').value,
+        date_current: new Date().toISOString().split('T')[0],
+        date_debut: document.getElementById('dateDebut').value,
+        date_fin: document.getElementById('dateFin').value,
+        prixtotal: document.getElementById('prixTotal').value.split(' ')[0],
+        telephone: document.getElementById('telephone').value,
+        mail: document.getElementById('mail').value
+    };
+
+    fetch('reserver.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(reservationData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            Swal.fire('Réservation confirmée', 'Votre réservation a été confirmée avec succès.', 'success');
+            closeModal();
+        } else {
+            Swal.fire('Erreur', 'Une erreur est survenue lors de la réservation.', 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Erreur:', error);
+    });
+}
+
+function closeModal() {
+    document.getElementById('reservationModal').style.display = 'none';
+}
+
+document.querySelector('.close').addEventListener('click', closeModal);
+
+window.addEventListener('click', (event) => {
+    const modal = document.getElementById('reservationModal');
+    if (event.target === modal) {
+        closeModal();
+    }
+});
+</script>
+
     <!-- JavaScript for handling form submission and email uniqueness -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -482,42 +666,7 @@
       </script>
       
        </section>
-       <!-- Modal de Réservation -->
-<div id="reservationModal" class="modal" tabindex="-1">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Réservation de voiture</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form id="reservationForm">
-            <div class="mb-3">
-              <label for="dateDebut" class="form-label">Date de début</label>
-              <input type="date" id="dateDebut" class="form-control" required>
-            </div>
-            <div class="mb-3">
-              <label for="dateFin" class="form-label">Date de fin</label>
-              <input type="date" id="dateFin" class="form-control" required>
-            </div>
-            <div class="mb-3">
-              <label for="prixTotal" class="form-label">Prix total</label>
-              <input type="text" id="prixTotal" class="form-control" readonly>
-            </div>
-            <div class="mb-3">
-              <label for="telephone" class="form-label">Numéro de téléphone</label>
-              <input type="text" id="telephone" class="form-control" required>
-            </div>
-            <div class="mb-3">
-              <label for="mail" class="form-label">Email</label>
-              <input type="email" id="mail" class="form-control" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Confirmer la réservation</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+
   
     <!-- Modal for Modify Profile -->
     <div id="modifyProfileModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modifyProfileModalLabel">
@@ -761,10 +910,10 @@ function displayCars(cars) {
     const reserveButton = document.createElement('button');
     reserveButton.textContent = 'Réserver';
     reserveButton.className = 'reserve-button';
-
     reserveButton.addEventListener('click', () => {
-      alert(`Vous avez réservé: ${car.nom} ${car.model}`);
-    });
+  openReservationModal(car); // Open modal for the specific car
+});
+;
 
     carItem.appendChild(imgContainer);
     carItem.appendChild(carName);
@@ -775,6 +924,7 @@ function displayCars(cars) {
     carGrid.appendChild(carItem);
   });
 }
+
 
 function performDynamicSearch() {
   const searchInput = document.getElementById('searchInput').value.trim().toLowerCase();
@@ -812,6 +962,8 @@ document.addEventListener('DOMContentLoaded', checkSession);
 
 
 
+
+
 // Appeler cette fonction lors d'une connexion réussie
 function onLoginSuccess() {
   $('#loginModal').modal('hide'); // Fermer le modal de connexion
@@ -820,108 +972,7 @@ function onLoginSuccess() {
 
 </script>
 <style>
-.search-form {
-    margin: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
 
-.search-form select, .search-form input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-}
-
-.search-form input {
-    width: 300px;
-}
-
-    .reserve-button {
-    background-color: #007bff; /* Blue background color */
-    color: white; /* White text */
-    border: none;
-    border-radius: 5px;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-size: 16px; /* Adjust the font size */
-    margin: 15px; /* Margin for spacing */
-    transition: background-color 0.3s;
-}
-
-.reserve-button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-}
-
-    .car-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1.5fr); /* Colonnes plus larges */
-    gap: 30px; /* Plus d'espace entre les éléments */
-    padding: 60px; /* Plus de padding autour de la grille */
-}
-
-.car-item {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
-    position: relative;
-}
-
-.car-item:hover {
-    transform: scale(1.05);
-}
-
-.img-container {
-    position: relative;
-}
-
-.car-item img {
-    width: 100%;
-    height: 450px; /* Augmentez la hauteur de l'image */
-    object-fit: cover;
-}
-
-.next-button,
-.prev-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.next-button {
-    right: 10px;
-}
-
-.prev-button {
-    left: 10px;
-}
-
-.car-item h3 {
-    margin: 15px;
-    font-size: 20px; /* Augmentez la taille de la police */
-    color: #333;
-}
-
-.car-item p {
-    margin: 15px;
-    font-size: 16px; /* Augmentez la taille de la police */
-    color: #666;
-}
-
-.car-item .price {
-    font-size: 18px; /* Augmentez la taille de la police */
-    color: #000;
-    font-weight: bold;
-    margin: 15px;
-}
 
 </style>
 </body>
