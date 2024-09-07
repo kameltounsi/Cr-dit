@@ -262,37 +262,64 @@ function submitReservationForm(event) {
         return;
     }
 
-    const reservationData = {
-        id_user: document.getElementById('userId').value,
-        id_car: document.getElementById('carId').value,
-        date_current: new Date().toISOString().split('T')[0],
-        date_debut: document.getElementById('dateDebut').value,
-        date_fin: document.getElementById('dateFin').value,
-        prixtotal: document.getElementById('prixTotal').value.split(' ')[0],
-        telephone: document.getElementById('telephone').value,
-        mail: document.getElementById('mail').value
-    };
+    const dateDebut = document.getElementById('dateDebut').value;
+    const dateFin = document.getElementById('dateFin').value;
+    const carId = document.getElementById('carId').value;
 
-    fetch('reserver.php', {
+    // Vérifier la disponibilité de la voiture
+    fetch('checkAvailability.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(reservationData)
+        body: JSON.stringify({ carId, dateDebut, dateFin })
     })
     .then(response => response.json())
     .then(data => {
-        if (data.success) {
-            Swal.fire('Réservation confirmée', 'Votre réservation a été confirmée avec succès.', 'success');
-            closeModal();
+        console.log('Disponibilité:', data); // Ajoutez ce log pour vérifier la réponse
+        if (!data.available) {
+            Swal.fire('Erreur', 'La voiture est déjà réservée pour ces dates.', 'error');
         } else {
-            Swal.fire('Erreur', 'Une erreur est survenue lors de la réservation.', 'error');
+            // Si la voiture est disponible, soumettre la réservation
+            const reservationData = {
+                id_user: document.getElementById('userId').value,
+                id_car: document.getElementById('carId').value,
+                date_current: new Date().toISOString().split('T')[0],
+                date_debut: document.getElementById('dateDebut').value,
+                date_fin: document.getElementById('dateFin').value,
+                prixtotal: document.getElementById('prixTotal').value.split(' ')[0],
+                telephone: document.getElementById('telephone').value,
+                mail: document.getElementById('mail').value
+            };
+
+            fetch('reserver.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(reservationData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Réservation:', data); // Ajoutez ce log pour vérifier la réponse
+                if (data.success) {
+                    Swal.fire('Réservation confirmée', 'Votre réservation a été confirmée avec succès.', 'success');
+                    closeModal();
+                } else {
+                    Swal.fire('Erreur', 'Une erreur est survenue lors de la réservation.', 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Erreur réservation:', error);
+            });
         }
     })
     .catch(error => {
-        console.error('Erreur:', error);
+        console.error('Erreur disponibilité:', error);
     });
 }
+
+
 
 function closeModal() {
     document.getElementById('reservationModal').style.display = 'none';
