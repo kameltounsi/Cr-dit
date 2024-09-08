@@ -320,11 +320,6 @@ $user_mail = isset($_SESSION['user_email']) ? $_SESSION['user_email'] : null;
                             <label class="sr-only" for="loginPassword">Password</label>
                             <input type="password" class="form-control" id="loginPassword" placeholder="Password" required>
                         </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Remember me
-                            </label>
-                        </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-success btn-block">Sign In</button>
                         </div>

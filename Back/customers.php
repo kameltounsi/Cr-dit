@@ -22,7 +22,8 @@ if ($user_role !== 'Admin' && $user_role !== 'Agent de location') {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>  
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  
+        <link rel="stylesheet" href="customers.css">
+
 </head>
 
 <body>
@@ -35,7 +36,7 @@ if ($user_role !== 'Admin' && $user_role !== 'Agent de location') {
                         <span class="icon">
                             <ion-icon name="logo-apple"></ion-icon>
                         </span>
-                        <span class="title">Brand Name</span>
+                        <span class="title">BMC Auto</span>
                     </a>
                 </li>
 
@@ -89,17 +90,32 @@ if ($user_role !== 'Admin' && $user_role !== 'Agent de location') {
                 </li>
 
                 <li>
-                    <a href="#" id="signOutLink">
-                        <span class="icon">
-                            <ion-icon name="log-out-outline"></ion-icon>
-                        </span>
-                        <span class="title">Sign Out</span>
-                    </a>
-                </li>
+    <a href="#" id="signOutLink">
+        <span class="icon">
+            <ion-icon name="log-out-outline"></ion-icon>
+        </span>
+        <span class="title">Sign Out</span>
+    </a>
+</li>
             </ul>
         </div>
     </div>
     <script src="assets/js/main.js"></script>
+<script>
+document.getElementById('signOutLink').addEventListener('click', function(event) {
+    event.preventDefault(); // Empêche le comportement par défaut du lien
+    
+    // Effectuer la requête de déconnexion
+    fetch('logout1.php')
+        .then(response => {
+            if (response.redirected) {
+                window.location.href = response.url; // Redirige vers la page de connexion ou autre
+            }
+        })
+        .catch(error => console.error('Erreur lors de la déconnexion:', error));
+});
+
+</script>
 
 <!-- ====== ionicons ======= -->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
@@ -115,7 +131,6 @@ if ($user_role !== 'Admin' && $user_role !== 'Agent de location') {
                     <label>
                         <select id="search-type" class="custom-select">
                             <option value="email">Search by email</option>
-                            <option value="role">Search by role</option>
                         </select>
                         
                         <input type="text" id="search-input" placeholder="Search...">
@@ -162,71 +177,6 @@ if ($user_role !== 'Admin' && $user_role !== 'Agent de location') {
         <canvas id="stats-chart"></canvas>
     </div>
 </div>
-
-<style>
-    /* Style pour le modal */
-.modal {
-    display: none; /* Caché par défaut */
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 10% auto; /* Adjusted margin for positioning */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 50%; /* Reduced width */
-    max-width: 600px; /* Maximum width */
-    height: 400px; /* Fixed height */
-    overflow: auto; /* Scrollable if content overflows */
-}
-
-
-.close-btn {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close-btn:hover,
-.close-btn:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-
-#stats-chart {
-    width: 100%;
-    height: 100%;
-}
-.stats-btn {
-    background-color: #4CAF50; /* Green */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 10px 0;
-    cursor: pointer;
-}
-
-.stats-btn:hover {
-    background-color: #45a049;
-}
-
-</style>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const showStatsBtn = document.getElementById('show-stats-btn');
@@ -546,102 +496,6 @@ fetch('/car_rent/back/affichusers.php')
 });
 
 </script>
-
     </script>
-    <style>
-        .profile-pic {
-        width: 100px; /* Adjust size as needed */
-        height: 100px; /* Adjust size as needed */
-        border-radius: 50%;
-        object-fit: cover; /* Ensure image covers the area without distortion */
-    }
-        .delete-btn {
-        background-color: red;
-        color: white;
-        border: none;
-        padding: 5px 10px;
-        border-radius: 3px;
-        cursor: pointer;
-    }
-
-    .delete-btn:hover {
-        background-color: darkred;
-    }
-    /* Style pour la zone de recherche */
-.search {
-    display: flex;
-    align-items: center;
-    margin: 20px;
-    gap: 10px;
-}
-    .custom-select {
-        background-color: #87CEEB; /* Bleu ciel */
-        border: 1px solid #ADD8E6; /* Bordure en bleu clair */
-        color: #000000; /* Texte en noir pour une bonne lisibilité */
-        padding: 5px; /* Optionnel : ajoute du padding pour améliorer l'apparence */
-    }
-    .custom-select option {
-        background-color: #87CEEB; /* Bleu ciel pour les options */
-        color: #FFFFFF; /* Texte des options en blanc */
-    }
-.search label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-#search-type {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-#search-input {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    width: 200px;
-    transition: border-color 0.3s;
-}
-
-#search-input:focus {
-    border-color: #3085d6;
-    outline: none;
-}
-
-/* Style pour les icônes de recherche */
-ion-icon[name="search-outline"] {
-    color: #3085d6;
-    cursor: pointer;
-}
-
-/* Style pour le tableau des utilisateurs */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-}
-
-th, td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-th {
-    background-color: #f4f4f4;
-    color: #333;
-}
-
-tr:hover {
-    background-color: #f9f9f9;
-}
-
-
-
-    
-    </style>
 </body>
 </html>

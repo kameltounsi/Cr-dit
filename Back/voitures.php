@@ -78,17 +78,33 @@ if ($user_role !== 'Admin' && $user_role !== 'Agent de location') {
                         <span class="title">Go to Front</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#" id="signOutLink">
-                        <span class="icon">
-                            <ion-icon name="log-out-outline"></ion-icon>
-                        </span>
-                        <span class="title">Sign Out</span>
-                    </a>
-                </li>
+                <                <li>
+    <a href="#" id="signOutLink">
+        <span class="icon">
+            <ion-icon name="log-out-outline"></ion-icon>
+        </span>
+        <span class="title">Sign Out</span>
+    </a>
+</li>
             </ul>
         </div>
     </div>
+    <script src="assets/js/main.js"></script>
+<script>
+document.getElementById('signOutLink').addEventListener('click', function(event) {
+    event.preventDefault(); // Empêche le comportement par défaut du lien
+    
+    // Effectuer la requête de déconnexion
+    fetch('logout1.php')
+        .then(response => {
+            if (response.redirected) {
+                window.location.href = response.url; // Redirige vers la page de connexion ou autre
+            }
+        })
+        .catch(error => console.error('Erreur lors de la déconnexion:', error));
+});
+
+</script>
         <!-- Main Content -->
         <div class="main">
             <div class="topbar">
