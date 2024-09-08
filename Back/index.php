@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'Config.php'; // Inclure la configuration de la base de données
+require_once 'Model/Config.php'; // Inclure la configuration de la base de données
 
 // Supposons que vous stockez les rôles dans une session après la connexion de l'utilisateur
 $user_role = $_SESSION['user_role'] ?? '';
@@ -123,7 +123,7 @@ $voitureCountByVille = getVoitureCountByVille();
 
                 <?php if ($user_role === 'Admin') { ?>
                     <li>
-                        <a href="customers.php">
+                        <a href="View/customers.php">
                             <span class="icon">
                                 <ion-icon name="people-outline"></ion-icon>
                             </span>
@@ -134,7 +134,7 @@ $voitureCountByVille = getVoitureCountByVille();
 
                 <?php if ($user_role === 'Agent de location') { ?>
                     <li>
-                        <a href="../back/voitures.php">
+                        <a href="View/voitures.php">
                             <span class="icon">
                                 <ion-icon name="car-sport-outline"></ion-icon>
                             </span>
@@ -143,7 +143,7 @@ $voitureCountByVille = getVoitureCountByVille();
                     </li>
 
                     <li>
-                        <a href="reservation_back.php">
+                        <a href="View/reservation_back.php">
                             <span class="icon">
                                 <ion-icon name="calendar-outline"></ion-icon>
                             </span>
@@ -172,13 +172,13 @@ $voitureCountByVille = getVoitureCountByVille();
             </ul>
         </div>
     </div>
-    <script src="assets/js/main.js"></script>
+    <script src="../assets/js/main.js"></script>
 <script>
 document.getElementById('signOutLink').addEventListener('click', function(event) {
     event.preventDefault(); // Empêche le comportement par défaut du lien
     
     // Effectuer la requête de déconnexion
-    fetch('logout1.php')
+    fetch('Controller/logout1.php')
         .then(response => {
             if (response.redirected) {
                 window.location.href = response.url; // Redirige vers la page de connexion ou autre
@@ -192,7 +192,7 @@ document.getElementById('signOutLink').addEventListener('click', function(event)
 <!-- ====== ionicons ======= -->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-        <script>fetch('logout.php', {
+        <script>fetch('Controller/logout.php', {
     method: 'POST',
 })
 .then(response => response.text()) // Changez temporairement en text pour déboguer
@@ -219,7 +219,7 @@ document.getElementById('signOutLink').addEventListener('click', function(event)
                     <ion-icon name="menu-outline"></ion-icon>
                 </div>
                 <div class="user">
-    <img src="<?php echo htmlspecialchars('../' . ($_SESSION['user_pdp'] ?? 'assets/imgs/default_profile.jpg')); ?>" alt="User Profile">
+    <img src="<?php echo htmlspecialchars( ($_SESSION['user_pdp'] ?? 'assets/imgs/default_profile.jpg')); ?>" alt="User Profile">
 </div>
 
 

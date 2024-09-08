@@ -1,3 +1,8 @@
+<?php
+session_start(); // Assurez-vous que la session est démarrée
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+$user_mail = isset($_SESSION['user_email']) ? $_SESSION['user_email'] : null;
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,16 +10,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>BMCAUTO</title>
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/global.css" rel="stylesheet">
-	<link href="css/index.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
-	<link href="css/ken-burns.css" rel="stylesheet" type="text/css" media="all" />
-	<link type="text/css" rel="stylesheet" href="css/animate.css">
+	<link href="../css/bootstrap.min.css" rel="stylesheet">
+	<link href="../css/global.css" rel="stylesheet">
+	<link href="../css/index.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css" />
+	<link href="../css/ken-burns.css" rel="stylesheet" type="text/css" media="all" />
+	<link type="text/css" rel="stylesheet" href="../css/animate.css">
 	<link href="https://fonts.googleapis.com/css?family=Alata&display=swap" rel="stylesheet">
-	<script src="js/jquery-2.1.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+	<script src="../js/jquery-2.1.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
 	<link rel="icon" href="img/top-logo1.png" type="image/png">
+    <link rel="stylesheet" href="../css/liste.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 	<!-- SweetAlert CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
   </head>
@@ -32,17 +41,17 @@
 				  <span class="icon-bar"></span>
 				  <span class="icon-bar"></span>
 			   </button>
-			   <a href="index.html">
-				  <img src="img/top-logo.png" alt="BMCAUTO Logo" style="height: 70px; width: 400px;">
+			   <a href="../index.html">
+				  <img src="../img/top-logo.png" alt="BMCAUTO Logo" style="height: 70px; width: 400px;">
 			   </a>
 			</div>
    
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			   <ul class="nav navbar-nav">
-				  <li><a class="m_tag active_m" href="index.html">Home</a></li>
-                  <li><a class="m_tag" href="View/product.php">Voitures</a></li>
-                  <li><a class="m_tag" href="View/listepaiements.php">Liste des paiements</a></li>
+				  <li><a class="m_tag" href="../index.html">Home</a></li>
+                  <li><a class="m_tag" href="../View/product.php">Voitures</a></li>
+                  <li><a class="m_tag active_m" href="../View/listepaiements.php">Liste des paiements</a></li>
 			   </ul>
 			   
 			  <!-- Right aligned section for Sign Up and Sign In -->
@@ -74,7 +83,7 @@
                 <h4 class="modal-title" id="registerModalLabel">Sign Up</h4>
             </div>
             <div class="modal-body">
-                <form class="form" method="post" action="Controller/registerController.php" accept-charset="UTF-8" id="register-form" enctype="multipart/form-data">
+                <form class="form" method="post" action="../Controller/registerController.php" accept-charset="UTF-8" id="register-form" enctype="multipart/form-data">
                     <div class="form-group text-center">
                         <label for="profilePhoto" class="d-block">Profile Photo</label>
                         <div id="profilePhotoContainer" class="profile-photo-circle">
@@ -167,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (valid) {
             // Check if email is unique
-            fetch('Controller/checkEmail.php', {
+            fetch('../Controller/checkEmail.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email: email })
@@ -185,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     // If email is unique, submit the form
                     var formData = new FormData(this);
                     
-                    fetch('Controller/registerController.php', {
+                    fetch('../Controller/registerController.php', {
                         method: 'POST',
                         body: formData
                     })
@@ -317,6 +326,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         <label class="sr-only" for="loginPassword">Password</label>
                         <input type="password" class="form-control" id="loginPassword" placeholder="Password" required>
                     </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Remember me
+                        </label>
+                    </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-success btn-block">Sign In</button>
                     </div>
@@ -334,17 +348,17 @@ document.addEventListener('DOMContentLoaded', function() {
         // Check session status when the page loads
         function checkSession() {
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'Controller/check_session.php', true); // PHP script to check session
+            xhr.open('GET', '../Controller/check_session.php', true); // PHP script to check session
             xhr.onload = function() {
                 if (xhr.status === 200) {
                     var response = JSON.parse(xhr.responseText);
                     if (response.status === 'connected') {
                         displayAvatar(response.user.pdp);
                         if (response.user.role === 'Admin') {
-                            window.location.href = 'back/index.php';
+                            window.location.href = '../back/index.php';
                         }
                         else if (response.user.role === 'Agent de location') {
-                            window.location.href = 'back/index.php';
+                            window.location.href = '../back/index.php';
                         }
 
                     }
@@ -352,6 +366,7 @@ document.addEventListener('DOMContentLoaded', function() {
             };
             xhr.send();
         }
+    
         checkSession(); // Call the function when the page loads
     
         // Handle form submission for login
@@ -364,18 +379,18 @@ document.addEventListener('DOMContentLoaded', function() {
     
             // Send data via AJAX
             var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'Controller/login.php', true);
+            xhr.open('POST', '../Controller/login.php', true);
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.onload = function() {
                 if (xhr.status === 200) {
                     var response = JSON.parse(xhr.responseText);
                     if (response.status === 'success') {
                         if (response.user.role === 'Admin') {
-                            window.location.href = 'back/index.php';
+                            window.location.href = '../back/index.php';
                             
                         }
                         else if (response.user.role === 'Agent de location') {
-                            window.location.href = 'back/index.php';
+                            window.location.href = '../back/index.php';
                         } else {
                             displayAvatar(response.user.pdp);
                             $('#loginModal').modal('hide'); // Close the login modal
@@ -395,14 +410,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
         // Function to display the avatar after a successful login
         function displayAvatar(userProfileImage) {
-    document.getElementById('auth-buttons').style.display = 'none';
-    document.getElementById('user-avatar').style.display = 'block';
-    
-    // Assurez-vous que le chemin fourni est correct
-    const avatarPath = userProfileImage ? userProfileImage.replace(/^(\.\.\/)+/, '') : 'path/to/default-avatar.jpg';
-    document.getElementById('profileImage').src = avatarPath;
-}
-
+            document.getElementById('auth-buttons').style.display = 'none';
+            document.getElementById('user-avatar').style.display = 'block';
+            document.getElementById('profileImage').src = userProfileImage || 'path/to/default-avatar.jpg';
+        }
     
         // Display an error message if login fails
         function displayLoginError(message) {
@@ -441,7 +452,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (result.isConfirmed) {
                     // Perform logout on the server side
                     var xhr = new XMLHttpRequest();
-                    xhr.open('POST', 'Controller/logout.php', true); // Server-side logout script
+                    xhr.open('POST', '../Controller/logout.php', true); // Server-side logout script
                     xhr.onload = function() {
                         if (xhr.status === 200) {
                             // Reset the interface after logout
@@ -493,11 +504,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 <h4 class="modal-title" id="modifyProfileModalLabel">Modify Profile</h4>
             </div>
             <div class="modal-body">
-                <form class="form" method="post" action="Controller/modifyProfile.php" accept-charset="UTF-8" id="modify-profile-form" enctype="multipart/form-data">
+                <form class="form" method="post" action="../Controller/modifyProfile.php" accept-charset="UTF-8" id="modify-profile-form" enctype="multipart/form-data">
                     <div class="form-group text-center">
                         <label for="profilePhoto" class="d-block">Profile Photo</label>
                         <div id="profilePhotoContainer" class="profile-photo-circle">
-                            <img id="profilePhotoPreview" alt="Profile Photo Preview" class="img-circle" width="100" height="100" style="display: none;">
+                            <img id="profilePhotoPreview" alt="Profile Photo Preview" class="img-circle" width="100" height="100">
                             <input type="file" class="form-control-file" id="profilePhoto" name="profilePhoto" accept="image/*">
                         </div>
                     </div>
@@ -542,7 +553,7 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault();
 
         // Fetch user data using an AJAX call
-        fetch('Controller/getUserData.php')
+        fetch('../Controller/getUserData.php')
             .then(response => response.json())
             .then(user => {
                 if (user.status === 'success') {
@@ -551,7 +562,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Afficher l'image actuelle du profil
                     if (user.data.profilePhoto) {
                         profilePhotoPreview.src = user.data.profilePhoto; // Lien de l'image actuelle
-                        profilePhotoPreview.style.display = 'block'; // S'assurer que l'image est visible
+                        profilePhotoPreview.style.display = 'block';
                     } else {
                         profilePhotoPreview.src = ''; // Aucun aperçu s'il n'y a pas d'image
                         profilePhotoPreview.style.display = 'none';
@@ -589,7 +600,7 @@ document.addEventListener('DOMContentLoaded', function() {
             reader.onload = function(e) {
                 const profilePhotoPreview = document.getElementById('profilePhotoPreview');
                 profilePhotoPreview.src = e.target.result; // Afficher l'image sélectionnée
-                profilePhotoPreview.style.display = 'block'; // Assurez-vous que l'image est visible
+                profilePhotoPreview.style.display = 'block';
             };
             reader.readAsDataURL(file);
         }
@@ -601,50 +612,141 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+<?php
+require_once '../Model/Config.php'; // Inclure ton fichier Config.php
+
+// Vérifier si l'utilisateur est authentifié
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+
+    // Connexion PDO
+    $pdo = GetConnexion();
+
+    // Préparer la requête SQL pour récupérer les paiements et les informations sur la voiture
+    $stmt = $pdo->prepare('
+        SELECT reservation.*, voitures.nom AS car_nom, voitures.model AS car_modele
+        FROM reservation
+        JOIN voitures ON reservation.id_car = voitures.id
+        WHERE reservation.id_user = :user_id
+    ');
+    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    // Récupérer les paiements et informations de voiture
+    $payments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Obtenir la date actuelle
+    $currentDate = date('Y-m-d');
+
+    // Afficher la liste des paiements sous forme de cartes
+    if (count($payments) > 0) {
+        echo '<div class="card-container">';
+
+        foreach ($payments as $payment) {
+            echo '<div class="card">';
+            echo '<h3 class="card-title">Réservation ID: ' . $payment['id'] . '</h3>';
+            echo '<div class="card-body">';
+            echo '<p><strong>Date Début:</strong> ' . $payment['date_debut'] . '</p>';
+            echo '<p><strong>Date Fin:</strong> ' . $payment['date_fin'] . '</p>';
+            echo '<p><strong>Date Courante:</strong> ' . $payment['date_current'] . '</p>';
+            echo '<p><strong>Prix Total:</strong> ' . $payment['prixtotal'] . ' DT</p>';
+            echo '<p><strong>Téléphone:</strong> ' . $payment['telephone'] . '</p>';
+            echo '<p><strong>Mail:</strong> ' . $payment['mail'] . '</p>';
+
+            // Afficher les informations sur la voiture
+            echo '<p><strong>Voiture:</strong> ' . $payment['car_nom'] . ' ' . $payment['car_modele'] . '</p>';
+
+            // Déterminer la classe de couleur pour le status
+            $statusColor = '';
+            if ($payment['status'] === 'en cours') {
+                $statusColor = 'color: #ffcc00; font-weight: bold;'; // Jaune
+            } elseif ($payment['status'] === 'accepté') {
+                $statusColor = 'color: #28a745; font-weight: bold;'; // Vert
+            } elseif ($payment['status'] === 'refusé') {
+                $statusColor = 'color: #dc3545; font-weight: bold;'; // Rouge
+            }
+
+            // Afficher le status avec la couleur correspondante
+            echo '<p><strong>Status:</strong> <span style="' . $statusColor . '">' . $payment['status'] . '</span></p>';
+
+            // Vérifier si la réservation peut être annulée (si la date de début est supérieure à la date actuelle)
+            if ($payment['date_debut'] > $currentDate) {
+                echo '<button class="cancel-btn" onclick="annulerReservation(' . $payment['id'] . ')">Annuler</button>';
+            }
+
+            echo '</div>';
+            echo '</div>';
+        }
+
+        echo '</div>';
+    } else {
+        echo '<p>Aucun paiement trouvé pour cet utilisateur.</p>';
+    }
+} else {
+    echo '<p>Vous devez être connecté pour voir vos paiements.</p>';
+}
+?>
+
+<script>
+    function annulerReservation(reservationId) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, cancel it!',
+            cancelButtonText: 'No, keep it'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Faire une requête AJAX pour annuler la réservation
+                fetch('../Controller/annuler_reservation.php?id=' + reservationId)
+                    .then(response => {
+                        // Vérifier si la réponse est OK
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json(); // Récupérer la réponse en JSON
+                    })
+                    .then(data => {
+                        console.log('Response data:', data); // Vérifier ce que contient data
+                        if (data.success) {
+                            // Afficher un message de succès
+                            Swal.fire({
+                                title: 'Cancelled!',
+                                text: data.message,
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            }).then(() => {
+                                // Optionnel : Recharger la page ou effectuer une autre action après succès
+                                window.location.reload();
+                            });
+                        } else {
+                            // Afficher un message d'erreur si l'annulation a échoué
+                            Swal.fire({
+                                title: 'Failed!',
+                                text: data.message,
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error); // Afficher les erreurs dans la console
+                        // Afficher un message d'erreur en cas de problème avec la requête
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'Something went wrong.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    });
+            }
+        });
+    }
+</script>
 
 
-<section id="center" class="center_home">
-<div class="banner">
-		<div id="kb" class="carousel kb_elastic animate_text kb_wrapper" data-ride="carousel" data-interval="6000" data-pause="hover">
-			<!-- Wrapper-for-Slides -->
-            <div class="carousel-inner" role="listbox">  
-                <div class="item active"><!-- First-Slide -->
-                    <img src="img/001.jpg" class="img-responsive">
-                    <div class="carousel-caption kb_caption kb_caption_right">
-                        <h1 data-animation="animated flipInX" class="">We Provide Our best Service</h1>
-                        <p data-animation="animated flipInX" class="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy  text ever since the when an unknown printer took a galley of type and scrambled [...]</p>
-						<h4><a class="button hvr-shutter-out-horizontal" href="#">Read More</a></h4>
-                    </div>
-                </div>  
-                <div class="item"> <!-- Second-Slide -->
-                    <img src="img/002.jpg" alt="" class="img-responsive">
-                    <div class="carousel-caption kb_caption kb_caption_right">
-                        <h1 data-animation="animated fadeInDown">We Provide Our best Service</h1>
-                        <p data-animation="animated fadeInUp">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy  text ever since the when an unknown printer took a galley of type and scrambled [...]</p>
-						<h4><a class="button hvr-shutter-out-horizontal" href="#">Read More</a></h4>
-                    </div>
-                </div> 
-                <div class="item"><!-- Third-Slide -->
-                    <img src="img/003.jpg" alt="" class="img-responsive">
-                    <div class="carousel-caption kb_caption kb_caption_right">
-                        <h1 data-animation="animated fadeInDown">We Provide Our best Service</h1>
-                        <p data-animation="animated fadeInUp">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy  text ever since the when an unknown printer took a galley of type and scrambled [...]</p>
-						<h4><a class="button hvr-shutter-out-horizontal" href="#">Read More</a></h4>
-                    </div>
-                </div> 
-            </div> 
-            <!-- Left-Button -->
-            <a class="left carousel-control kb_control_left" href="#kb" role="button" data-slide="prev">
-				<span class="fa fa-angle-left kb_icons" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a> 
-            <!-- Right-Button -->
-            <a class="right carousel-control kb_control_right" href="#kb" role="button" data-slide="next">
-                <span class="fa fa-angle-right kb_icons" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a> 
-        </div>
-		<script src="js/custom.js"></script>
-	</div>
-	
-  
+
+
