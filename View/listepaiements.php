@@ -462,6 +462,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     };
                     xhr.send();
+                    window.location.href = '../index.html'; // Redirect to index.html
+
                 }
             });
         });

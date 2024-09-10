@@ -27,17 +27,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Si une nouvelle image est téléchargée, ajouter à la requête SQL
         if (!empty($img1)) {
-            $img1Path = '../uploads/' . $img1;
+            $img1Path = '../../uploads/' . $img1;
             $sql .= ", img1 = :img1";
             move_uploaded_file($_FILES['img1']['tmp_name'], $img1Path);
         }
         if (!empty($img2)) {
-            $img2Path = '../uploads/' . $img2;
+            $img2Path = '../../uploads/' . $img2;
             $sql .= ", img2 = :img2";
             move_uploaded_file($_FILES['img2']['tmp_name'], $img2Path);
         }
         if (!empty($img3)) {
-            $img3Path = '../uploads/' . $img3;
+            $img3Path = '../../uploads/' . $img3;
             $sql .= ", img3 = :img3";
             move_uploaded_file($_FILES['img3']['tmp_name'], $img3Path);
         }

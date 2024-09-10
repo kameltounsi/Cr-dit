@@ -445,7 +445,7 @@ $user_mail = isset($_SESSION['user_email']) ? $_SESSION['user_email'] : null;
                             }
                         };
                         xhr.send();
-                        window.location.href = 'index.html'; // Redirect to index.html
+                        window.location.href = '../index.html'; // Redirect to index.html
 
                     }
                 });
@@ -589,7 +589,7 @@ $user_mail = isset($_SESSION['user_email']) ? $_SESSION['user_email'] : null;
   <div class="row">
    <div class="product_main_1">
     <h2>CARS</h2>
-	<p><a href="index.html"> HOME </a> <i class="fa fa-angle-double-right"></i> <a href="#"> CARS </a></p>
+	<p><a href="../index.html"> HOME </a> <i class="fa fa-angle-double-right"></i> <a href="#"> CARS </a></p>
    </div>
   </div>
  </div>
