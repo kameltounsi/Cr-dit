@@ -11,21 +11,33 @@ if (isset($_POST['id'])) {
     $pdo = GetConnexion();
 
     try {
-        // Préparez la requête SQL pour supprimer la voiture
-        $sql = "DELETE FROM voitures WHERE id = :id";
-        $stmt = $pdo->prepare($sql);
+        // Vérifiez d'abord s'il existe une réservation future pour cette voiture
+        $sqlCheckReservation = "SELECT COUNT(*) FROM reservation WHERE id_car = :id AND date_fin > CURDATE()";
+        $stmtCheck = $pdo->prepare($sqlCheckReservation);
+        $stmtCheck->bindParam(':id', $carId, PDO::PARAM_INT);
+        $stmtCheck->execute();
+        $reservationCount = $stmtCheck->fetchColumn();
 
-        // Liez l'ID de la voiture au paramètre
-        $stmt->bindParam(':id', $carId, PDO::PARAM_INT);
-
-        // Exécutez la requête
-        $stmt->execute();
-
-        // Préparez la réponse JSON
-        if ($stmt->rowCount() > 0) {
-            echo json_encode(['success' => true, 'message' => 'La voiture a été supprimée avec succès.']);
+        // Si une réservation future existe, on empêche la suppression
+        if ($reservationCount > 0) {
+            echo json_encode(['success' => false, 'message' => 'Cette voiture est réservée pour une date future et ne peut pas être supprimée.']);
         } else {
-            echo json_encode(['success' => false, 'message' => 'Aucune voiture trouvée avec cet ID.']);
+            // Si aucune réservation future, on peut supprimer la voiture
+            $sql = "DELETE FROM voitures WHERE id = :id";
+            $stmt = $pdo->prepare($sql);
+
+            // Liez l'ID de la voiture au paramètre
+            $stmt->bindParam(':id', $carId, PDO::PARAM_INT);
+
+            // Exécutez la requête
+            $stmt->execute();
+
+            // Préparez la réponse JSON
+            if ($stmt->rowCount() > 0) {
+                echo json_encode(['success' => true, 'message' => 'La voiture a été supprimée avec succès.']);
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Aucune voiture trouvée avec cet ID.']);
+            }
         }
     } catch (PDOException $e) {
         echo json_encode(['success' => false, 'message' => 'Erreur : ' . $e->getMessage()]);
